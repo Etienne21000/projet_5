@@ -1,0 +1,24 @@
+{
+    "name": "etienne/projet_5",
+    "description": "Blog Stefano Bianchi",
+    "type": "project",
+
+    "authors": [
+        {
+            "name": "etienne",
+            "email": "etiennejuffard@gmail.com"
+        }
+    ],
+
+    "minimum-stability": "stable",
+
+    "require": {},
+
+    "autoload":{
+        "psr-4": {
+            "controller\\": "src/controller/",
+            "model\\": "src/model/",
+            "model\\router": "src/model/router/"
+        }
+    }
+}
