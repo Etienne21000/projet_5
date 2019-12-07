@@ -8,8 +8,8 @@
     <link href="https://fonts.googleapis.com/css?family=Special+Elite&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/src/public/css/style.css"/>
-    <link rel="stylesheet" href="/src/public/faw/css/all.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/public/css/style.css"/>
+    <link rel="stylesheet" href="/public/faw/css/all.min.css"/>
 </head>
 
 <header>
@@ -28,10 +28,11 @@
 
         <div class="menu nav">
             <a href="/index.php?action=Accueil"> ACCUEIL</a>
-            <a href="/index.php?action=Accueil">ACTUALITES</a>
-            <a href="/index.php?action=Accueil">TRAVAUX</a>
+            <a href="/index.php?action=UploadImg">ACTUALITES</a>
+            <a href="/index.php?action=series">TRAVAUX</a>
             <a href="/index.php?action=Accueil">A PROPOS</a>
             <a href="/index.php?action=Accueil">CONTACT</a>
+            <a href="/index.php?action=homeAdmin">ADMIN</a>
         </div>
 
     </div>

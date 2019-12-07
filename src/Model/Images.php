@@ -54,7 +54,7 @@ class Image extends Entity
         $this->id_serie = (int)$id_serie;
     }
 
-    public function setIdSerie($id_expo)
+    public function setIdExpo($id_expo)
     {
         $this->id_expo = (int)$id_expo;
     }

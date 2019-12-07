@@ -1,5 +1,5 @@
 <?php
-namespace model;
+namespace App\Model;
 
 class Serie extends Entity
 {
