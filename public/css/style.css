@@ -27,6 +27,16 @@ p
     font-family: Roboto;
 }
 
+a
+{
+    text-decoration: none;
+}
+
+a:visited
+{
+    color: inherit;
+}
+
 .menu_top
 {
     width: 80%;
@@ -60,7 +70,7 @@ p
 .menu a:hover
 {
     color: #666666;
-    border-bottom: 1px solid #666666;
+    /* border-bottom: 1px solid #666666; */
 }
 
 #name p

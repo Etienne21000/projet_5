@@ -4,9 +4,9 @@
 
 <p>Bonjour</p>
 
-<form action="index.php?action=addImage" method="post" charset="utf-8">
+<form action="index.php?action=addImage" method="POST" enctype="multipart/form-data">
 
-    <input type="hidden" name="size" value="1000000"/>
+    <input type="hidden" name="size" value="100000"/>
 
     <input type="file" name="image"/>
 
@@ -30,4 +30,4 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require 'src/public/Template.php'; ?>
+<?php require 'public/templateAdmin.php'; ?>

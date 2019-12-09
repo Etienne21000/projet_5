@@ -1,5 +1,5 @@
 <?php
-namespace model;
+namespace App\Model;
 
 class Image extends Entity
 {
@@ -35,10 +35,10 @@ class Image extends Entity
 
     public function setImage($image)
     {
-        if(is_string($image))
-        {
+        // if(is_string($image))
+        // {
             $this->image = $image;
-        }
+        // }
     }
 
     public function setDescription($description)
@@ -49,17 +49,17 @@ class Image extends Entity
         }
     }
 
-    public function setIdSerie($id_serie)
+    public function setIdserie($id_serie)
     {
         $this->id_serie = (int)$id_serie;
     }
 
-    public function setIdExpo($id_expo)
+    public function setIdexpo($id_expo)
     {
         $this->id_expo = (int)$id_expo;
     }
 
-    public function set_image_date($image_date)
+    public function setImagedate($image_date)
     {
         if(is_string($image_date))
         {
@@ -71,37 +71,37 @@ class Image extends Entity
                 Getters
     ------------------------------*/
 
-    public function image_id($id)
+    public function id()
     {
         return $this->id;
     }
 
-    public function image_title($title)
+    public function title()
     {
         return $this->title;
     }
 
-    public function image_image($image)
+    public function image()
     {
         return $this->image;
     }
 
-    public function image_description($description)
+    public function description()
     {
         return $this->description;
     }
 
-    public function image_id_serie($id_serie)
+    public function id_serie()
     {
         return $this->id_serie;
     }
 
-    public function image_id_expo($id_expo)
+    public function id_expo()
     {
         return $this->id_expo;
     }
 
-    public function image_date($image_date)
+    public function image_date()
     {
         return $this->image_date;
     }

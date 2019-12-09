@@ -11,23 +11,30 @@
 
 	<div class="content">
 		<aside id="addPost">
-			<form action="index.php?action=" method="POST">
+			<form action="index.php?action=newPost" method="POST">
 
 				<p>
 					<label for="form-content">Titre</label>
 					<br>
 					<input type="text" name="title" class="title" required placeholder="Titre"/>
-
 				</p>
+
+				<p>
+					<label for="form-content">Type</label>
+					<br>
+					<input type="texte" name="slug" class="title" required placeholder="slug"/>
+				</p>
+
 				<p>
 					<label for="form-content">Contenu</label>
 					<br>
-					<textarea type="textarea" name="comment" cols="70" rows="30" id="textePost"></textarea>
+					<textarea type="textarea" name="content" cols="70" rows="30" id="textePost"></textarea>
 				</p>
 
 				<p>
-					<button type="submit" value="submit" name="submit" class="button1">Editer <i class="fas fa-pen-nib"></i></button>
+					<button type="submit" value="submit" name="submit" class="button1">Ajouter <i class="fas fa-pen-nib"></i></button>
 				</p>
+
 			</form>
 		</aside>
 	</div>

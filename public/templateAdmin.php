@@ -58,7 +58,7 @@
                         <li class="menuAdmin"><a href="index.php?action=addPost"><i class="fas fa-list-ul"></i>Ajouter un post</a></li>
                         <li class="menuAdmin"><a href="index.php?action=serieView"><i class="fas fa-list-ul"></i>Series </a></li>
                         <li class="menuAdmin"><a href="index.php?action=expoView"><i class="fas fa-list-ul"></i>Expos</a></li>
-                        <li class="menuAdmin"><a href="index.php?action=addImage"><i class="fas fa-list-ul"></i>Ajouter une image</a></li>
+                        <li class="menuAdmin"><a href="index.php?action=UploadImg"><i class="fas fa-list-ul"></i>Ajouter une image</a></li>
 
                         <li class="menuAdmin"><a href="index.php?action=Accueil"><i class="fas fa-igloo"></i>Accueil</a></li>
                     <li class="menuAdminDeco"><a href="index.php?action=discUser"><i class="fas fa-power-off"></i> Deconnexion</a></li>
