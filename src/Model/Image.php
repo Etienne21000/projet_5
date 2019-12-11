@@ -11,7 +11,7 @@ class Image extends Entity
     private $id_expo;
     private $image_date;
 
-    public function __construc(array $data)
+    public function __construct(array $data)
     {
         $this->hydrate = $this->hydrate($data);
     }
@@ -35,10 +35,10 @@ class Image extends Entity
 
     public function setImage($image)
     {
-        // if(is_string($image))
-        // {
+        if(is_string($image))
+        {
             $this->image = $image;
-        // }
+        }
     }
 
     public function setDescription($description)

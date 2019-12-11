@@ -3,30 +3,57 @@
 <?php  ob_start(); ?>
 
 <section class="body">
-    <article class="gallery">
-        <div class="serie">
+    <article class="all_gallery">
 
-            <?php foreach ($Images as $data): ?>
+        <?php foreach ($Series as $data): ?>
 
-            <header class="serie_title">
-                <p>
-                    <?= htmlspecialchars($data->title()); ?>
-                </p>
-            </header>
+            <div class="serie">
 
-            <div class="imgContent">
-                <div class="desc">
-                    <?= $data->description(); ?>
+                <div class="serie_title">
+                    <p>
+                        <?= htmlspecialchars($data->title()); ?>
+                    </p>
                 </div>
 
-                <div class="img">
-                    <?php ?>
+                <div class="serie_content">
+                    <p>
+                        <?= substr(html_entity_decode($data->description()), 0, 300) . '...'; ?>
+                    </p>
+
+                    <p>
+                        <?= htmlspecialchars($data->tech()); ?>
+                    </p>
+
+                    <p>
+                        <?= htmlspecialchars($data->creation_date()); ?>
+                    </p>
+
+                    <p class="suite">
+                        <a href="index.php?action=singleSerie&id=<?= $data->id(); ?>">Voir la série <?= $data->title(); ?></a>
+                    </p>
                 </div>
+
+                <div class="serie_content">
+
+                    
+
+                </div>
+
             </div>
 
         <?php endforeach; ?>
 
-        </div>
+    </article>
+
+    <article class="images">
+        <?php foreach ($Images as $data): ?>
+            <div class="image_title">
+                <p>
+                    <?= htmlspecialchars($data->title());?>
+                </p>
+                <img src="public/upload/<?= $data->image(); ?>" alt="Serie boxes" class="img">
+            </div>
+        <?php endforeach; ?>
     </article>
 </section>
 

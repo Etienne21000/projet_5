@@ -12,38 +12,39 @@
     <link rel="stylesheet" href="/public/faw/css/all.min.css"/>
 </head>
 
-<header>
-
-    <div class="menu_ham">
-        <span></span>
-    </div>
-
-    <div class="menu_top">
-
-        <div id="name">
-            <p>
-                <a href="index.php?action=UploadImg"> STEFANO G BIANCHI </a>
-            </p>
-        </div>
-
-        <div class="menu nav">
-            <a href="/index.php?action=Accueil"> ACCUEIL</a>
-            <a href="/index.php?action=UploadImg">ACTUALITES</a>
-            <a href="/index.php?action=series">TRAVAUX</a>
-            <a href="/index.php?action=Bio">A PROPOS</a>
-            <a href="/index.php?action=Accueil">CONTACT</a>
-            <a href="/index.php?action=homeAdmin">ADMIN</a>
-        </div>
-
-    </div>
-
-</header>
-
 <body>
+
+    <header>
+
+        <div class="menu_ham">
+            <span></span>
+        </div>
+
+        <div class="menu_top">
+
+            <div id="name">
+                <p>
+                    <a href="index.php?action=UploadImg"> STEFANO G BIANCHI </a>
+                </p>
+            </div>
+
+            <div class="menu nav">
+                <a href="/index.php?action=Accueil"> ACCUEIL</a>
+                <a href="/index.php?action=expos">ACTUALITES</a>
+                <a href="/index.php?action=series">TRAVAUX</a>
+                <a href="/index.php?action=Bio">A PROPOS</a>
+                <a href="/index.php?action=Accueil">CONTACT</a>
+                <a href="/index.php?action=homeAdmin">ADMIN</a>
+            </div>
+
+        </div>
+
+    </header>
 
     <?= $content ?>
 
     <footer>
+        <script src="/public/js/transitions.js"></script>
         <p> Copyright © Etienne Juffard - 2019 - Campo d'Ombra - Stefano Bianchi - tous droits réservés </p>
     </footer>
 

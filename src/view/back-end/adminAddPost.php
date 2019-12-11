@@ -3,11 +3,11 @@
 <?php  ob_start(); ?>
 
 <article class="blocAdmin">
-	<header class="titre">
+	<div class="titre">
 		<h4>
 			Ajouter un billet
 		</h4>
-	</header>
+	</div>
 
 	<div class="content">
 		<aside id="addPost">
@@ -28,7 +28,7 @@
 				<p>
 					<label for="form-content">Contenu</label>
 					<br>
-					<textarea type="textarea" name="content" cols="70" rows="30" id="textePost"></textarea>
+					<textarea type="textarea" name="content" cols="70" rows="30" id="full-featured-non-premium"></textarea>
 				</p>
 
 				<p>

@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Model\ImageManager;
+use App\Model\Image;
 
 class ImageController
 {
@@ -14,59 +15,91 @@ class ImageController
 
     //Display all images
 
-    public function addImg($title, $image, $description, $id_serie, $id_expo)
+    public function addImg($title, $image, $description/*, $id_serie, $id_expo*/)
     {
         $Image = new Image([$data]);
 
         $Image->setTitle($title);
-        $Image->setImage($_FILE['image']['name']);
+        $Image->setImage($image);
+        // $Image->setImage($_FILES['image']['name']);
         $Image->setDescription($description);
-        $Image->setIdSerie($id_serie);
-        $Image->setIdExpo($id_expo);
+        // $Image->setIdSerie($id_serie);
+        // $Image->setIdExpo($id_expo);
+
+        if(!$_FILES['image']['error'])
+        {
+            $this->upload();
+        }
 
         $this->image->addImage($Image);
     }
 
-    public function upload()
+    public function getImgBySeries($id_serie)
     {
-        if(isset($_FILE['image']))
+        $Images = $this->image->getImgBySerie($id_serie);
+
+        return $Images;
+    }
+
+    public function getFirstImg($id_serie)
+    {
+        $Image = $this->image->getImgBySerie($id_serie, $start = 0, $limit = 1);
+
+        return $Image;
+    }
+
+    function upload()
+    {
+        $error = null;
+
+        if(isset($_FILES['image']) && $_FILES['image']['error'] == 0)
         {
-            $file = $_FILE['image'];
-
-            $fileName = $_FILE['image']['name'];
-            $fileSize = $_FILE['image']['size'];
-            $fileTmp = $_FILE['image']['tmp'];
-            $fileError = $_FILE['image']['error'];
-            $fileType = $_FILE['image']['type'];
-
-            $fileExt = explode('.', $fileName);
-            $fileReExt = strtolower(end($fileExt));
-            $allowedExt = ['jpg', 'jpeg', 'png', 'pdf'];
-
-            if(in_array($fileReExt, $allowedExt))
+            if($_FILES['image']['size'] <= 8000000)
             {
-                if($fileError === 0)
+                $fileInfo = pathinfo($_FILES['image']['name']);
+                $extUpload = $fileInfo['extension'];
+                $validExt = array('jpg', 'jpeg', 'png', 'gif');
+
+                if(in_array($extUpload, $validExt))
                 {
-                    if($fileSize < 100000)
-                    {
-                        $fileDestination = "src/upload/" . $fileReExt;
-                        move_uploaded_file($fileTmp, $fileDestination);
-                    }
-                    else
-                    {
-                        throw new \Exception("Image trop lourde");
-                    }
+                    move_uploaded_file($_FILES['image']['tmp_name'], 'public/upload/' .
+                    basename($_FILES['image']['name']));
+
+                    echo "image envoyée";
+
+                    header('Refresh: 2; url: index.php?action=series');
                 }
+
                 else
                 {
-                    throw new \Exception("Il y a eu une erreur de téléchargement");
+                    $error = 3;
                 }
             }
 
-            else {
-                throw new \Exception("Le type de fichier n'est pas valide");
-
+            else
+            {
+                $error = 2;
             }
+        }
+
+        else
+        {
+            $error = 1;
+        }
+
+        switch ($error)
+        {
+            case 1:
+            $error = "* Aucune image à importer";
+            break;
+
+            case 2:
+            $error = "* Le fichier est trop volumineux (il ne doit pas dépasser 8Mo)";
+            break;
+
+            case 3:
+            $error = "* Le type de fichier est invalide (seuls les fichiers jpg, jpeg, png et gif sont autorisés)";
+
         }
     }
 
@@ -75,5 +108,12 @@ class ImageController
         $Images = $this->image->GetAll();
 
         return $Images;
+    }
+
+    public function getOneImg($id)
+    {
+        $image = $this->image->getOneImg($id);
+
+        return $image;
     }
 }

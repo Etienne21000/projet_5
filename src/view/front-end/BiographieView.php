@@ -2,22 +2,25 @@
 
 <?php  ob_start(); ?>
 
-<article class="blocAdmin">
+<section class="blocAdmin">
     <article class="commentAdmin">
         <?php foreach ($Posts as $data): ?>
-            <header class="titre">
+            <div class="titre">
                 <h3>
                     <?= htmlspecialchars($data->title()); ?>
                 </h3>
-            </header>
+            </div>
 
-            <?= htmlspecialchars($data->content()); ?>
             <p>
+                <?= html_entity_decode($data->content()); ?>
+            </p>
+
+            <p class="suite">
                 <a href="index.php?action=postUpdate&id=<?= $data->id(); ?>">Mettre à jour</a>
             </p>
         <?php endforeach; ?>
     </article>
-</article>
+</section>
 
 <?php $content = ob_get_clean(); ?>
 

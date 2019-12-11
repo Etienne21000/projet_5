@@ -3,15 +3,15 @@
 <?php  ob_start(); ?>
 
 <article class="blocAdmin">
-	<header class="titre">
+	<div class="titre">
 		<h4>
 			Ajouter un billet
 		</h4>
-	</header>
+	</div>
 
 	<div class="content">
 		<aside id="updatePost">
-			<form action="index.php?action=updatePost&id=<?= $post->id(); ?>" method="POST">
+			<form action="index.php?action=updatePost&id=<?= $post->id(); ?>" method="POST" charset="utf-8">
 				<p>
 					<label for="form-content">Titre</label>
 					<br>
@@ -25,7 +25,7 @@
 				<p>
 					<label for="form-content">Contenu</label>
 					<br>
-					<textarea type="textarea" name="content" cols="70" rows="30" id="textePost"><?= $post->content();?></textarea>
+					<textarea type="textarea" name="content" cols="70" rows="30" id="full-featured-non-premium" charset="utf-8"><?= $post->content();?></textarea>
 				</p>
 
 				<p>

@@ -11,7 +11,7 @@ class Serie extends Entity
     private $creation_date;
 
 
-    public function __construc(array $data)
+    public function __construct(array $data)
     {
         $this->hydrate = $this->hydrate($data);
     }
@@ -49,12 +49,12 @@ class Serie extends Entity
         }
     }
 
-    public function setNum_img($num_img)
+    public function setNumimg($num_img)
     {
         $this->num_img = (int)$num_img;
     }
 
-    public function set_creation_date($creation_date)
+    public function setCreationdate($creation_date)
     {
         if(is_string($creation_date))
         {
@@ -66,32 +66,32 @@ class Serie extends Entity
                 Getters
     ------------------------------*/
 
-    public function serie_id()
+    public function id()
     {
         return $this->id;
     }
 
-    public function serie_title()
+    public function title()
     {
         return $this->title;
     }
 
-    public function serie_description()
+    public function description()
     {
         return $this->description;
     }
 
-    public function serie_tech()
+    public function tech()
     {
         return $this->tech;
     }
 
-    public function serie_num_img()
+    public function num_img()
     {
         return $this->num_img;
     }
 
-    public function serie_creation_date()
+    public function creation_date()
     {
         return $this->creation_date;
     }
