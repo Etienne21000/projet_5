@@ -34,6 +34,7 @@
     </article>
 
     <article class="images">
+
         <?php foreach ($Images as $data): ?>
             <div class="image_title">
                 <!-- <div class="p">
@@ -48,6 +49,7 @@
             </div>
         </div>
     <?php endforeach; ?>
+    
     <div class="open">
         <p>
             <?= $image->title(); ?>
