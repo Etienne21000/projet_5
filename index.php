@@ -55,14 +55,16 @@ try
         elseif ($_GET['action'] == 'UploadImg')
         {
             $error = null;
+            $Series = $serieController->getAll();
             require 'src/view/back-end/uploadViewForm.php';
         }
 
         elseif ($_GET['action'] == 'addImage')
         {
-            if(!empty($_POST['title']) && !empty($_POST['description']) && !empty($_FILES['image']['name']))
+            // $id_serie = $_POST['id_serie']
+            if(!empty($_POST['title']) && !empty($_POST['description']) && !empty($_FILES['image']['name']) && !empty($_POST['id_serie']))
             {
-                $imageController->addImg(htmlspecialchars($_POST['title']), htmlspecialchars($_FILES['image']['name']), htmlspecialchars($_POST['description']));
+                $imageController->addImg(htmlspecialchars($_POST['title']), htmlspecialchars($_FILES['image']['name']), htmlspecialchars($_POST['description']), htmlspecialchars($_POST['id_serie']));
             }
 
             else
@@ -128,14 +130,17 @@ try
 
         elseif ($_GET['action'] == 'serieAdd')
         {
+            $Images = $imageController->getAllImages();
+            // $image = $imageController->getOneImg($_GET['id']);
             require 'src/view/back-end/AddSerieView.php';
         }
 
         elseif ($_GET['action'] == 'addSerie')
         {
-            if(!empty($_POST['title']) && !empty($_POST['description']) && !empty($_POST['tech']))
+            if(!empty($_POST['title']) && !empty($_POST['description']) && !empty($_POST['tech']) && !empty($_POST['serie_img']))
             {
-                $serieController->newSerie(htmlspecialchars($_POST['title']), htmlspecialchars($_POST['description']), htmlspecialchars($_POST['tech']));
+                $serieController->newSerie(htmlspecialchars($_POST['title']), htmlspecialchars($_POST['description']), htmlspecialchars($_POST['tech']), htmlspecialchars($_POST['serie_img']));
+                $image = $imageController->getOneImg($_GET['id']);
             }
 
             else

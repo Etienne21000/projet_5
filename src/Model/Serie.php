@@ -9,6 +9,7 @@ class Serie extends Entity
     private $tech;
     private $num_img;
     private $creation_date;
+    private $serie_img;
 
 
     public function __construct(array $data)
@@ -16,9 +17,9 @@ class Serie extends Entity
         $this->hydrate = $this->hydrate($data);
     }
 
-/*-----------------------------
-            Setters
-------------------------------*/
+    /*-----------------------------
+    Setters
+    ------------------------------*/
 
     public function setId($id)
     {
@@ -62,8 +63,16 @@ class Serie extends Entity
         }
     }
 
+    public function setSerieimg($serie_img)
+    {
+        if(is_string($serie_img))
+        {
+            $this->serie_img = $serie_img;
+        }
+    }
+
     /*-----------------------------
-                Getters
+    Getters
     ------------------------------*/
 
     public function id()
@@ -94,5 +103,10 @@ class Serie extends Entity
     public function creation_date()
     {
         return $this->creation_date;
+    }
+
+    public function serie_img()
+    {
+        return $this->serie_img;
     }
 }

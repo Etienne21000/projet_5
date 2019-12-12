@@ -3,57 +3,40 @@
 <?php  ob_start(); ?>
 
 <section class="body">
+
+    <div class="title">
+        <h3>
+            SERIES
+        </h3>
+    </div>
+
     <article class="all_gallery">
 
         <?php foreach ($Series as $data): ?>
 
             <div class="serie">
 
-                <div class="serie_title">
-                    <p>
-                        <?= htmlspecialchars($data->title()); ?>
-                    </p>
-                </div>
+                <a href="index.php?action=singleSerie&id=<?= $data->id(); ?>">
+                    <span class="calque">
 
-                <div class="serie_content">
-                    <p>
-                        <?= substr(html_entity_decode($data->description()), 0, 300) . '...'; ?>
-                    </p>
+                        <p>
+                            <?= $data->title(); ?>
+                        </p>
 
-                    <p>
-                        <?= htmlspecialchars($data->tech()); ?>
-                    </p>
-
-                    <p>
-                        <?= htmlspecialchars($data->creation_date()); ?>
-                    </p>
-
-                    <p class="suite">
-                        <a href="index.php?action=singleSerie&id=<?= $data->id(); ?>">Voir la série <?= $data->title(); ?></a>
-                    </p>
-                </div>
+                    </span>
+                </a>
 
                 <div class="serie_content">
 
-                    
-
+                    <div class="img_serie">
+                        <img src="public/upload/<?= htmlspecialchars($data->serie_img()); ?>" alt="<?= $data->title(); ?>"/>
+                    </div>
+                    <!-- <p class="suite"> -->
                 </div>
-
-            </div>
-
-        <?php endforeach; ?>
-
-    </article>
-
-    <article class="images">
-        <?php foreach ($Images as $data): ?>
-            <div class="image_title">
-                <p>
-                    <?= htmlspecialchars($data->title());?>
-                </p>
-                <img src="public/upload/<?= $data->image(); ?>" alt="Serie boxes" class="img">
+                <!-- </p> -->
             </div>
         <?php endforeach; ?>
+
     </article>
 </section>
 

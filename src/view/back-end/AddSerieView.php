@@ -19,6 +19,22 @@
 					<input type="text" name="title" class="title" required placeholder="Titre"/>
 				</p>
 
+				<p>
+			        <label for="serie_img">Image de Couverture</label>
+
+			        <select name="serie_img" class="Couverture">
+
+			            <option value="">choisissez une image</option>
+
+			            <?php foreach ($Images as $data): ?>
+
+			                <option value="<?= $data->id(); ?>"> <?= $data->title(); ?> </option>
+
+			            <?php endforeach; ?>
+			        </select>
+
+			    </p>
+
                 <p>
 					<label for="form-content">Description</label>
 					<br>

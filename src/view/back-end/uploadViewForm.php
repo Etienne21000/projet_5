@@ -10,12 +10,25 @@
 
     <input type="file" name="image"/>
 
-
-
     <p>
         <label for="form-title">Titre</label>
         <br>
         <input type="text" name="title" id="form-title" placeholder="titre" required/>
+    </p>
+
+    <p>
+        <label for="id_serie">Serie</label>
+        <br>
+        <select name="id_serie" class="id_serie">
+            <option value="">Choissiez la série correspondante</option>
+
+            <?php foreach ($Series as $data): ?>
+
+                <option value="<?= $data->id(); ?>"> <?= $data->title(); ?></option>
+
+            <?php endforeach; ?>
+
+        </select>
     </p>
 
     <p>

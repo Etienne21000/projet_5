@@ -12,12 +12,13 @@ class SerieManager extends Manager
 
     public function addSerie(Serie $serie)
     {
-        $req = $this->db->prepare('INSERT INTO Serie(title, description, tech, creation_date)
-        VALUES(:title, :description, :tech, NOW())');
+        $req = $this->db->prepare('INSERT INTO Serie(title, description, tech, serie_img, creation_date)
+        VALUES(:title, :description, :tech, :serie_img, NOW())');
 
         $req->bindValue(':title', $serie->title());
         $req->bindValue(':description', $serie->description());
         $req->bindValue(':tech', $serie->tech());
+        $req->bindValue(':serie_img', $serie->serie_img(), \PDO::PARAM_INT);
 
         $req->execute();
     }
@@ -41,9 +42,14 @@ class SerieManager extends Manager
     {
         $Series = [];
 
-        $req = 'SELECT id, title, description, tech,
-        DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date
-        FROM Serie ORDER BY creation_date';
+        $req = 'SELECT s.id, s.title, s.description, s.tech, s.id_img, i.serie_img,
+        DATE_FORMAT(s.creation_date, \'%d/%m/%Y\') AS creation_date
+        FROM Serie AS s
+        LEFT JOIN
+        (SELECT id, image AS serie_img, id_serie
+        FROM images) AS i
+        ON s.id_img = i.id
+        ORDER BY creation_date';
 
         if($start != -1 || $limite != -1)
         {

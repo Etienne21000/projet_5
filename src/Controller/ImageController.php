@@ -15,7 +15,7 @@ class ImageController
 
     //Display all images
 
-    public function addImg($title, $image, $description/*, $id_serie, $id_expo*/)
+    public function addImg($title, $image, $description, $id_serie)
     {
         $Image = new Image([$data]);
 
@@ -23,7 +23,7 @@ class ImageController
         $Image->setImage($image);
         // $Image->setImage($_FILES['image']['name']);
         $Image->setDescription($description);
-        // $Image->setIdSerie($id_serie);
+        $Image->setIdSerie($id_serie);
         // $Image->setIdExpo($id_expo);
 
         if(!$_FILES['image']['error'])

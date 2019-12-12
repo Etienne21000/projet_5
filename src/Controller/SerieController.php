@@ -13,13 +13,14 @@ class SerieController
         $this->serie = new SerieManager();
     }
 
-    public function newSerie($title, $description, $tech)
+    public function newSerie($title, $description, $tech, $serie_img)
     {
         $Serie = new Serie([$data]);
 
         $Serie->setTitle($title);
         $Serie->setDescription($description);
         $Serie->setTech($tech);
+        $Serie->setSerieimg($serie_img);
 
         $this->serie->addSerie($Serie);
     }

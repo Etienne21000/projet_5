@@ -82,13 +82,13 @@ class ImageManager extends Manager
 
     public function addImage(Image $image)
     {
-        $req = $this->db->prepare('INSERT INTO images(title, image, description, image_date)
-        VALUES(:title, :image, :description, NOW())');
+        $req = $this->db->prepare('INSERT INTO images(title, image, description, id_serie, image_date)
+        VALUES(:title, :image, :description, :id_serie, NOW())');
 
         $req->bindValue(':title', $image->title());
         $req->bindValue(':image', $image->image());
         $req->bindValue(':description', $image->description());
-        // $req->bindValue(':id_serie', $image->image_id_serie(), \PDO::PARAM_INT);
+        $req->bindValue(':id_serie', $image->image_id_serie(), \PDO::PARAM_INT);
         // $req->bindValue(':id_expo', $image->image_id_expo(), \PDO::PARAM_INT);
 
         $req->execute();
