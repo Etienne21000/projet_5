@@ -103,7 +103,9 @@
 
     <footer>
         <p> Copyright © Etienne Juffard - 2019 - tous droits réservés </p>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
         <!-- <script src="/src/public/js/transitionsAdmin.js"></script>-->
+        <script src="public/js/ajax.js"></script>
         <script src="public/js/tinyMce/tinymce.min.js"></script>
         <script src="public/js/wysiwyg.js"></script>
     </footer>

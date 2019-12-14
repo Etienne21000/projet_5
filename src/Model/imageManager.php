@@ -15,7 +15,7 @@ class ImageManager extends Manager
     public function getOneImg($id)
     {
         $req = $this->db->prepare('SELECT id, image, title, description, /*id_serie, id_expo,*/
-        DATE_FORMAT(image_date, \'%d/%m/%Y\')
+        DATE_FORMAT(image_date, \'%d/%m/%Y\') AS image_date
         FROM images WHERE id = :id');
 
         $req->bindValue(':id', $id, \PDO::PARAM_INT);
@@ -88,7 +88,7 @@ class ImageManager extends Manager
         $req->bindValue(':title', $image->title());
         $req->bindValue(':image', $image->image());
         $req->bindValue(':description', $image->description());
-        $req->bindValue(':id_serie', $image->image_id_serie(), \PDO::PARAM_INT);
+        $req->bindValue(':id_serie', $image->id_serie(), \PDO::PARAM_INT);
         // $req->bindValue(':id_expo', $image->image_id_expo(), \PDO::PARAM_INT);
 
         $req->execute();

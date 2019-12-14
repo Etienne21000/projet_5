@@ -4,10 +4,14 @@
 
 <section class="content">
     <article class="gallery">
-        <div class="serie_title">
-            <p>
+        <div class="titleh3">
+            <h3>
                 <?= htmlspecialchars($serie->title()); ?>
-            </p>
+            </3>
+        </div>
+
+        <div class="date">
+            Création <?= htmlspecialchars($serie->creation_date()); ?>
         </div>
 
         <div class="content_serie">
@@ -15,18 +19,14 @@
             <p>
                 <?= html_entity_decode($serie->description()); ?>
             </p>
-            <!-- </div> -->
 
-            <!-- <div class="tech"> -->
+            <hr class="separation">
+
             <p>
                 <?= htmlspecialchars($serie->tech()); ?>
             </p>
 
-            <p>
-                <?= htmlspecialchars($serie->creation_date()); ?>
-            </p>
-
-            <p>
+            <p class="suite">
                 <a href="index.php?action=serieUpdate&id=<?= $serie->id(); ?>"> Mettre à jour</a>
             </p>
             <!-- </div> -->
@@ -37,38 +37,29 @@
 
         <?php foreach ($Images as $data): ?>
             <div class="image_title">
-                <!-- <div class="p">
-                <?php /*htmlspecialchars($data->title());*/ ?>
-            </div> -->
-
-            <div class="single_img">
-                <!-- <a href="index.php?action=singleImg&id=<?php/* $data->id(); */?>"> -->
-                <a href=".open">
-                    <img src="public/upload/<?= $data->image(); ?>" alt="Serie boxes" class="img">
-                </a>
+                <div class="single_img">
+                    <!-- <a href="index.php?action=singleImg&id=<?php/* $data->id(); */?>"> -->
+                    <!-- <a href="#open" class="js-form"> -->
+                    <a name="view" value="view" id="<?php echo $data->id(); ?>" class="js-form">
+                        <!-- <a href="index.php?action=singleImg&id=<?php/* echo $data->id(); */?>"> -->
+                        <img src="public/upload/<?= $data->image(); ?>" alt="Serie boxes" class="img">
+                    </a>
+                </div>
             </div>
-        </div>
-    <?php endforeach; ?>
-    
-    <div class="open">
-        <p>
-            <?= $image->title(); ?>
-        </p>
+        <?php endforeach; ?>
 
-        <p>
-            <?= $image->image_date(); ?>
-        </p>
-        <div>
-            <img src="public/upload/<?= $image->image(); ?>" alt="<?= $image->title(); ?>" class="img">
+    </article>
+
+    <aside id="open" aria-hidden="true">
+
+        <input type="button" name="close" value="close" class="close">
+
+        <div id="image_details">
+
+            
         </div>
 
-        <p>
-            <?= html_entity_decode($image->description()); ?>
-        </p>
-
-    </div>
-</article>
-
+    </aside>
 </section>
 
 <?php $content = ob_get_clean(); ?>

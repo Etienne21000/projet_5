@@ -110,7 +110,7 @@ class ImageController
         return $Images;
     }
 
-    public function getOneImg($id)
+    public function getOne($id)
     {
         $image = $this->image->getOneImg($id);
 

@@ -35,14 +35,42 @@ try
         {
             $serie = $serieController->getOne($_GET['id']);
             $Images = $imageController->getImgBySeries($_GET['id']);
-            $image = $imageController->getOneImg($_GET['id']);
+            $image = $imageController->getOne($_GET['id']);
 
             require 'src/view/front-end/singleSerieView.php';
         }
 
         elseif ($_GET['action'] == 'singleImg')
         {
-            // code...
+            $image = $imageController->getOne($_GET['id']);
+            // var_dump($image);
+            // return $image;
+            if(isset($_GET['id']) && $_GET['id'] > 0)
+            {
+                $img = [
+                    'id' => $image->id(),
+                    'title' => $image->title(),
+                    'date' => $image->image_date(),
+                    'image' => $image->image(),
+                    'description' => strip_tags($image->description()),
+                ];
+
+                header('Content-Type: application/json');
+
+                echo json_encode($img);
+
+                // return $result;
+            }
+
+            // header('Location: /?action=displayImg');
+        }
+
+        elseif ($_GET['action'] == 'displayImg')
+        {
+            $imgage = json_decode($result, true);
+
+            echo '<p>' . $image['title'] . '</p>';
+
         }
 
         elseif ($_GET['action'] == 'Bio')
