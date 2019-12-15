@@ -18,19 +18,21 @@ class SerieManager extends Manager
         $req->bindValue(':title', $serie->title());
         $req->bindValue(':description', $serie->description());
         $req->bindValue(':tech', $serie->tech());
-        $req->bindValue(':serie_img', $serie->serie_img(), \PDO::PARAM_INT);
+        $req->bindValue(':serie_img', $serie->serie_img());
 
         $req->execute();
     }
 
     public function updateSerie(Serie $serie)
     {
-        $req = $this->db->prepare('UPDATE Serie SET title = :title, description = :description, tech = :tech
+        $req = $this->db->prepare('UPDATE Serie SET title = :title, description = :description,
+        tech = :tech, id_img = :id_img
         WHERE id = :id');
 
         $req->bindValue(':title', $serie->title());
         $req->bindValue(':description', $serie->description());
         $req->bindValue(':tech', $serie->tech());
+        $req->bindValue(':id_img', $serie->id_img(), \PDO::PARAM_INT);
         $req->bindValue(':id', $serie->id(), \PDO::PARAM_INT);
 
         $req->execute();
@@ -79,7 +81,7 @@ class SerieManager extends Manager
         $req->execute();
 
         $data = $req->fetch(\PDO::FETCH_ASSOC);
-        $serie = new Serie($data);
+        $serie = new Serie([$data]);
 
         return $serie;
     }

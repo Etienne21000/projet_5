@@ -16,7 +16,7 @@
 
             <div class="serie">
 
-                <a href="index.php?action=singleSerie&id=<?= $data->id(); ?>">
+                <a href="/singleSerie/:id<?= $data->id(); ?>">
                     <span class="calque">
 
                         <p>

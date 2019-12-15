@@ -9,6 +9,7 @@ class Serie extends Entity
     private $tech;
     private $num_img;
     private $creation_date;
+    private $id_img;
     private $serie_img;
 
 
@@ -63,6 +64,11 @@ class Serie extends Entity
         }
     }
 
+    public function setIdimg($id_img)
+    {
+        $this->id_img = (int)$id_img;
+    }
+
     public function setSerieimg($serie_img)
     {
         if(is_string($serie_img))
@@ -103,6 +109,11 @@ class Serie extends Entity
     public function creation_date()
     {
         return $this->creation_date;
+    }
+
+    public function id_img()
+    {
+        return $this->id_img;
     }
 
     public function serie_img()

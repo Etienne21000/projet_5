@@ -17,13 +17,13 @@
         <div class="content_serie">
             <!-- <div class="desc"> -->
             <p>
-                <?= html_entity_decode($serie->description()); ?>
+                <?= htmlspecialchars($serie->tech()); ?>
             </p>
 
             <hr class="separation">
 
             <p>
-                <?= htmlspecialchars($serie->tech()); ?>
+                <?= html_entity_decode($serie->description()); ?>
             </p>
 
             <p class="suite">
@@ -33,33 +33,32 @@
         </div>
     </article>
 
-    <article class="images">
+    <div id="display_img">
 
-        <?php foreach ($Images as $data): ?>
-            <div class="image_title">
-                <div class="single_img">
-                    <!-- <a href="index.php?action=singleImg&id=<?php/* $data->id(); */?>"> -->
-                    <!-- <a href="#open" class="js-form"> -->
-                    <a name="view" value="view" id="<?php echo $data->id(); ?>" class="js-form">
-                        <!-- <a href="index.php?action=singleImg&id=<?php/* echo $data->id(); */?>"> -->
-                        <img src="public/upload/<?= $data->image(); ?>" alt="Serie boxes" class="img">
-                    </a>
+        <aside id="open" aria-hidden="true">
+
+            <div id="image_details"></div>
+
+        </aside>
+
+        <article class="images">
+
+            <?php foreach ($Images as $data): ?>
+                <div class="image_title">
+                    <div class="single_img">
+                        <!-- <a href="index.php?action=singleImg&id=<?php/* $data->id(); */?>"> -->
+                        <!-- <a href="#open" class="js-form"> -->
+                        <a name="view" value="view" id="<?php echo $data->id(); ?>" class="js-form">
+                            <!-- <a href="index.php?action=singleImg&id=<?php/* echo $data->id(); */?>"> -->
+                            <img src="public/upload/<?= $data->image(); ?>" alt="Serie boxes" class="img">
+                        </a>
+                    </div>
                 </div>
-            </div>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
 
-    </article>
+        </article>
 
-    <aside id="open" aria-hidden="true">
-
-        <input type="button" name="close" value="close" class="close">
-
-        <div id="image_details">
-
-            
-        </div>
-
-    </aside>
+    </div>
 </section>
 
 <?php $content = ob_get_clean(); ?>

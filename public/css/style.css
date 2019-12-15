@@ -13,7 +13,7 @@ body
 header
 {
     width: 100%;
-    height: 80px;
+    height: 60px;
     display: flex;
     position: fixed;
     flex-direction: row;
@@ -132,7 +132,7 @@ Single serie view
     margin-top: 1em;
     text-align: left;
     font-family: Roboto;
-    text-align: center;
+    /* text-align: center; */
     font-size: 2em;
     color: #777777;
 }
@@ -163,7 +163,7 @@ Single serie view
 
 .gallery
 {
-    width: 100%;
+    width: 70%;
     margin: 100px 20px 20px 20px;
     color: #555555;
 }
@@ -179,6 +179,18 @@ Single serie view
     height: auto;
 }
 
+#image_details img
+{
+    width: 100%;
+}
+
+#image_details p
+{
+    padding-left: 30px;
+    color: rgba(117,107,106,0.8);
+    margin-top: 0;
+}
+
 .images
 {
     width: 100%;
@@ -187,8 +199,29 @@ Single serie view
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    margin: 126px 20px 20px 20px;
-    transition: all .4s ease-in-out;
+    margin: 126px 0px 20px 20px;
+    /* transition: all .4s ease-in-out; */
+}
+
+.images a
+{
+    cursor: pointer;
+}
+
+.transform
+{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow: scroll;
+    margin: 20px;
+}
+
+.transform img
+{
+    width: 40%;
+    height: auto;
 }
 
 .single_img img
@@ -203,10 +236,17 @@ Single serie view
 
 #open
 {
-    margin: 114px 20px 20px 20px;
+    margin: 70px 20px 20px 20px;
     display: none;
-    width: 100%;
+    width: 94%;
+    /* padding: 14px;*/
+    background-color: #fff;
     transition: all .4s ease-in-out;
+}
+
+#display_img
+{
+    width: 100%;
 }
 
 /*----------------------------------
@@ -371,6 +411,7 @@ Series view
 {
     width: auto;
     height: 100%;
+    /* margin:-21.875% 0; */
 }
 
 /*----------------------------------

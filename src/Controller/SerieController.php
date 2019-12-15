@@ -13,19 +13,19 @@ class SerieController
         $this->serie = new SerieManager();
     }
 
-    public function newSerie($title, $description, $tech, $serie_img)
+    public function newSerie($title, $description, $tech, $id_img)
     {
         $Serie = new Serie([$data]);
 
         $Serie->setTitle($title);
         $Serie->setDescription($description);
         $Serie->setTech($tech);
-        $Serie->setSerieimg($serie_img);
+        $Serie->setIdimg($id_img);
 
         $this->serie->addSerie($Serie);
     }
 
-    public function update($id, $title, $description, $tech)
+    public function update($id, $title, $description, $tech, $id_img)
     {
         $Serie = new Serie([$data]);
 
@@ -33,6 +33,7 @@ class SerieController
         $Serie->setTitle($title);
         $Serie->setDescription($description);
         $Serie->setTech($tech);
+        $Serie->setIdimg($id_img);
 
         $this->serie->updateSerie($Serie);
     }

@@ -1,8 +1,6 @@
 <?php
 namespace App\Model;
 
-// use App\Model\Image;
-
 class ImageManager extends Manager
 {
     public function __construct()
@@ -23,7 +21,7 @@ class ImageManager extends Manager
         $req->execute();
 
         $data = $req->fetch(\PDO::FETCH_ASSOC);
-        $image = new Image($data);
+        $image = new Image([$data]);
 
         return $image;
     }
@@ -50,7 +48,7 @@ class ImageManager extends Manager
 
         while ($data = $result->fetch(\PDO::FETCH_ASSOC))
         {
-            $image = new Image($data);
+            $image = new Image([$data]);
             $Images[] = $image;
         }
 
@@ -73,7 +71,7 @@ class ImageManager extends Manager
 
         while($data = $result->fetch(\PDO::FETCH_ASSOC))
         {
-            $image = new Image($data);
+            $image = new Image([$data]);
             $Images[] = $image;
         }
 

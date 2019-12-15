@@ -16,26 +16,26 @@
         <input type="text" name="title" id="form-title" placeholder="titre" required/>
     </p>
 
-    <p>
+    <!-- <p>
         <label for="id_serie">Serie</label>
         <br>
         <input type="number" name="id_serie" id="form-title" placeholder="0, 1, 2, 3... required"/>
-    </p>
+    </p> -->
 
-    <!-- <p>
+    <p>
         <label for="id_serie">Serie</label>
         <br>
         <select name="id_serie" class="id_serie">
             <option value="">Choissiez la série correspondante</option>
 
-            <?php/* foreach ($Series as $data): */?>
+            <?php foreach ($Series as $data): ?>
 
-                <option value="<?php/* echo $data->id(); */?>"> <?php/* echo $data->title(); */?></option>
+                <option value="<?php echo $data->id(); ?>"> <?php echo $data->title(); ?></option>
 
-            <?php/* endforeach; */?>
+            <?php endforeach; ?>
 
         </select>
-    </p> -->
+    </p>
 
     <p>
         <label for="form-content">Description</label>
