@@ -28,6 +28,10 @@ class MasterController
         $Series = $this->serieController->getAll();
         $Images = $this->imageController->getAllImages();
 
+        // $serie = $this->serieController->getOne($_GET['id']);
+        // $Images = $this->imageController->getImgBySeries($_GET['id']);
+        // $image = $this->imageController->getOne($_GET['id']);
+
         require 'src/view/front-end/seriesView.php';
     }
 
@@ -62,7 +66,7 @@ class MasterController
 
     public function bio()
     {
-        $Posts = $postController->getAllPost();
+        $Posts = $this->postController->getAllPost();
 
         require 'src/view/front-end/BiographieView.php';
     }
@@ -70,7 +74,7 @@ class MasterController
     public function UploadImg()
     {
         $error = null;
-        $Series = $serieController->getAll();
+        $Series = $this->serieController->getAll();
         require 'src/view/back-end/uploadViewForm.php';
     }
 
@@ -165,8 +169,8 @@ class MasterController
 
     public function serieUpdate()
     {
-        $serie = $serieController->getOne($_GET['id']);
-        $Images = $imageController->getImgBySeries($_GET['id']);
+        $serie = $this->serieController->getOne($_GET['id']);
+        $Images = $this->imageController->getImgBySeries($_GET['id']);
 
         require 'src/view/back-end/updateSerie.php';
     }

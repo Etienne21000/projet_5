@@ -3,88 +3,81 @@ session_start();
 
 require_once (__DIR__ .'/vendor/autoload.php');
 
-use App\Controller\PostController;
-use App\Controller\ImageController;
-use App\Controller\SerieController;
-use App\Controller\MasterController;
+// use App\Controller\MasterController;
 use App\Model\Router;
-//
-// $postController = new PostController();
-// $imageController = new ImageController();
-// $serieController = new SerieController();
 
 $router = new Router($_GET['url']);
-$masterController = new MasterController();
+// $masterController = new MasterController();
 
-$router->get('/home', function()
-{
-    require 'src/view/front-end/indexView.php';
-    // echo 'Bonjour';
-});
+$router->get('/home', 'Master#home');
 
-$router->get('/series', function() use ($masterController)
-{
-    // $masterController = new MasterController();
-    $masterController->series();
-    // $imageController = new ImageController();
-    // $serieController = new SerieController();
-    // $Series = $serieController->getAll();
-    // $Images = $imageController->getAllImages();
-    //
-    // require 'src/view/front-end/seriesView.php';
-});
+$router->get('/series', 'Master#series');
 
-$router->get('/singleSerie/:id', function($id) use ($router, $masterController)
-{
-    // $masterController = new MasterController();
-    $masterController->singleSerie();
-    echo $router->url('src/view/front-end/singleSerieView.php', ['id' => 3]);
+$router->get('/Bio', "Master#bio");
 
+$router->get('/UploadImg', "Master#UploadImg");
 
-    // $imageController = new ImageController();
-    // $serieController = new SerieController();
-    //
-    // $serie = $serieController->getOne($_GET['id']);
-    // $Images = $imageController->getImgBySeries($id);
-    // $image = $imageController->getOne($id);
-    // require 'src/view/front-end/singleSerieView.php';
-    // echo 'Série n° ' . $id;
-});
+// $router->get('/singleSerie/:id'/*, 'Master#singleSerie'*/, function($id) use($router)
+// {
+// echo $router->url('Master#singleSerie', ['id' => 1]);
+// });
 
-$router->get('/singleImg/{id}', function($id)
-{
-    $imageController = new ImageController();
-    $image = $imageController->getOne($_GET['id']);
+$router->get('/singleSerie/:id', 'Master#singleSerie');
 
-    if(isset($_GET['id']) && $_GET['id'] > 0)
-    {
-        $img = [
-            'id' => $image->id(),
-            'title' => $image->title(),
-            'date' => $image->image_date(),
-            'image' => $image->image(),
-            'description' => strip_tags(html_entity_decode($image->description())),
-        ];
-
-        header('Content-Type: application/json');
-
-        echo json_encode($img);
-    }
-});
-
-$router->post('/addSerie/{id}', function($id)
-{
-    echo 'ajouter la série n° ' . $id;
-});
-
-$router->get('/', function()
-{
-    require 'src/view/front-end/indexView.php';
-    // echo 'Bonjour';
-});
-
+$router->get('/serieUpdate/:id', 'Master#serieUpdate');
 
 $router->run();
+
+// {
+//     echo 'Serie n° '
+//     // $masterController = new MasterController();
+//     // $masterController->singleSerie();
+// // echo $router->url('src/view/front-end/singleSerieView.php');
+//
+//
+// // $imageController = new ImageController();
+// // $serieController = new SerieController();
+// //
+// // $serie = $serieController->getOne($_GET['id']);
+// // $Images = $imageController->getImgBySeries($id);
+// // $image = $imageController->getOne($id);
+// // require 'src/view/front-end/singleSerieView.php';
+// // echo 'Série n° ' . $id;
+// });
+
+// $router->get('/singleImg/{id}', function($id)
+// {
+//     $imageController = new ImageController();
+//     $image = $imageController->getOne($_GET['id']);
+//
+//     if(isset($_GET['id']) && $_GET['id'] > 0)
+//     {
+//         $img = [
+//             'id' => $image->id(),
+//             'title' => $image->title(),
+//             'date' => $image->image_date(),
+//             'image' => $image->image(),
+//             'description' => strip_tags(html_entity_decode($image->description())),
+//         ];
+//
+//         header('Content-Type: application/json');
+//
+//         echo json_encode($img);
+//     }
+// });
+//
+// $router->post('/addSerie/{id}', function($id)
+// {
+//     echo 'ajouter la série n° ' . $id;
+// });
+//
+// $router->get('/', function()
+// {
+//     require 'src/view/front-end/indexView.php';
+//     // echo 'Bonjour';
+// });
+
+
 // $router = Router::getInstance();
 
 // $router->register('/', 'Accueil', function()

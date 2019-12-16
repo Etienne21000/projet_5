@@ -30,6 +30,11 @@ class Router
         $route = new Route($path, $callable);
         $this->routes[$method][] = $route;
 
+        if(is_string($callable) && $name === null)
+        {
+            $name = $callable;
+        }
+
         if($name)
         {
             $this->routesNames[$name] = $route;
@@ -55,6 +60,8 @@ class Router
             throw new \Exception('Aucune url trouvée');
         }
 
+        // print_r($this->routesNames);
+
         foreach($this->routes[$_SERVER['REQUEST_METHOD']] as $route)
         {
             if($route->match($this->url))
@@ -67,7 +74,7 @@ class Router
 
         // echo 'Can\'t find route';
         // echo '<pre>';
-        // echo print_r($this->routes);
+        // echo print_r($this->url);
         // echo '<pre>';
     }
 

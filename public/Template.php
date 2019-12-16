@@ -24,7 +24,7 @@
 
             <div id="name">
                 <p>
-                    <a href="index.php?action=UploadImg"> STEFANO G BIANCHI </a>
+                    <a href="/UploadImg"> STEFANO G BIANCHI </a>
                 </p>
             </div>
 
@@ -32,7 +32,7 @@
                 <a href="/home"> ACCUEIL</a>
                 <a href="/index.php?action=expos">ACTUALITES</a>
                 <a href="/series">TRAVAUX</a>
-                <a href="/index.php?action=Bio">A PROPOS</a>
+                <a href="/Bio">A PROPOS</a>
                 <a href="/index.php?action=Accueil">CONTACT</a>
                 <a href="/index.php?action=homeAdmin">ADMIN</a>
             </div>

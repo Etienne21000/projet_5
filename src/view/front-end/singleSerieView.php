@@ -27,7 +27,7 @@
             </p>
 
             <p class="suite">
-                <a href="index.php?action=serieUpdate&id=<?= $serie->id(); ?>"> Mettre à jour</a>
+                <a href="/serieUpdate/<?= $serie->id(); ?>"> Mettre à jour</a>
             </p>
             <!-- </div> -->
         </div>
