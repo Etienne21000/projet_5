@@ -1,0 +1,35 @@
+/* body {
+  padding-top: 50px;
+} */
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.navbar-nav a
+{
+    color: #fff;
+    transition: all .4s ease-in-out;
+}
+
+.navbar-nav a:hover
+{
+    /* transform: translateX(30px); */
+    text-decoration: none;
+}
+
+.row
+{
+    margin-top: 100px;
+}
+
+.col-xs-4 img
+{
+    width: 100%;
+    transition: all .2s ease-in-out;
+}
+
+.col-xs-4 img:hover
+{
+    box-shadow: 0 1px 15px -6px rgba(0,0,0,0.32), 0 1px 15px 0 rgba(0,0,0,0.12), 0 6px 8px -2px rgba(0,0,0,0.1);
+}

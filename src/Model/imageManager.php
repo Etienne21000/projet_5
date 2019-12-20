@@ -68,7 +68,7 @@ class ImageManager extends Manager
 
         if ($start != -1 || $limit != -1)
         {
-            $req .= ' LIMIT '. (int) $limite .' OFFSET ' . (int) $start;
+            $req .= ' LIMIT '. (int) $limit .' OFFSET ' . (int) $start;
         }
 
         $result = $this->db->query($req);

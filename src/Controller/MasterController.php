@@ -86,6 +86,19 @@ class MasterController
     Back-office Master Controller
     ---------------------------------------------------- */
 
+    public function AdminHomePage()
+    {
+        $countPost = $this->postController->nbPosts();
+        $countImg = $this->imageController->countedImg();
+
+        // $Images = $this->imageController->getAllImages();
+        $Images = $this->imageController->getAllimg();
+        $Posts = $this->postController->getAllPost();
+        $Series = $this->serieController->getAll();
+
+        require 'src/view/back-end/adminHomeView.php';
+    }
+
     public function UploadImg()
     {
         $error = null;

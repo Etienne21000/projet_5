@@ -108,6 +108,13 @@ class ImageController
         return $Images;
     }
 
+    public function getAllimg()
+    {
+        $Images = $this->image->getAll($start = 0, $limit = 6);
+
+        return $Images;
+    }
+
     public function getOne($id)
     {
         $image = $this->image->getOneImg($id);

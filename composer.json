@@ -12,7 +12,9 @@
 
     "minimum-stability": "stable",
 
-    "require": {},
+    "require": {
+        "twbs/bootstrap": "4.4.1"
+    },
 
     "autoload":{
         "psr-4": {

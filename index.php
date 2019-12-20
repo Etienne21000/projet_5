@@ -13,14 +13,11 @@ $router = new Router($_GET['url']);
 // $masterController = new MasterController();
 
 $router->get('/home', 'Master#home');
-
 $router->get('/', 'Master#home');
 
 
 $router->get('/series', 'Master#series');
-
 $router->get('/singleSerie/:id', 'Master#singleSerie');
-
 $router->get('/singleImg/:id', 'Master#singleImg');
 
 //AJAX request no working so far
@@ -31,28 +28,23 @@ $router->get('/singleImg/:id', 'Master#singleImg');
 
 
 $router->get('/Bio', "Master#bio");
-
 $router->get('/UploadImg', "Master#UploadImg");
-
 $router->post('/addImg', 'Master#addImg');
 
 
+$router->get('/adminHomePage', 'Master#AdminHomePage');
+
+
 $router->get('/serieAdd', 'Master#serieAdd');
-
 $router->post('/addSerie', 'Master#addSerie');
-
 $router->get('/serieUpdate/:id', 'Master#serieUpdate');
-
 $router->post('/updateSerie/:id', 'Master#updateSerie');
 
 
 
 $router->get('/addPost', 'Master#addPost');
-
 $router->post('/newPost', 'Master#newPost');
-
 $router->get('/postUpdate/:id', 'Master#postUpdate');
-
 $router->post('/updatePost/:id', 'Master#updatePost');
 
 
