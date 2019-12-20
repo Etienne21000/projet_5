@@ -52,17 +52,24 @@ class PostManager extends Manager
         return $post;
     }
 
-    public function getAll()
+    public function getAll($start =-1, $limite =-1)
     {
         $Posts = [];
 
-        $req = $this->db->prepare('SELECT id, title, content, slug,
+        $req = 'SELECT id, title, content, slug,
         DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date
-        FROM post ORDER BY creation_date');
+        FROM post ORDER BY creation_date';
 
-        $req->execute();
+        if ($start != -1 || $limite != -1)
+        {
+            $req .= ' LIMIT '. (int) $limite .' OFFSET ' . (int) $start;
+        }
 
-        while ($data = $req->fetch(\PDO::FETCH_ASSOC))
+        $result = $this->db->prepare($req);
+
+        $result->execute();
+
+        while ($data = $result->fetch(\PDO::FETCH_ASSOC))
         {
             $post = new Post($data);
             $Posts[] = $post;
@@ -71,8 +78,10 @@ class PostManager extends Manager
         return $Posts;
     }
 
-    public function getPost()
+    public function countPosts()
     {
+        $countPost = $this->db->query('SELECT COUNT(*) FROM post')->fetchColumn();
 
+        return $countPost;
     }
 }

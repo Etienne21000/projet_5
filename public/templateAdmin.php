@@ -26,7 +26,7 @@
 
             <div id="name">
                 <p>
-                    <a href="/UploadImg"> STEFANO G BIANCHI </a>
+                    <a href="/home"> STEFANO G BIANCHI </a>
                 </p>
             </div>
 
@@ -35,8 +35,8 @@
                 <a href="/index.php?action=expos">ACTUALITES</a>
                 <a href="/series">TRAVAUX</a>
                 <a href="/Bio">A PROPOS</a>
-                <a href="/index.php?action=Accueil">CONTACT</a>
-                <a href="/index.php?action=homeAdmin">ADMIN</a>
+                <a href="/">CONTACT</a>
+                <a href="/UploadImg">ADMIN</a>
             </div>
 
         </div>
@@ -81,16 +81,16 @@
 
             <aside class="asideAdmin">
                 <ul id="adminList">
-                        <li class="menuAdmin"><a href="index.php?action="><i class="fas fa-tachometer-alt"></i>Tableau de bord</a></li>
-                        <li class="menuAdmin"><a href="index.php?action=addPost"><i class="fas fa-list-ul"></i>Ajouter un post</a></li>
-                        <li class="menuAdmin"><a href="index.php?action=serieView"><i class="fas fa-list-ul"></i>Series </a></li>
+                        <li class="menuAdmin"><a href="/"><i class="fas fa-tachometer-alt"></i>Tableau de bord</a></li>
+                        <li class="menuAdmin"><a href="/addPost"><i class="fas fa-list-ul"></i>Ajouter un post (<?= $countPost ?>)</a></li>
+                        <li class="menuAdmin"><a href="/series"><i class="fas fa-list-ul"></i>Series </a></li>
 
-                        <li class="menuAdmin"><a href="index.php?action=serieAdd"><i class="fas fa-list-ul"></i>Ajouter une série </a></li>
+                        <li class="menuAdmin"><a href="/serieAdd"><i class="fas fa-list-ul"></i>Ajouter une série </a></li>
 
-                        <li class="menuAdmin"><a href="index.php?action=expoView"><i class="fas fa-list-ul"></i>Expos</a></li>
-                        <li class="menuAdmin"><a href="index.php?action=UploadImg"><i class="fas fa-list-ul"></i>Ajouter une image</a></li>
+                        <li class="menuAdmin"><a href="/allImg"><i class="fas fa-list-ul"></i>Images (<?= $countImg ?>)</a></li>
+                        <li class="menuAdmin"><a href="/UploadImg"><i class="fas fa-list-ul"></i>Ajouter une image</a></li>
 
-                        <li class="menuAdmin"><a href="index.php?action=Accueil"><i class="fas fa-igloo"></i>Accueil</a></li>
+                        <li class="menuAdmin"><a href="/home"><i class="fas fa-igloo"></i>Accueil</a></li>
                     <li class="menuAdminDeco"><a href="index.php?action=discUser"><i class="fas fa-power-off"></i> Deconnexion</a></li>
                 </ul>
             </aside>

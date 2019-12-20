@@ -48,4 +48,11 @@ class PostController
 
         return $Posts;
     }
+
+    public function nbPosts()
+    {
+        $countPost = $this->post->countPosts();
+
+        return $countPost;
+    }
 }

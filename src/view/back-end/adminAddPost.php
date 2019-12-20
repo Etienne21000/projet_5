@@ -11,7 +11,7 @@
 
 	<div class="content">
 		<aside id="addPost">
-			<form action="index.php?action=newPost" method="POST">
+			<form action="/newPost" method="POST">
 
 				<p>
 					<label for="form-content">Titre</label>

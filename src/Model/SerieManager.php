@@ -81,7 +81,7 @@ class SerieManager extends Manager
         $req->execute();
 
         $data = $req->fetch(\PDO::FETCH_ASSOC);
-        $serie = new Serie([$data]);
+        $serie = new Serie($data);
 
         return $serie;
     }

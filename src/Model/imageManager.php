@@ -12,16 +12,20 @@ class ImageManager extends Manager
     //Peut être ajouter variable pour définir s'il s'agit d'une serie ou expo
     public function getOneImg($id)
     {
-        $req = $this->db->prepare('SELECT id, image, title, description, /*id_serie, id_expo,*/
+        $req = $this->db->prepare('SELECT id, image, title, description, id_serie,/* serie_title, id_expo,*/
         DATE_FORMAT(image_date, \'%d/%m/%Y\') AS image_date
         FROM images WHERE id = :id');
+        // -- LEFT JOIN
+        // -- (SELECT id, title AS serie_id, serie_title
+        // -- FROM Serie) AS s
+        // -- ON i.id_serie = s.id
 
         $req->bindValue(':id', $id, \PDO::PARAM_INT);
 
         $req->execute();
 
         $data = $req->fetch(\PDO::FETCH_ASSOC);
-        $image = new Image([$data]);
+        $image = new Image($data);
 
         return $image;
     }
@@ -48,7 +52,7 @@ class ImageManager extends Manager
 
         while ($data = $result->fetch(\PDO::FETCH_ASSOC))
         {
-            $image = new Image([$data]);
+            $image = new Image($data);
             $Images[] = $image;
         }
 
@@ -71,7 +75,7 @@ class ImageManager extends Manager
 
         while($data = $result->fetch(\PDO::FETCH_ASSOC))
         {
-            $image = new Image([$data]);
+            $image = new Image($data);
             $Images[] = $image;
         }
 
@@ -87,7 +91,36 @@ class ImageManager extends Manager
         $req->bindValue(':image', $image->image());
         $req->bindValue(':description', $image->description());
         $req->bindValue(':id_serie', $image->id_serie(), \PDO::PARAM_INT);
-        // $req->bindValue(':id_expo', $image->image_id_expo(), \PDO::PARAM_INT);
+
+        $req->execute();
+    }
+
+    public function countImg()
+    {
+        $countImg = $this->db->query('SELECT COUNT(*) FROM images')->fetchColumn();
+
+        return $countImg;
+    }
+
+    public function deleteImg($id)
+    {
+        $req = $this->db->prepare('DELETE FROM images WHERE id = :id');
+        $req->bindValue(':id', $id, \PDO::PARAM_INT);
+
+        $req->execute();
+    }
+
+    public function updateImg(Image $image)
+    {
+        $req = $this->db->prepare('UPDATE images SET title = :title, image = :image,
+        description = :description, id_serie = :id_serie
+        WHERE id = :id');
+
+        $req->bindValue(':title', $image->title());
+        $req->bindValue(':image', $image->image());
+        $req->bindValue(':description', $image->description());
+        $req->bindValue(':id_serie', $image->id_serie(), \PDO::PARAM_INT);
+        $req->bindValue(':id', $image->id(), \PDO::PARAM_INT);
 
         $req->execute();
     }

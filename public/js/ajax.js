@@ -6,14 +6,16 @@ document.addEventListener('DOMContentLoaded', function(){
         var image_id = $(this).attr('id');
 
         $.ajax({
-            url:'/?action=singleImg&id=' + image_id,
+            // url:'/?action=singleImg&id=' + image_id,
+            url: '/singleImg/:id' + image_id,
+            // url: 'singleSerie/singleImg/' + image_id,
             method:'GET',
             data:{
                 image_id:image_id,
             },
             dataType:'json',
 
-            success:function(data){
+            success:function(data) {
                 var img_container = document.getElementById('image_details');
 
                 while(img_container.firstChild) {
@@ -33,7 +35,6 @@ document.addEventListener('DOMContentLoaded', function(){
                  img_container.append(p2);
 
                 document.querySelector('#open').style.display = "block";
-                // var transform = document.querySelector('.images');
                 var img_general = document.querySelector('.images');
                 img_general.classList.add('transform');
             }

@@ -11,6 +11,7 @@ class Serie extends Entity
     private $creation_date;
     private $id_img;
     private $serie_img;
+    private $slug;
 
 
     public function __construct(array $data)
@@ -77,6 +78,11 @@ class Serie extends Entity
         }
     }
 
+    public function setSlug($slug)
+    {
+        $this->slug = (bool)$slug;
+    }
+
     /*-----------------------------
     Getters
     ------------------------------*/
@@ -119,5 +125,10 @@ class Serie extends Entity
     public function serie_img()
     {
         return $this->serie_img;
+    }
+
+    public function slug()
+    {
+        return $this->slug;
     }
 }

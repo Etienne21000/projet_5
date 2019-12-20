@@ -8,6 +8,7 @@ class Post extends Entity
     private $content;
     private $creation_date;
     private $slug;
+    
 
     function __construct(array $data)
     {

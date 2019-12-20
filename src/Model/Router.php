@@ -61,6 +61,7 @@ class Router
         }
 
         // print_r($this->routesNames);
+        // $routes = parse_url($this->routes[$_SERVER['REQUEST_METHOD']]);
 
         foreach($this->routes[$_SERVER['REQUEST_METHOD']] as $route)
         {

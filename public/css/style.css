@@ -226,6 +226,7 @@ Single serie view
 
 .single_img img
 {
+    width: 70%;
     transition: all .2s ease-in-out;
 }
 

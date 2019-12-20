@@ -6,7 +6,8 @@ class Route
 
     private $path;
     private $callable;
-    private $matches;
+    private $matches = [];
+    private $params = [];
 
     public function __construct($path, $callable)
     {
@@ -17,14 +18,16 @@ class Route
     public function match($url)
     {
         $url = trim($url, '/');
-        $path = preg_replace_callback('#:([\w]+)#', [$this, 'paramMatch'], $this->path);
+        $path = preg_replace_callback('#(:[\w]+)#', [$this, 'paramMatch'], $this->path);
         $regex = "#^$path$#i";
         // var_dump($regex);
+        // var_dump($url);
 
-        if(!preg_match($regex, $url, $matches))
+        if(!preg_match_all($regex, $url, $matches))
         {
             return false;
         }
+        // var_dump($matches);
 
         array_shift($matches);
 
@@ -34,9 +37,20 @@ class Route
         // var_dump($matches);
     }
 
+    public function with($param, $regex)
+    {
+        $this->params[$param] = str_replace('(', '(?:', $regex);
+        // var_dump($regex);
+        // var_dump($this->params);
+        return $this;
+    }
+
     private function paramMatch($match)
     {
-        if(isset($this->params[$match[1]])){
+        // var_dump($match);
+        // var_dump($this->params[$match]);
+        if(isset($this->params[$match[1]]))
+        {
             return '(' . $this->params[$match[1]] . ')';
         }
 
@@ -61,6 +75,7 @@ class Route
             $params = explode('#', $this->callable);
             $controller = "App\\Controller\\" . $params[0] . 'Controller';
             $controller = new $controller();
+            // var_dump($this->matches);
 
             return call_user_func_array([$controller, $params[1]], $this->matches);
         }

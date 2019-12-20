@@ -11,7 +11,7 @@
 
 	<div class="content">
 		<aside id="addSerie">
-			<form action="index.php?action=updateSerie&id=<?= $serie->id(); ?>" method="POST">
+			<form action="/updateSerie/<?= $serie->id(); ?>" method="POST">
 
 				<p>
 					<label for="form-content">Titre</label>

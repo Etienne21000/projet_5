@@ -21,10 +21,8 @@ class ImageController
 
         $Image->setTitle($title);
         $Image->setImage($image);
-        // $Image->setImage($_FILES['image']['name']);
         $Image->setDescription($description);
         $Image->setIdSerie($id_serie);
-        // $Image->setIdExpo($id_expo);
 
         if(!$_FILES['image']['error'])
         {
@@ -34,7 +32,7 @@ class ImageController
         $this->image->addImage($Image);
     }
 
-    public function getImgBySeries($id_serie)
+    public function getImagesBySeries($id_serie)
     {
         $Images = $this->image->getImgBySerie($id_serie);
 
@@ -105,7 +103,7 @@ class ImageController
 
     public function getAllImages()
     {
-        $Images = $this->image->GetAll();
+        $Images = $this->image->getAll();
 
         return $Images;
     }
@@ -116,4 +114,51 @@ class ImageController
 
         return $image;
     }
+
+    public function countedImg()
+    {
+        $countImg = $this->image->countImg();
+
+        return $countImg;
+    }
+
+    public function delete($id)
+    {
+        if(isset($id) && $id > 0)
+        {
+            $image = $this->image->deleteImg($id);
+        }
+    }
+
+    public function updateImg($title, $image, $description, $id_serie)
+    {
+        $Image = new Image([$data]);
+
+        $Image->setTitle($title);
+        $Image->setImage($image);
+        $Image->setDescription($description);
+        $Image->setIdserie($id_serie);
+
+        $this->image->updateImg($Image);
+    }
+
+    // public function getOneAjax($id)
+    // {
+    //     $image = $this->getOne($id);
+    //
+    //     if(isset($id) && $id > 0)
+    //     {
+    //         $img = [
+    //             'id' => $image->id(),
+    //             'title' => $image->title(),
+    //             'date' => $image->image_date(),
+    //             'image' => $image->image(),
+    //             'description' => strip_tags(html_entity_decode($image->description())),
+    //         ];
+    //
+    //         header('Content-Type: application/json');
+    //
+    //         echo json_encode($img);
+    //     }
+    // }
 }

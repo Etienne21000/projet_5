@@ -4,7 +4,7 @@
 
 <p>Bonjour</p>
 
-<form action="index.php?action=addImage" method="POST" enctype="multipart/form-data">
+<form action="/addImg" method="POST" enctype="multipart/form-data">
 
     <input type="hidden" name="fileSize" value="8000000"/>
 

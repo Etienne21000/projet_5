@@ -16,7 +16,7 @@
             </p>
 
             <p class="suite">
-                <a href="index.php?action=postUpdate&id=<?= $data->id(); ?>">Mettre à jour</a>
+                <a href="/postUpdate/<?= $data->id(); ?>">Mettre à jour</a>
             </p>
         <?php endforeach; ?>
     </article>

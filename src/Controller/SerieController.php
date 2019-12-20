@@ -2,15 +2,19 @@
 namespace App\Controller;
 
 use App\Model\SerieManager;
+// use App\Controller\ImageController;
+
 use App\Model\Serie;
 
 class SerieController
 {
     private $serie;
+    // private $images;
 
     public function __construct()
     {
         $this->serie = new SerieManager();
+        // $this->images = new ImageController();
     }
 
     public function newSerie($title, $description, $tech, $id_img)
@@ -48,6 +52,7 @@ class SerieController
     public function getOne($id)
     {
         $serie = $this->serie->getOneSerie($id);
+        // $Images = $this->images->getImagesBySeries($id_serie);
 
         return $serie;
     }

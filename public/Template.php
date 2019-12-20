@@ -30,11 +30,11 @@
 
             <div class="menu nav">
                 <a href="/home"> ACCUEIL</a>
-                <a href="/index.php?action=expos">ACTUALITES</a>
+                <a href="/">ACTUALITES</a>
                 <a href="/series">TRAVAUX</a>
                 <a href="/Bio">A PROPOS</a>
-                <a href="/index.php?action=Accueil">CONTACT</a>
-                <a href="/index.php?action=homeAdmin">ADMIN</a>
+                <a href="/home">CONTACT</a>
+                <a href="/UploadImg">ADMIN</a>
             </div>
 
         </div>
@@ -45,7 +45,7 @@
 
     <footer>
         <!-- <script src="/public/js/transitions.js"></script> -->
-        <script src="public/js/ajax.js"></script>
+        <script src="/public/js/ajax.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <p> Copyright © Etienne Juffard - 2019 - Campo d'Ombra - Stefano Bianchi - tous droits réservés </p>
     </footer>
