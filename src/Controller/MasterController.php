@@ -4,18 +4,21 @@ namespace App\Controller;
 use App\Controller\PostController;
 use App\Controller\ImageController;
 use App\Controller\SerieController;
+use App\Controller\UserController;
 
 class MasterController
 {
     private $postController;
     private $imageController;
     private $serieController;
+    private $userController;
 
     public function __construct()
     {
         $this->postController = new PostController();
         $this->imageController = new ImageController();
         $this->serieController = new SerieController();
+        $this->userController = new UserController();
     }
 
 
@@ -88,15 +91,37 @@ class MasterController
 
     public function AdminHomePage()
     {
+        if(isset($_SESSION['id']))
+        {
+            $countPost = $this->postController->nbPosts();
+            $countImg = $this->imageController->countedImg();
+
+            // $Images = $this->imageController->getAllImages();
+            $Images = $this->imageController->getAllimg();
+            $Posts = $this->postController->getAllPost();
+            $Series = $this->serieController->getAll();
+
+            require 'src/view/back-end/adminHomeView.php';
+        }
+        else
+        {
+            echo 'vous n\'avez pas accès à cette partie du site';
+            header('Refresh: 2; /home');
+        }
+
+    }
+
+    public function getOnePost($param)
+    {
+        (int)$id = $param[0];
+
         $countPost = $this->postController->nbPosts();
         $countImg = $this->imageController->countedImg();
 
-        // $Images = $this->imageController->getAllImages();
-        $Images = $this->imageController->getAllimg();
-        $Posts = $this->postController->getAllPost();
-        $Series = $this->serieController->getAll();
+        $post = $this->postController->getPost($id);
 
-        require 'src/view/back-end/adminHomeView.php';
+        require 'src/view/back-end/adminSinglePost.php';
+
     }
 
     public function UploadImg()
@@ -314,4 +339,209 @@ class MasterController
 
         header('Location: /series');
     }
+
+    public function admin()
+    {
+        require 'src/view/front-end/adminConnectView.php';
+    }
+
+    public function inscription()
+    {
+        require 'src/view/front-end/inscriptionView.php';
+    }
+
+    public function UserInscription()
+    {
+        // $error = null;
+
+        if (!empty($_POST))
+        {
+            $validate = true;
+
+            $_POST['identifiant'] = htmlspecialchars($_POST['identifiant']);
+            $_POST['mail'] = htmlspecialchars($_POST['mail']);
+            $_POST['pass'] = htmlspecialchars($_POST['pass']);
+            $_POST['confirmePass'] = htmlspecialchars($_POST['confirmePass']);
+
+
+            //Verify pseudo
+            if(empty($_POST['identifiant']) || strlen($_POST['identifiant']) > 100 || !preg_match("#^[a-zà-ùA-Z0-9-\s_-]+$#", $_POST['identifiant']))
+            {
+                $validate = false;
+                // $error = 1;
+            }
+
+            //Verity mail
+            if(empty($_POST['mail']) || strlen($_POST['mail']) > 255 || !filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL))
+            {
+                $validate = false;
+                // $error = 2;
+            }
+
+            //Verity pass
+            if(empty($_POST['pass']) || strlen($_POST['pass']) > 100 || !preg_match("#^[a-zA-Z0-9_-]+.{8,}$#", $_POST['pass']))
+            {
+                $validate = false;
+                // $error = 3;
+            }
+
+            //Confirm password
+            if(empty($_POST['confirmePass']) || ($_POST['pass'] !== $_POST['confirmePass']))
+            {
+                $validate = false;
+                // $error = 4;
+            }
+
+            if($validate)
+            {
+                if(empty($this->userController->checkIdentifiant($_POST['identifiant'])) && empty($this->userController->checkMail($_POST['mail'])))
+                {
+                    $_POST['pass'] = password_hash($_POST['pass'], PASSWORD_BCRYPT);
+
+                    $this->userController->newUser(htmlspecialchars($_POST['identifiant']),
+                    htmlspecialchars($_POST['mail']), htmlspecialchars($_POST['pass']));
+
+                    header('Location: /admin');
+                }
+
+                // else
+                // {
+                //     $error = 5;
+                // }
+
+            }
+        }
+
+        // switch ($error)
+        // {
+        //     case 5:
+        //     $error = '* Pseudo invalide';
+        //     break;
+        //
+        //     case 6:
+        //     $error = '* Mail invalide';
+        //     break;
+        //
+        //     case 7:
+        //     $error = '* Mot de passe invalide';
+        //     break;
+        //
+        //     case 8:
+        //     $error = '* Confirmez à nouveau votre mot de passe';
+        //     break;
+        //
+        //     case 9:
+        //     $error = '* Ce pseudo ou cette adresse mail est déjà utilisé(e)';
+        //     break;
+        // }
+        //
+        // header('Location: /inscription');
+    }
+
+    public function connectUser()
+    {
+        // $identifiant = $param[0];
+        // (int)$id = $param[0];
+
+        if (!empty($_POST))
+        {
+            $validate = true;
+            $error = null;
+
+            //verify if empty fields
+            if (empty($_POST['identifiant']) || empty($_POST['pass']))
+            {
+                $erreur = 1;
+                $validate = false;
+            }
+
+            //Verify length of strings
+            if (strlen($_POST['identifiant']) > 100 || strlen($_POST['pass']) > 255)
+            {
+                $error = 2;
+                $validate = false;
+            }
+
+            if ($validate === true)
+            {
+                $user = $this->userController->userConnect($_POST['identifiant']);
+
+                if (!$user)
+                {
+                    $error = 3;
+                    echo 'impossible de vous connecter';
+                }
+
+                else
+                {
+                    $passVerify = password_verify($_POST['pass'], $user['pass']);
+
+                    if($passVerify)
+                    {
+                        // session_start();
+                        $_SESSION['id'] = $user['id'];
+                        $_SESSION['identifiant'] = $user['identifiant'];
+
+                        header('Location: /adminHomePage/');
+                        exit();
+                        // require 'src/view/back-end/adminHomeView.php';
+                    }
+
+                    else
+                    {
+                        echo 'Mauvais mot de passe';
+                        $error = 4;
+                    }
+                }
+            }
+
+            switch ($error)
+            {
+                case 1:
+                $error = '* Veuillez renseigner votre pseudo';
+                break;
+
+                case 2:
+                $error = '* Veuillez renseigner votre mot de passe';
+                break;
+
+                case 3:
+                $error = '* Pseudo invalide';
+                break;
+
+                case 4:
+                $error = '* Mot de passe invalide';
+                break;
+            }
+        }
+    }
+
+    public function userDeconnexion()
+    {
+        $this->userController->disconnectUser();
+
+        header('Location: /home');
+    }
 }
+
+
+// switch ($error)
+// {
+//     case 1:
+//     $error = '* Veuillez renseigner votre pseudo';
+//     break;
+//
+//     case 2:
+//     $error = '* Veuillez renseigner votre mot de passe';
+//     break;
+//
+//     case 3:
+//     $error = '* Pseudo invalide';
+//     break;
+//
+//     case 4:
+//     $error = '* Mot de passe invalide';
+//     break;
+// }
+//
+// require 'src/view/front-end/adminConnectView.php';

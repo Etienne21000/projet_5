@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 require_once (__DIR__ .'/vendor/autoload.php');
@@ -6,8 +7,10 @@ require_once (__DIR__ .'/vendor/autoload.php');
 // use App\Controller\MasterController;
 // use App\Controller\PostController;
 // use App\Controller\ImageController;
-// use App\Controller\SerieController;
+// use App\Controller\UserController;
 use App\Model\Router;
+
+// $userController = new UserController();
 
 $router = new Router($_GET['url']);
 // $masterController = new MasterController();
@@ -17,8 +20,10 @@ $router->get('/', 'Master#home');
 
 
 $router->get('/series', 'Master#series');
-$router->get('/singleSerie/:id', 'Master#singleSerie');
-$router->get('/singleImg/:id', 'Master#singleImg');
+$router->get('/singleSerie/{id}', 'Master#singleSerie');
+$router->get('/singleImg/{id}', 'Master#singleImg');
+$router->get('/Bio', "Master#bio");
+
 
 //AJAX request no working so far
 // $router->get('/singleImg/:id', function($id) use($router)
@@ -27,33 +32,68 @@ $router->get('/singleImg/:id', 'Master#singleImg');
 // });
 
 
-$router->get('/Bio', "Master#bio");
-$router->get('/UploadImg', "Master#UploadImg");
-$router->post('/addImg', 'Master#addImg');
+// $router->get('/UploadImg', "Master#UploadImg");
+// $router->post('/addImg', 'Master#addImg');
+
+// if(isset($_SESSION['id']))
+// {
+    $router->get('/adminHomePage', 'Master#AdminHomePage');
+    $router->get('/UploadImg', "Master#UploadImg");
+    $router->post('/addImg', 'Master#addImg');
+
+    $router->get('/serieAdd', 'Master#serieAdd');
+    $router->post('/addSerie', 'Master#addSerie');
+    $router->get('/serieUpdate/{id}', 'Master#serieUpdate');
+    $router->post('/updateSerie/{id}', 'Master#updateSerie');
 
 
-$router->get('/adminHomePage', 'Master#AdminHomePage');
+    $router->get('/addPost', 'Master#addPost');
+    $router->post('/newPost', 'Master#newPost');
+    $router->get('/postUpdate/{id}', 'Master#postUpdate');
+    $router->post('/updatePost/{id}', 'Master#updatePost');
+    $router->get('/singlepost/{id}', 'Master#getOnePost');
 
 
-$router->get('/serieAdd', 'Master#serieAdd');
-$router->post('/addSerie', 'Master#addSerie');
-$router->get('/serieUpdate/:id', 'Master#serieUpdate');
-$router->post('/updateSerie/:id', 'Master#updateSerie');
+    $router->get('/allImg', 'Master#getImages');
+    $router->get('/getOneImg/{id}', 'Master#getOneImg');
+    $router->get('/deleteImg/{id}', 'Master#deleteImage');
+
+// }
 
 
+$router->get('/admin', 'Master#admin');
+$router->get('/inscription', 'Master#inscription');
+$router->post('/userinscription', 'Master#UserInscription');
+$router->post('/connectuser', 'Master#connectUser');
+$router->get('/disconnect', 'Master#userDeconnexion');
 
-$router->get('/addPost', 'Master#addPost');
-$router->post('/newPost', 'Master#newPost');
-$router->get('/postUpdate/:id', 'Master#postUpdate');
-$router->post('/updatePost/:id', 'Master#updatePost');
-
-
-$router->get('/allImg', 'Master#getImages');
-$router->get('/getOneImg/:id', 'Master#getOneImg');
-$router->get('/deleteImg/:id', 'Master#deleteImage');
-
+// $router->post('/connectuser', function($_SESSION)
+// {
+//
+// });
 
 $router->run();
+
+
+// $router->get('/serieAdd', 'Master#serieAdd');
+// $router->post('/addSerie', 'Master#addSerie');
+// $router->get('/serieUpdate/{id}', 'Master#serieUpdate');
+// $router->post('/updateSerie/{id}', 'Master#updateSerie');
+//
+//
+//
+// $router->get('/addPost', 'Master#addPost');
+// $router->post('/newPost', 'Master#newPost');
+// $router->get('/postUpdate/{id}', 'Master#postUpdate');
+// $router->post('/updatePost/{id}', 'Master#updatePost');
+
+
+// $router->get('/allImg', 'Master#getImages');
+// $router->get('/getOneImg/{id}', 'Master#getOneImg');
+// $router->get('/deleteImg/{id}', 'Master#deleteImage');
+
+
+
 
 
 // $router->get('/singleSerie/:id', 'Master#singleSerie');

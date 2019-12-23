@@ -18,7 +18,7 @@ class Route
     public function match($url)
     {
         $url = trim($url, '/');
-        $path = preg_replace_callback('#(:[\w]+)#', [$this, 'paramMatch'], $this->path);
+        $path = preg_replace_callback('#({[\w]+})#', [$this, 'paramMatch'], $this->path);
         $regex = "#^$path$#i";
         // var_dump($regex);
         // var_dump($url);

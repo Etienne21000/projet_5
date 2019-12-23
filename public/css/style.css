@@ -445,5 +445,6 @@ A propos view
 
 .AdminNav
 {
-    width: 85%;
+    width: 100%;
+    margin-top: 100px;
 }

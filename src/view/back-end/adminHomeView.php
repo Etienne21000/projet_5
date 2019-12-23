@@ -4,7 +4,12 @@
 
 <div class="container">
     <div class="starter-template">
-        <h1>Espace administrateur du site</h1>
+        <?php if(isset($_SESSION['id'])){?>
+            <h1>Bonjour <?= $_SESSION['identifiant']; ?></h1>
+
+        <?php } else {?>
+            <h1>Bonjour </h1>
+        <?php }; ?>
         <p class="lead">Use this document as a way to quickly start any new project.
             <br>All you get is this text and a mostly barebones HTML document.
         </p>
@@ -31,7 +36,7 @@
             <div class="col-xs-4 col-sm-3 col-md-2">
                 <p>
                     <?= $data->title(); ?>
-                    <a href="/<?= $data->id(); ?>"> Lire la suite</a>
+                    <a href="/singlepost/<?= $data->id(); ?>"> Lire la suite</a>
                 </p>
             </div>
         <?php endforeach; ?>
@@ -56,15 +61,7 @@
                 </div>
             <?php endforeach; ?>
         </section>
-</div>
-
-<!-- <section class="row">
-<div class="col-sm-8"><img src="/public/upload/<?php/* $image->image(); */?>" alt="<?php/* $image->title(); */?>"></div>
-</section> -->
-
-
-
-
+    </div>
 
 <?php $content = ob_get_clean(); ?>
 
