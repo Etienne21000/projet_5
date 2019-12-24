@@ -71,6 +71,8 @@ $router->get('/disconnect', 'Master#userDeconnexion');
 // {
 //
 // });
+//Error view
+$router->get('/error404', 'Master#error');
 
 $router->run();
 

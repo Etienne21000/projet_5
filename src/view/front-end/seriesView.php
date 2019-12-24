@@ -32,11 +32,14 @@
                         <img src="public/upload/<?= htmlspecialchars($data->serie_img()); ?>" alt="<?= $data->title(); ?>"/>
                     </div>
                     <!-- <p class="suite"> -->
-                </div>
-                <!-- </p> -->
+                </div>                <!-- </p> -->
             </div>
         <?php endforeach; ?>
 
+        <div class="btnsuite">
+            <button type="button" class="btn btn-outline-secondary">Voir toutes les séries</button>
+        </div>
+        
     </article>
 </section>
 

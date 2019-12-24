@@ -46,10 +46,7 @@
             <?php foreach ($Images as $data): ?>
                 <div class="image_title">
                     <div class="single_img">
-                        <!-- <a href="index.php?action=singleImg&id=<?php/* $data->id(); */?>"> -->
-                        <!-- <a href="#open" class="js-form"> -->
                         <a name="view" value="view" id="<?= $data->id(); ?>" class="js-form">
-                            <!-- <a href="index.php?action=singleImg&id=<?php/* echo $data->id(); */?>"> -->
                             <img src="/public/upload/<?= $data->image(); ?>" alt="Serie boxes" class="img">
                         </a>
                     </div>

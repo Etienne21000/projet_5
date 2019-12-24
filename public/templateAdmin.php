@@ -51,48 +51,111 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/">CONTACT</a>
                     </li>
-                    
+
                 </ul>
             </div>
         </nav>
     </header>
 
-    <section class="container">
+    <section class="adminContent">
 
-        <div id="contentAdminView">
+        <!-- <div id="contentAdminView"> -->
 
-            <!-- <header> -->
-            <nav class="AdminNav navbar navbar-dark bg-primary">
-                <a class="navbar-brand" href="/home">ACCUEIL</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a href="/addPost"> BILLETS (<?= $countPost ?>)</a>
-                        <a href="/series"> SERIES </a>
-                        <a href="/serieAdd"> AJOUTER UNE SERIE </a>
-                        <a href="/allImg"> IMAGES (<?= $countImg ?>)</a>
-                        <a href="/UploadImg"> AJOUTER UNE IMAGE</a>
-                        <a href="/disconnect"><i class="fas fa-power-off"></i> DECONNEXION</a>
+        <!-- <header> -->
+        <!-- <nav class="AdminNav navbar navbar-dark bg-primary">
+        <a class="navbar-brand" href="/home">ACCUEIL</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+    <a href="/addPost"> BILLETS ()</a>
+    <a href="/series"> SERIES </a>
+    <a href="/serieAdd"> AJOUTER UNE SERIE </a>
+    <a href="/allImg"> IMAGES ()</a>
+    <a href="/UploadImg"> AJOUTER UNE IMAGE</a>
+    <a href="/disconnect"><i class="fas fa-power-off"></i> DECONNEXION</a>
 
-                    </div>
-                </div>
-            </nav>
+</div>
+</div>
+</nav> -->
 
-            <div id="blocInfos">
-                <?= $content?>
-            </div>
+<div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>MENU ADMIN</h3>
         </div>
-    </section>
 
-    <footer>
-        <p> Copyright © Etienne Juffard - 2019 - Campo d'Ombra - Stefano Bianchi - tous droits réservés </p>
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-        <script src="/public/css/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
-        <script src="public/js/ajax.js"></script>
-        <script src="public/js/tinyMce/tinymce.min.js"></script>
-        <script src="public/js/wysiwyg.js"></script>
-    </footer>
+        <ul class="list-unstyled components">
+
+            <li>
+                <a href="/adminHomePage"> <i class="fas fa-tachometer-alt"></i> ADMIN HOME</a>
+            </li>
+
+            <li class="active">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">BILLETS</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li>
+                        <a href="/addPost"> Tous les billets (<?= $countPost ?>)</a>
+                    </li>
+                    <li>
+                        <a href="/addPost"> Ajouter un billet</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="active">
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">SERIES</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li>
+                        <a href="/series"> Toutes les séries ()</a>
+                    </li>
+
+                    <li>
+                        <a href="/serieAdd"> Ajouter une série</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="active">
+                <a href="#imagesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">IMAGES</a>
+                <ul class="collapse list-unstyled" id="imagesSubmenu">
+                    <li>
+                        <a href="/allImg"> Toutes les images (<?= $countImg ?>)</a>
+                    </li>
+
+                    <li>
+                        <a href="/serieAdd"> Ajouter une image</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="/disconnect"><i class="fas fa-power-off"></i> DECONNEXION</a>
+            </li>
+
+        </ul>
+    </nav>
+
+    <div id="blocInfos">
+        <?= $content?>
+    </div>
+
+</div>
+
+
+<!-- </div> -->
+</section>
+
+<footer>
+    <p> Copyright © Etienne Juffard - 2019 - Campo d'Ombra - Stefano Bianchi - tous droits réservés </p>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="/public/css/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+    <script src="public/js/AllImg.js"></script>
+    <script src="public/js/ajax.js"></script>
+    <script src="public/js/tinyMce/tinymce.min.js"></script>
+    <script src="public/js/wysiwyg.js"></script>
+</footer>
 </body>
 </html>

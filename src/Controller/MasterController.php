@@ -59,7 +59,7 @@ class MasterController
 
         $image = $this->imageController->getOne($id);
 
-        // var_dump($image);
+        // var_dump($id);
 
         if(isset($id) && $id > 0)
         {
@@ -74,6 +74,7 @@ class MasterController
             header('Content-Type: application/json');
 
             echo json_encode($img);
+            // echo json_encode(array('success'=>'true'));
         }
     }
 
@@ -521,6 +522,11 @@ class MasterController
         $this->userController->disconnectUser();
 
         header('Location: /home');
+    }
+
+    public function error()
+    {
+        require 'src/view/front-end/errorView.php';
     }
 }
 

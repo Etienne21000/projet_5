@@ -9,16 +9,11 @@ class ImageManager extends Manager
     }
 
     //public function get image $id
-    //Peut être ajouter variable pour définir s'il s'agit d'une serie ou expo
     public function getOneImg($id)
     {
         $req = $this->db->prepare('SELECT id, image, title, description, id_serie,/* serie_title, id_expo,*/
         DATE_FORMAT(image_date, \'%d/%m/%Y\') AS image_date
         FROM images WHERE id = :id');
-        // -- LEFT JOIN
-        // -- (SELECT id, title AS serie_id, serie_title
-        // -- FROM Serie) AS s
-        // -- ON i.id_serie = s.id
 
         $req->bindValue(':id', $id, \PDO::PARAM_INT);
 

@@ -30,7 +30,11 @@
     <header>
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/adminHomePage">STEFANO G BIANCHI</a>
+            <?php if(isset($_SESSION['id'])){?>
+                <a class="navbar-brand" href="/adminHomePage">STEFANO G BIANCHI</a>
+            <?php } else {?>
+                <a class="navbar-brand" href="/home">STEFANO G BIANCHI</a>
+            <?php }?>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -57,7 +61,7 @@
                             <a class="nav-link" href="/adminHomePage">ADMIN</a>
                         </li>
                     <?php endif; ?>
-                    
+
                 </ul>
             </div>
         </nav>
@@ -91,9 +95,9 @@
 
 <footer>
     <!-- <script src="/public/js/transitions.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="/public/css/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
     <script src="/public/js/ajax.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <p> Copyright © Etienne Juffard - 2019 - Campo d'Ombra - Stefano Bianchi - tous droits réservés </p>
 </footer>
 
