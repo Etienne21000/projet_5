@@ -109,7 +109,7 @@
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">SERIES</a>
                 <ul class="collapse list-unstyled" id="pageSubmenu">
                     <li>
-                        <a href="/series"> Toutes les séries ()</a>
+                        <a href="/series"> Toutes les séries (<?= $countSerie ?>)</a>
                     </li>
 
                     <li>

@@ -97,7 +97,8 @@
     <!-- <script src="/public/js/transitions.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="/public/css/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
-    <script src="/public/js/ajax.js"></script>
+    <script src="/public/js/ajaxTest.js"></script>
+    <!-- <script src="/public/js/ajax.js"></script> -->
     <p> Copyright © Etienne Juffard - 2019 - Campo d'Ombra - Stefano Bianchi - tous droits réservés </p>
 </footer>
 

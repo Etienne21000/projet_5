@@ -56,4 +56,11 @@ class SerieController
 
         return $serie;
     }
+
+    public function countS()
+    {
+        $countSerie = $this->serie->countSeries();
+
+        return $countSerie;
+    }
 }

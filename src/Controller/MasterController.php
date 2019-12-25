@@ -59,8 +59,6 @@ class MasterController
 
         $image = $this->imageController->getOne($id);
 
-        // var_dump($id);
-
         if(isset($id) && $id > 0)
         {
             $img = [
@@ -96,6 +94,7 @@ class MasterController
         {
             $countPost = $this->postController->nbPosts();
             $countImg = $this->imageController->countedImg();
+            $countSerie = $this->serieController->countS();
 
             // $Images = $this->imageController->getAllImages();
             $Images = $this->imageController->getAllimg();
@@ -118,6 +117,7 @@ class MasterController
 
         $countPost = $this->postController->nbPosts();
         $countImg = $this->imageController->countedImg();
+        $countSerie = $this->serieController->countS();
 
         $post = $this->postController->getPost($id);
 
@@ -131,6 +131,7 @@ class MasterController
         $Series = $this->serieController->getAll();
         $countPost = $this->postController->nbPosts();
         $countImg = $this->imageController->countedImg();
+        $countSerie = $this->serieController->countS();
 
         require 'src/view/back-end/uploadViewForm.php';
     }
@@ -156,6 +157,7 @@ class MasterController
 
         $countPost = $this->postController->nbPosts();
         $countImg = $this->imageController->countedImg();
+        $countSerie = $this->serieController->countS();
 
         require 'src/view/back-end/adminAllImgView.php';
     }
@@ -166,6 +168,7 @@ class MasterController
 
         $countPost = $this->postController->nbPosts();
         $countImg = $this->imageController->countedImg();
+        $countSerie = $this->serieController->countS();
 
         $image = $this->imageController->getOne($id);
 
@@ -187,6 +190,7 @@ class MasterController
 
         $countPost = $this->postController->nbPosts();
         $countImg = $this->imageController->countedImg();
+        $countSerie = $this->serieController->countS();
 
         $image = $this->imageController->getOne($id);
 
@@ -222,6 +226,7 @@ class MasterController
     {
         $countPost = $this->postController->nbPosts();
         $countImg = $this->imageController->countedImg();
+        $countSerie = $this->serieController->countS();
 
         require 'src/view/back-end/adminAddPost.php';
     }
@@ -248,6 +253,7 @@ class MasterController
         $post = $this->postController->getPost($id);
         $countPost = $this->postController->nbPosts();
         $countImg = $this->imageController->countedImg();
+        $countSerie = $this->serieController->countS();
 
         require 'src/view/back-end/updatePostView.php';
     }
@@ -282,6 +288,7 @@ class MasterController
         $Images = $this->imageController->getAllImages();
         $countPost = $this->postController->nbPosts();
         $countImg = $this->imageController->countedImg();
+        $countSerie = $this->serieController->countS();
 
         require 'src/view/back-end/AddSerieView.php';
     }
@@ -310,6 +317,7 @@ class MasterController
 
         $countPost = $this->postController->nbPosts();
         $countImg = $this->imageController->countedImg();
+        $countSerie = $this->serieController->countS();
 
         require 'src/view/back-end/updateSerie.php';
     }

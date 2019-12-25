@@ -85,4 +85,11 @@ class SerieManager extends Manager
 
         return $serie;
     }
+
+    public function countSeries()
+    {
+        $countSerie = $this->db->query('SELECT COUNT(*) FROM Serie')->fetchColumn();
+
+        return $countSerie;
+    }
 }

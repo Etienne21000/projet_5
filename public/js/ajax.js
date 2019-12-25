@@ -1,31 +1,26 @@
 document.addEventListener('DOMContentLoaded', function(){
 
-    class SingleImg {
-        construtor(js_form, image_details){
+    var el = document.querySelectorAll('.js-form');
+    // console.log(el);
+    el.forEach((element, index) => {
+        element.addEventListener('click', function(){
+            // console.log("toto");
 
-            this.js_form = document.querySelectorAll('.js-form');
-            this.image_details = document.getElementById('image_details');
-        };
-
-        init(){
-            var el = document.querySelectorAll('.js-form');
-            el.forEach(function(element) {
-                element.addEventListener('click', function(){
-                    console.log('toto');
-                    this.openImg();
-                }.bind(this));
-            }.bind(this));
-        };
-
-        openImg(){
+            // e.preventDefault();
             var image_id = $(this).attr('id');
             $.ajax({
+
+                // url:'/?action=singleImg&id=' + image_id,
                 url: '/singleImg/' + image_id,
+                // url: 'singleSerie/singleImg/' + image_id,
                 method:'GET',
-                data:{image_id:image_id},
+                data:{
+                    image_id:image_id,
+                },
                 dataType:'json',
 
-                success:function(data){
+                success:function(data) {
+                    console.log(data);
                     var img_container = document.getElementById('image_details');
 
                     while(img_container.firstChild) {
@@ -52,20 +47,24 @@ document.addEventListener('DOMContentLoaded', function(){
                 error:function(res, status, err){
                     // console.log(err);
                 }
+
             });
-            //     });
-            // });
-        };
+            // };
+            // document.querySelector('.images').style.transition = "all .4s ease-in-out";
+        });
+    });
 
-        closeImg(){
-            document.querySelector('#open').style.display = "none";
-            document.querySelector('.transform').classList.add('images');
-            document.querySelector('.transform').classList.remove('transform');
-        };
-    };
+    $('#image_details').click(function(e){
 
-    var newSingleImg = new SingleImg();
-    newSingleImg.init();
+        e.preventDefault();
+
+        document.querySelector('#open').style.display = "none";
+        document.querySelector('.transform').classList.add('images');
+        document.querySelector('.transform').classList.remove('transform');
+        // document.querySelector('.images').style.display = "flex";
+
+    });
+
 
 });
 
