@@ -152,10 +152,11 @@
     <p> Copyright © Etienne Juffard - 2019 - Campo d'Ombra - Stefano Bianchi - tous droits réservés </p>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="/public/css/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
-    <script src="public/js/AllImg.js"></script>
-    <script src="public/js/ajax.js"></script>
-    <script src="public/js/tinyMce/tinymce.min.js"></script>
-    <script src="public/js/wysiwyg.js"></script>
+    <script src="/public/js/AllImg.js"></script>
+    <script src="/public/js/ajaxTest.js"></script>
+    <!-- <script src="public/js/ajax.js"></script> -->
+    <script src="/public/js/tinyMce/tinymce.min.js"></script>
+    <script src="/public/js/wysiwyg.js"></script>
 </footer>
 </body>
 </html>

@@ -151,15 +151,36 @@ class MasterController
         header('Location: /home');
     }
 
-    public function getImages() /*Get all imgs*/
+    public function getImages()
     {
         $Images = $this->imageController->getAllImages();
-
-        $countPost = $this->postController->nbPosts();
-        $countImg = $this->imageController->countedImg();
-        $countSerie = $this->serieController->countS();
-
         require 'src/view/back-end/adminAllImgView.php';
+
+        // if(isset($id) && $id > 0)
+        // {
+        // foreach($Images as $image)
+        // {
+            // $image->image();
+            // var_dump($image);
+            // $img = [
+            //     'id' => $image->id(),
+            //     'title' => $image->title(),
+            //     'date' => $image->image_date(),
+            //     'image' => $image->image(),
+            //     'description' => html_entity_decode($image->description()),
+            // ];
+            //
+            // header('Content-Type: application/json');
+            //
+            // echo json_encode($img);
+        // }
+            // echo $image->image();
+            // echo json_encode(array('success'=>'true'));
+        // }
+        // $countPost = $this->postController->nbPosts();
+        // $countImg = $this->imageController->countedImg();
+        // $countSerie = $this->serieController->countS();
+
     }
 
     public function getOneImg($param)

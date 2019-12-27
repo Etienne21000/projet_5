@@ -8,59 +8,56 @@ document.addEventListener('DOMContentLoaded', function(){
         // };
 
         init(){
-            var el = document.querySelectorAll('.js-form');
-
-            el.forEach(function(element) {
-                element.addEventListener('click', this.openImg.bind(this));
-            }.bind(this));
+            this.openImg();
 
             var close = document.querySelector('#image_details');
             close.addEventListener('click', this.closeImg.bind(this));
         };
 
         openImg(){
-            
-                var image_id = $(this).attr('id');
-                console.log(image_id);
 
-            $.ajax({
-                url: '/singleImg/' + image_id,
-                method:'GET',
-                data:{image_id:image_id},
-                // dataType:'json',
+            var el = document.querySelectorAll('.js-form');
+            el.forEach((element) => {
+                element.addEventListener('click', function(){
 
-                success:function(data){
-                    var img_container = document.getElementById('image_details');
+                    var image_id = $(this).attr('id');
+                    console.log(image_id);
 
-                    while(img_container.firstChild) {
-                        img_container.removeChild(img_container.firstChild)
-                    }
+                    $.ajax({
+                        url: '/singleImg/' + image_id,
+                        method:'GET',
+                        data:{image_id:image_id},
+                        dataType:'json',
 
-                    var p = document.createElement('p');
-                    // var p2 = document.createElement('p');
-                    var img = document.createElement('img');
+                        success:function(data){
+                            var img_container = document.getElementById('image_details');
 
-                    img.src = '/public/upload/' + data.image;
-                    p.innerHTML = data.title + '<br>'; //+ data.date + '<br>';
-                    // p2.textContent = data.description;
+                            while(img_container.firstChild) {
+                                img_container.removeChild(img_container.firstChild)
+                            }
 
-                    img_container.append(img);
-                    img_container.append(p);
-                    // img_container.append(p2);
+                            var p = document.createElement('p');
+                            var img = document.createElement('img');
 
-                    document.querySelector('#open').style.display = "block";
-                    var img_general = document.querySelector('.images');
-                    img_general.classList.add('transform');
-                },
+                            img.src = '/public/upload/' + data.image;
+                            p.innerHTML = data.title + '<br>';
 
-                error:function(res, status, err){
-                    console.log(err);
-                    console.log(res);
-                    console.log(status);
-                }
+                            img_container.append(img);
+                            img_container.append(p);
+
+                            document.querySelector('#open').style.display = "block";
+                            var img_general = document.querySelector('.images');
+                            img_general.classList.add('transform');
+                        },
+
+                        error:function(res, status, err){
+                            console.log(err);
+                            console.log(res);
+                            console.log(status);
+                        }
+                    });
+                });
             });
-            //     });
-            // });
         };
 
         closeImg(){

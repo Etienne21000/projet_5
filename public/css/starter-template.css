@@ -246,3 +246,126 @@ ul ul a {
         margin-left: 0;
     }
 }
+
+@media all and (min-width: 300px) and (max-width: 767px)
+{
+    /*-- Admin Home page --*/
+    .containerAdmin
+    {
+        margin: auto;
+
+    }
+
+    .starter-template
+    {
+        margin:auto;
+    }
+
+    /* .col-sm-3 img
+    {
+    width: 50%;
+    } */
+
+    /*-- Accueil --*/
+
+    #banner_image
+    {
+        height: 608px;
+    }
+
+    #banner_image img
+    {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 0px;
+    }
+
+    #banner
+    {
+        margin-bottom: 0px;
+        margin-top: 55px;
+        height: auto;
+    }
+
+    /*-- Accueil --*/
+    footer
+    {
+        background-color: #777777;
+    }
+
+    footer p
+    {
+        margin: 10px;
+        text-align: center;
+        color: #fff;
+    }
+
+    .all_gallery
+    {
+        margin: auto;
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .serie
+    {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    /*-- Update post--*/
+    .updatePost
+    {
+        width: 100%;
+    }
+
+    #full-featured-non-premium
+    {
+        width: 100%;
+    }
+
+    .content
+    {
+        flex-direction: column;
+    }
+
+    .gallery
+    {
+        margin: 36px 20px 20px 20px;
+        width: 90%;
+    }
+
+    .date
+    {
+        width: 70%;
+        text-align: left;
+    }
+
+    .content_serie
+    {
+        margin-top: 20px;
+    }
+
+    .separation
+    {
+        margin: 20px 0;
+    }
+
+    #display_img
+    {
+        text-align: center;
+    }
+
+    .images
+    {
+        width: 95%;
+        margin: 10px;
+        justify-content: center;
+    }
+
+    textarea
+    {
+        width: 100%;
+    }
+}
