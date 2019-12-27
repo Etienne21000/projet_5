@@ -80,7 +80,7 @@ class Serie extends Entity
 
     public function setSlug($slug)
     {
-        $this->slug = (bool)$slug;
+        $this->slug = (int)$slug;
     }
 
     /*-----------------------------

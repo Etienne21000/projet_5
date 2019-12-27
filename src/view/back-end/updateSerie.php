@@ -2,58 +2,60 @@
 
 <?php  ob_start(); ?>
 
-<article class="blocAdmin">
-	<div class="titre">
-		<h4>
-			Mettre à jour la série
-		</h4>
-	</div>
+<div class="blocInfos">
+	<section class="container">
+		<div class="titre">
+			<h4>
+				Mettre à jour la série
+			</h4>
+		</div>
 
-	<div class="content">
-		<aside id="addSerie">
-			<form action="/updateSerie/<?= $serie->id(); ?>" method="POST">
+		<div class="containerAdmin">
+			<aside id="addSerie">
+				<form action="/updateSerie/<?= $serie->id(); ?>" method="POST">
 
-				<p>
-					<label for="form-content">Titre</label>
-					<br>
-					<input type="text" name="title" class="titre" required value="<?= $serie->title();?>"/>
-				</p>
+					<p>
+						<label for="form-content">Titre</label>
+						<br>
+						<input type="text" name="title" class="titre" required value="<?= $serie->title();?>"/>
+					</p>
 
-				<p>
-			        <label for="id_img">Image de couverture</label>
-			        <br>
-			        <select name="id_img" class="id_img">
-			            <option value="">Choissiez l'image de couverture</option>
+					<p>
+						<label for="id_img">Image de couverture</label>
+						<br>
+						<select name="id_img" class="id_img">
+							<option value="">Choissiez l'image de couverture</option>
 
-			            <?php foreach ($Images as $data): ?>
+							<?php foreach ($Images as $data): ?>
 
-			                <option value="<?php echo $data->id(); ?>"> <?php echo $data->title(); ?></option>
+								<option value="<?php echo $data->id(); ?>"> <?php echo $data->title(); ?></option>
 
-			            <?php endforeach; ?>
+							<?php endforeach; ?>
 
-			        </select>
-			    </p>
+						</select>
+					</p>
 
-                <p>
-					<label for="form-content">Description</label>
-					<br>
-					<textarea type="textarea" name="description" cols="70" rows="30" id="full-featured-non-premium" charset="utf-8"><?= $serie->description(); ?></textarea>
-				</p>
+					<p>
+						<label for="form-content">Description</label>
+						<br>
+						<textarea type="textarea" name="description" cols="70" rows="30" id="full-featured-non-premium" charset="utf-8"><?= $serie->description(); ?></textarea>
+					</p>
 
-				<p>
-					<label for="form-content">Description technique</label>
-					<br>
-					<textarea type="textarea" name="tech" cols="70" rows="30"><?= $serie->tech(); ?></textarea>
-				</p>
+					<p>
+						<label for="form-content">Description technique</label>
+						<br>
+						<textarea type="textarea" name="tech" cols="70" rows="30"><?= $serie->tech(); ?></textarea>
+					</p>
 
-				<p>
-					<button type="submit" value="submit" name="submit" class="button1">Mettre à jour<i class="fas fa-pen-nib"></i></button>
-				</p>
+					<p>
+						<button type="submit" value="submit" name="submit" class="button1">Mettre à jour<i class="fas fa-pen-nib"></i></button>
+					</p>
 
-			</form>
-		</aside>
-	</div>
-</article>
+				</form>
+			</aside>
+		</div>
+	</section>
+</div>
 
 <?php $content = ob_get_clean(); ?>
 

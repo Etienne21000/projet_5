@@ -44,7 +44,7 @@
                         <a class="nav-link" href="/home">ACCUEIL <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/">ACTUALITES</a>
+                        <a class="nav-link" href="/expos">ACTUALITES</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/series">TRAVAUX</a>

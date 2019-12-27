@@ -26,9 +26,45 @@
                 <?= html_entity_decode($serie->description()); ?>
             </p>
 
-            <p class="suite">
-                <a href="/serieUpdate/<?= $serie->id(); ?>"> Mettre à jour</a>
-            </p>
+            <?php if(isset($_SESSION['id'])):?>
+                <a href="/serieUpdate/<?= $serie->id(); ?>">
+                    <input type="button" class="btn btn-outline-primary" value="mettre à jour la série"/>
+                </a>
+
+                <!-- <a href="/">
+                    <input type="button" class="btn btn-outline-danger" value="supprimer la serie"/>
+                </a> -->
+
+                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModalCenter">
+                    supprimer la serie
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Supprimer <?= htmlspecialchars($serie->title()); ?></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Êtes vous certain de vouloir supprimer la série <?= htmlspecialchars($serie->title()); ?>
+                                <br>
+                                Cette action est irreverssible, les images correspondant à cette série seront également supprimées.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                <a href="/<?php ?>">
+                                    <input type="button" class="btn btn-danger" value="supprimer la serie"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
             <!-- </div> -->
         </div>
     </article>

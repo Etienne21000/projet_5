@@ -12,13 +12,14 @@ class SerieManager extends Manager
 
     public function addSerie(Serie $serie)
     {
-        $req = $this->db->prepare('INSERT INTO Serie(title, description, tech, serie_img, creation_date)
-        VALUES(:title, :description, :tech, :serie_img, NOW())');
+        $req = $this->db->prepare('INSERT INTO Serie(title, description, tech/*, slug*/, creation_date)
+        VALUES(:title, :description, :tech,/* :slug,*/ NOW())');
 
         $req->bindValue(':title', $serie->title());
         $req->bindValue(':description', $serie->description());
         $req->bindValue(':tech', $serie->tech());
-        $req->bindValue(':serie_img', $serie->serie_img());
+        // $req->bindValue(':slug', $serie->slug(), \PDO::PARAM_BOOL);
+        // $req->bindValue(':id_img', $serie->id_img());
 
         $req->execute();
     }
@@ -40,17 +41,18 @@ class SerieManager extends Manager
     }
 
     //Get all series
-    public function getAllSerie($start = -1, $limite = -1)
+    public function getAllSerie($slug, $start = -1, $limite = -1)
     {
         $Series = [];
 
-        $req = 'SELECT s.id, s.title, s.description, s.tech, s.id_img, i.serie_img,
+        $req = 'SELECT s.id, s.title, s.description, s.tech, s.id_img, s.slug, i.serie_img,
         DATE_FORMAT(s.creation_date, \'%d/%m/%Y\') AS creation_date
         FROM Serie AS s
         LEFT JOIN
         (SELECT id, image AS serie_img, id_serie
         FROM images) AS i
         ON s.id_img = i.id
+        WHERE s.slug = :slug
         ORDER BY creation_date';
 
         if($start != -1 || $limite != -1)
@@ -58,7 +60,11 @@ class SerieManager extends Manager
             $req .= ' LIMIT '. (int) $limite . ' OFFSET ' . (int) $start;
         }
 
-        $result = $this->db->query($req);
+        $result = $this->db->prepare($req);
+
+        $result->bindValue(':slug', $slug);
+
+        $result->execute();
 
         while ($data = $result->fetch(\PDO::FETCH_ASSOC))
         {

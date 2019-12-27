@@ -6,13 +6,13 @@
 
     <div class="title">
         <h3>
-            SERIES
+            Expositions
         </h3>
     </div>
 
     <article class="all_gallery">
 
-        <?php foreach ($Series as $data): ?>
+        <?php foreach ($Expos as $data): ?>
 
             <div class="serie">
 
@@ -31,8 +31,8 @@
                     <div class="img_serie">
                         <img src="public/upload/<?= htmlspecialchars($data->serie_img()); ?>" alt="<?= $data->title(); ?>"/>
                     </div>
-
-                </div>
+                    <!-- <p class="suite"> -->
+                </div>                <!-- </p> -->
             </div>
         <?php endforeach; ?>
 

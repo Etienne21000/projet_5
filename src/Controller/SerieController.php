@@ -17,14 +17,15 @@ class SerieController
         // $this->images = new ImageController();
     }
 
-    public function newSerie($title, $description, $tech, $id_img)
+    public function newSerie($title, $description, $tech/*, $slug*/)
     {
         $Serie = new Serie([$data]);
 
         $Serie->setTitle($title);
         $Serie->setDescription($description);
         $Serie->setTech($tech);
-        $Serie->setIdimg($id_img);
+        // $Serie->setSlug($slug);
+        // $Serie->setIdimg($id_img);
 
         $this->serie->addSerie($Serie);
     }
@@ -44,9 +45,16 @@ class SerieController
 
     public function getAll()
     {
-        $Series = $this->serie->getAllSerie();
+        $Series = $this->serie->getAllSerie($slug = 1);
 
         return $Series;
+    }
+
+    public function getAllExpos()
+    {
+        $Expos = $this->serie->getAllSerie($slug = 2);
+
+        return $Expos;
     }
 
     public function getOne($id)

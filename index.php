@@ -20,6 +20,7 @@ $router->get('/', 'Master#home');
 
 
 $router->get('/series', 'Master#series');
+$router->get('/expos', 'Master#expos');
 $router->get('/singleSerie/{id}', 'Master#singleSerie');
 $router->get('/singleImg/{id}', 'Master#singleImg');
 $router->get('/Bio', "Master#bio");

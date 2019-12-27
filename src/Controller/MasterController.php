@@ -33,12 +33,21 @@ class MasterController
     public function series()
     {
         $Series = $this->serieController->getAll();
+        $Expos = $this->serieController->getAllExpos();
         $Images = $this->imageController->getAllImages();
 
         // $serie = $this->serieController->getOne($id);
         // $Images = $this->imageController->getImgBySeries($id);
 
         require 'src/view/front-end/seriesView.php';
+    }
+
+    public function expos()
+    {
+        $Expos = $this->serieController->getAllExpos();
+        $Images = $this->imageController->getAllImages();
+
+        require 'src/view/front-end/ExpositionsView.php';
     }
 
     public function singleSerie($param)
@@ -100,6 +109,7 @@ class MasterController
             $Images = $this->imageController->getAllimg();
             $Posts = $this->postController->getAllPost();
             $Series = $this->serieController->getAll();
+            $Expos = $this->serieController->getAllExpos();
 
             require 'src/view/back-end/adminHomeView.php';
         }
@@ -113,27 +123,45 @@ class MasterController
 
     public function getOnePost($param)
     {
-        (int)$id = $param[0];
+        if(isset($_SESSION['id']))
+        {
 
-        $countPost = $this->postController->nbPosts();
-        $countImg = $this->imageController->countedImg();
-        $countSerie = $this->serieController->countS();
+            (int)$id = $param[0];
 
-        $post = $this->postController->getPost($id);
+            $countPost = $this->postController->nbPosts();
+            $countImg = $this->imageController->countedImg();
+            $countSerie = $this->serieController->countS();
 
-        require 'src/view/back-end/adminSinglePost.php';
+            $post = $this->postController->getPost($id);
+
+            require 'src/view/back-end/adminSinglePost.php';
+        }
+
+        else
+        {
+            header('Location: /home');
+        }
 
     }
 
     public function UploadImg()
     {
-        $error = null;
-        $Series = $this->serieController->getAll();
-        $countPost = $this->postController->nbPosts();
-        $countImg = $this->imageController->countedImg();
-        $countSerie = $this->serieController->countS();
+        if(isset($_SESSION['id']))
+        {
+            $error = null;
+            $Series = $this->serieController->getAll();
+            $Expos = $this->serieController->getAllExpos();
+            $countPost = $this->postController->nbPosts();
+            $countImg = $this->imageController->countedImg();
+            $countSerie = $this->serieController->countS();
 
-        require 'src/view/back-end/uploadViewForm.php';
+            require 'src/view/back-end/uploadViewForm.php';
+        }
+
+        else
+        {
+            header('Location: /home');
+        }
     }
 
     public function addImg()
@@ -148,7 +176,7 @@ class MasterController
             throw new \Exception("Impossible de charger l'image (router)");
         }
 
-        header('Location: /home');
+        header('Location: /adminHomePage');
     }
 
     public function getImages()
@@ -160,22 +188,22 @@ class MasterController
         // {
         // foreach($Images as $image)
         // {
-            // $image->image();
-            // var_dump($image);
-            // $img = [
-            //     'id' => $image->id(),
-            //     'title' => $image->title(),
-            //     'date' => $image->image_date(),
-            //     'image' => $image->image(),
-            //     'description' => html_entity_decode($image->description()),
-            // ];
-            //
-            // header('Content-Type: application/json');
-            //
-            // echo json_encode($img);
+        // $image->image();
+        // var_dump($image);
+        // $img = [
+        //     'id' => $image->id(),
+        //     'title' => $image->title(),
+        //     'date' => $image->image_date(),
+        //     'image' => $image->image(),
+        //     'description' => html_entity_decode($image->description()),
+        // ];
+        //
+        // header('Content-Type: application/json');
+        //
+        // echo json_encode($img);
         // }
-            // echo $image->image();
-            // echo json_encode(array('success'=>'true'));
+        // echo $image->image();
+        // echo json_encode(array('success'=>'true'));
         // }
         // $countPost = $this->postController->nbPosts();
         // $countImg = $this->imageController->countedImg();
@@ -185,37 +213,59 @@ class MasterController
 
     public function getOneImg($param)
     {
-        (int)$id = $param[0];
+        if(isset($_SESSION['id']))
+        {
+            (int)$id = $param[0];
 
-        $countPost = $this->postController->nbPosts();
-        $countImg = $this->imageController->countedImg();
-        $countSerie = $this->serieController->countS();
+            $countPost = $this->postController->nbPosts();
+            $countImg = $this->imageController->countedImg();
+            $countSerie = $this->serieController->countS();
 
-        $image = $this->imageController->getOne($id);
+            $image = $this->imageController->getOne($id);
 
-        require 'src/view/back-end/singleImageView.php';
+            require 'src/view/back-end/singleImageView.php';
+        }
+
+        else
+        {
+            header('Location: /home');
+        }
     }
 
     public function deleteImage($param)
     {
-        (int)$id = $param[0];
+        if(isset($_SESSION['id']))
+        {
+            (int)$id = $param[0];
 
-        $this->imageController->delete($id);
+            $this->imageController->delete($id);
 
-        header('Location: /allImg');
+            header('Location: /allImg');
+        }
+        else
+        {
+            echo 'Vous ne pouvez pas effectuer cette action';
+        }
     }
 
     public function imgUpdate($param)
     {
-        (int)$id = $param[0];
+        if(isset($_SESSION['id']))
+        {
+            (int)$id = $param[0];
 
-        $countPost = $this->postController->nbPosts();
-        $countImg = $this->imageController->countedImg();
-        $countSerie = $this->serieController->countS();
+            $countPost = $this->postController->nbPosts();
+            $countImg = $this->imageController->countedImg();
+            $countSerie = $this->serieController->countS();
 
-        $image = $this->imageController->getOne($id);
+            $image = $this->imageController->getOne($id);
 
-        require 'src/view/back-end/';
+            require 'src/view/back-end/';
+        }
+        else
+        {
+            header('Location: /home');
+        }
     }
 
     public function updateImage($param)
@@ -245,11 +295,18 @@ class MasterController
 
     public function addPost()
     {
-        $countPost = $this->postController->nbPosts();
-        $countImg = $this->imageController->countedImg();
-        $countSerie = $this->serieController->countS();
+        if(isset($_SESSION['id']))
+        {
+            $countPost = $this->postController->nbPosts();
+            $countImg = $this->imageController->countedImg();
+            $countSerie = $this->serieController->countS();
 
-        require 'src/view/back-end/adminAddPost.php';
+            require 'src/view/back-end/adminAddPost.php';
+        }
+        else
+        {
+            header('Location: /home');
+        }
     }
 
     public function newPost()
@@ -311,252 +368,254 @@ class MasterController
         $countImg = $this->imageController->countedImg();
         $countSerie = $this->serieController->countS();
 
+        // $serie = $this->$serieController->
+
         require 'src/view/back-end/AddSerieView.php';
     }
 
     public function addSerie()
     {
-        if(!empty($_POST['title']) && !empty($_POST['description']) && !empty($_POST['tech']) && !empty($_POST['serie_img']))
+        if(!empty($_POST['title']) && !empty($_POST['description']) && !empty($_POST['tech'])/* && !empty($_POST['slug'])*/)
         {
-            $this->serieController->newSerie(htmlspecialchars($_POST['title']), htmlspecialchars($_POST['description']), htmlspecialchars($_POST['tech']), htmlspecialchars($_POST['serie_img']));
-            $image = $this->imageController->getOneImg($_GET['id']);
+        $this->serieController->newSerie(htmlspecialchars($_POST['title']), htmlspecialchars($_POST['description']), htmlspecialchars($_POST['tech'])/*, htmlspecialchars($_POST['slug'])*/);
+        // $image = $this->imageController->getOneImg($_GET['id']);
+    }
+
+    else
+    {
+        throw new \Exception("Impossible d'ajouter cette série");
+    }
+
+    header('Location: /series');
+}
+
+public function serieUpdate($param)
+{
+    (int)$id = $param[0];
+    $serie = $this->serieController->getOne($id);
+    $Images = $this->imageController->getImagesBySeries($id);
+
+    $countPost = $this->postController->nbPosts();
+    $countImg = $this->imageController->countedImg();
+    $countSerie = $this->serieController->countS();
+
+    require 'src/view/back-end/updateSerie.php';
+}
+
+public function updateSerie($param)
+{
+    (int)$id = $param[0];
+
+    if(isset($id) && $id > 0)
+    {
+        if(!empty($_POST['title']) && !empty($_POST['description']) && !empty($_POST['tech'])/* && !empty($_POST['serie_img'])*/)
+        {
+            // $Images = $imageController->getImgBySeries($_GET['id']);
+            $this->serieController->update($id, htmlspecialchars($_POST['title']), htmlspecialchars($_POST['description']), htmlspecialchars($_POST['tech']), htmlspecialchars($_POST['id_img']));
         }
 
         else
         {
-            throw new \Exception("Impossible d'ajouter cette série");
+            throw new \Exception("Impossible de mettre à jour cette série");
+        }
+    }
+
+    else
+    {
+        throw new \Exception("Aucun identifiant envoyé");
+
+    }
+
+    header('Location: /series');
+}
+
+public function admin()
+{
+    require 'src/view/front-end/adminConnectView.php';
+}
+
+public function inscription()
+{
+    require 'src/view/front-end/inscriptionView.php';
+}
+
+public function UserInscription()
+{
+    // $error = null;
+
+    if (!empty($_POST))
+    {
+        $validate = true;
+
+        $_POST['identifiant'] = htmlspecialchars($_POST['identifiant']);
+        $_POST['mail'] = htmlspecialchars($_POST['mail']);
+        $_POST['pass'] = htmlspecialchars($_POST['pass']);
+        $_POST['confirmePass'] = htmlspecialchars($_POST['confirmePass']);
+
+
+        //Verify pseudo
+        if(empty($_POST['identifiant']) || strlen($_POST['identifiant']) > 100 || !preg_match("#^[a-zà-ùA-Z0-9-\s_-]+$#", $_POST['identifiant']))
+        {
+            $validate = false;
+            // $error = 1;
         }
 
-        header('Location: index.php?action=Accueil');
-    }
-
-    public function serieUpdate($param)
-    {
-        (int)$id = $param[0];
-        $serie = $this->serieController->getOne($id);
-        $Images = $this->imageController->getImagesBySeries($id);
-
-        $countPost = $this->postController->nbPosts();
-        $countImg = $this->imageController->countedImg();
-        $countSerie = $this->serieController->countS();
-
-        require 'src/view/back-end/updateSerie.php';
-    }
-
-    public function updateSerie($param)
-    {
-        (int)$id = $param[0];
-
-        if(isset($id) && $id > 0)
+        //Verity mail
+        if(empty($_POST['mail']) || strlen($_POST['mail']) > 255 || !filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL))
         {
-            if(!empty($_POST['title']) && !empty($_POST['description']) && !empty($_POST['tech'])/* && !empty($_POST['serie_img'])*/)
+            $validate = false;
+            // $error = 2;
+        }
+
+        //Verity pass
+        if(empty($_POST['pass']) || strlen($_POST['pass']) > 100 || !preg_match("#^[a-zA-Z0-9_-]+.{8,}$#", $_POST['pass']))
+        {
+            $validate = false;
+            // $error = 3;
+        }
+
+        //Confirm password
+        if(empty($_POST['confirmePass']) || ($_POST['pass'] !== $_POST['confirmePass']))
+        {
+            $validate = false;
+            // $error = 4;
+        }
+
+        if($validate)
+        {
+            if(empty($this->userController->checkIdentifiant($_POST['identifiant'])) && empty($this->userController->checkMail($_POST['mail'])))
             {
-                // $Images = $imageController->getImgBySeries($_GET['id']);
-                $this->serieController->update($id, htmlspecialchars($_POST['title']), htmlspecialchars($_POST['description']), htmlspecialchars($_POST['tech']), htmlspecialchars($_POST['id_img']));
+                $_POST['pass'] = password_hash($_POST['pass'], PASSWORD_BCRYPT);
+
+                $this->userController->newUser(htmlspecialchars($_POST['identifiant']),
+                htmlspecialchars($_POST['mail']), htmlspecialchars($_POST['pass']));
+
+                header('Location: /admin');
+            }
+
+            // else
+            // {
+            //     $error = 5;
+            // }
+
+        }
+    }
+
+    // switch ($error)
+    // {
+    //     case 5:
+    //     $error = '* Pseudo invalide';
+    //     break;
+    //
+    //     case 6:
+    //     $error = '* Mail invalide';
+    //     break;
+    //
+    //     case 7:
+    //     $error = '* Mot de passe invalide';
+    //     break;
+    //
+    //     case 8:
+    //     $error = '* Confirmez à nouveau votre mot de passe';
+    //     break;
+    //
+    //     case 9:
+    //     $error = '* Ce pseudo ou cette adresse mail est déjà utilisé(e)';
+    //     break;
+    // }
+    //
+    // header('Location: /inscription');
+}
+
+public function connectUser()
+{
+    // $identifiant = $param[0];
+    // (int)$id = $param[0];
+
+    if (!empty($_POST))
+    {
+        $validate = true;
+        $error = null;
+
+        //verify if empty fields
+        if (empty($_POST['identifiant']) || empty($_POST['pass']))
+        {
+            $erreur = 1;
+            $validate = false;
+        }
+
+        //Verify length of strings
+        if (strlen($_POST['identifiant']) > 100 || strlen($_POST['pass']) > 255)
+        {
+            $error = 2;
+            $validate = false;
+        }
+
+        if ($validate === true)
+        {
+            $user = $this->userController->userConnect($_POST['identifiant']);
+
+            if (!$user)
+            {
+                $error = 3;
+                echo 'impossible de vous connecter';
             }
 
             else
             {
-                throw new \Exception("Impossible de mettre à jour cette série");
-            }
-        }
+                $passVerify = password_verify($_POST['pass'], $user['pass']);
 
-        else
-        {
-            throw new \Exception("Aucun identifiant envoyé");
-
-        }
-
-        header('Location: /series');
-    }
-
-    public function admin()
-    {
-        require 'src/view/front-end/adminConnectView.php';
-    }
-
-    public function inscription()
-    {
-        require 'src/view/front-end/inscriptionView.php';
-    }
-
-    public function UserInscription()
-    {
-        // $error = null;
-
-        if (!empty($_POST))
-        {
-            $validate = true;
-
-            $_POST['identifiant'] = htmlspecialchars($_POST['identifiant']);
-            $_POST['mail'] = htmlspecialchars($_POST['mail']);
-            $_POST['pass'] = htmlspecialchars($_POST['pass']);
-            $_POST['confirmePass'] = htmlspecialchars($_POST['confirmePass']);
-
-
-            //Verify pseudo
-            if(empty($_POST['identifiant']) || strlen($_POST['identifiant']) > 100 || !preg_match("#^[a-zà-ùA-Z0-9-\s_-]+$#", $_POST['identifiant']))
-            {
-                $validate = false;
-                // $error = 1;
-            }
-
-            //Verity mail
-            if(empty($_POST['mail']) || strlen($_POST['mail']) > 255 || !filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL))
-            {
-                $validate = false;
-                // $error = 2;
-            }
-
-            //Verity pass
-            if(empty($_POST['pass']) || strlen($_POST['pass']) > 100 || !preg_match("#^[a-zA-Z0-9_-]+.{8,}$#", $_POST['pass']))
-            {
-                $validate = false;
-                // $error = 3;
-            }
-
-            //Confirm password
-            if(empty($_POST['confirmePass']) || ($_POST['pass'] !== $_POST['confirmePass']))
-            {
-                $validate = false;
-                // $error = 4;
-            }
-
-            if($validate)
-            {
-                if(empty($this->userController->checkIdentifiant($_POST['identifiant'])) && empty($this->userController->checkMail($_POST['mail'])))
+                if($passVerify)
                 {
-                    $_POST['pass'] = password_hash($_POST['pass'], PASSWORD_BCRYPT);
+                    // session_start();
+                    $_SESSION['id'] = $user['id'];
+                    $_SESSION['identifiant'] = $user['identifiant'];
 
-                    $this->userController->newUser(htmlspecialchars($_POST['identifiant']),
-                    htmlspecialchars($_POST['mail']), htmlspecialchars($_POST['pass']));
-
-                    header('Location: /admin');
-                }
-
-                // else
-                // {
-                //     $error = 5;
-                // }
-
-            }
-        }
-
-        // switch ($error)
-        // {
-        //     case 5:
-        //     $error = '* Pseudo invalide';
-        //     break;
-        //
-        //     case 6:
-        //     $error = '* Mail invalide';
-        //     break;
-        //
-        //     case 7:
-        //     $error = '* Mot de passe invalide';
-        //     break;
-        //
-        //     case 8:
-        //     $error = '* Confirmez à nouveau votre mot de passe';
-        //     break;
-        //
-        //     case 9:
-        //     $error = '* Ce pseudo ou cette adresse mail est déjà utilisé(e)';
-        //     break;
-        // }
-        //
-        // header('Location: /inscription');
-    }
-
-    public function connectUser()
-    {
-        // $identifiant = $param[0];
-        // (int)$id = $param[0];
-
-        if (!empty($_POST))
-        {
-            $validate = true;
-            $error = null;
-
-            //verify if empty fields
-            if (empty($_POST['identifiant']) || empty($_POST['pass']))
-            {
-                $erreur = 1;
-                $validate = false;
-            }
-
-            //Verify length of strings
-            if (strlen($_POST['identifiant']) > 100 || strlen($_POST['pass']) > 255)
-            {
-                $error = 2;
-                $validate = false;
-            }
-
-            if ($validate === true)
-            {
-                $user = $this->userController->userConnect($_POST['identifiant']);
-
-                if (!$user)
-                {
-                    $error = 3;
-                    echo 'impossible de vous connecter';
+                    header('Location: /adminHomePage/');
+                    exit();
+                    // require 'src/view/back-end/adminHomeView.php';
                 }
 
                 else
                 {
-                    $passVerify = password_verify($_POST['pass'], $user['pass']);
-
-                    if($passVerify)
-                    {
-                        // session_start();
-                        $_SESSION['id'] = $user['id'];
-                        $_SESSION['identifiant'] = $user['identifiant'];
-
-                        header('Location: /adminHomePage/');
-                        exit();
-                        // require 'src/view/back-end/adminHomeView.php';
-                    }
-
-                    else
-                    {
-                        echo 'Mauvais mot de passe';
-                        $error = 4;
-                    }
+                    echo 'Mauvais mot de passe';
+                    $error = 4;
                 }
             }
+        }
 
-            switch ($error)
-            {
-                case 1:
-                $error = '* Veuillez renseigner votre pseudo';
-                break;
+        switch ($error)
+        {
+            case 1:
+            $error = '* Veuillez renseigner votre pseudo';
+            break;
 
-                case 2:
-                $error = '* Veuillez renseigner votre mot de passe';
-                break;
+            case 2:
+            $error = '* Veuillez renseigner votre mot de passe';
+            break;
 
-                case 3:
-                $error = '* Pseudo invalide';
-                break;
+            case 3:
+            $error = '* Pseudo invalide';
+            break;
 
-                case 4:
-                $error = '* Mot de passe invalide';
-                break;
-            }
+            case 4:
+            $error = '* Mot de passe invalide';
+            break;
         }
     }
+}
 
-    public function userDeconnexion()
-    {
-        $this->userController->disconnectUser();
+public function userDeconnexion()
+{
+    $this->userController->disconnectUser();
 
-        header('Location: /home');
-    }
+    header('Location: /home');
+}
 
-    public function error()
-    {
-        require 'src/view/front-end/errorView.php';
-    }
+public function error()
+{
+    require 'src/view/front-end/errorView.php';
+}
 }
 
 

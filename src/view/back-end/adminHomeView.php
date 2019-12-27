@@ -15,8 +15,8 @@
             <?php } else {?>
                 <h1>Bonjour </h1>
             <?php }; ?>
-            <p class="lead">Use this document as a way to quickly start any new project.
-                <br>All you get is this text and a mostly barebones HTML document.
+            <p class="lead">Bienvenue sur la page d'aministration du site Campo d'Ombra.
+                <br>Vous pouvez modifiez l'ensemble des données présentes sur le site.
             </p>
         </div>
     </div>
@@ -82,7 +82,31 @@
                             <img src="public/upload/<?= htmlspecialchars($data->serie_img()); ?>" alt="<?= $data->title(); ?>"/>
                         </div>
 
-                        <a href="/<?= $data->id(); ?>"> Voir la série</a>
+                        <a href="/singleSerie/<?= $data->id(); ?>"> Voir la série</a>
+                    </p>
+                </div>
+            <?php endforeach; ?>
+        </section>
+        <div class="btnsuite">
+            <button type="button" class="btn btn-outline-secondary">Voir toutes les series</button>
+        </div>
+    </div>
+
+    <div class="containerAdmin">
+        <div class="titre">
+            <h4>Toutes les expositions</h4>
+        </div>
+        <section class="row serieRow">
+            <?php foreach($Expos as $data):?>
+                <div class="col-xs-4 col-sm-3 col-md-2 serieCol">
+                    <p>
+                        <?= $data->title(); ?>
+
+                        <div class=".img_serie_2">
+                            <img src="public/upload/<?= htmlspecialchars($data->serie_img()); ?>" alt="<?= $data->title(); ?>"/>
+                        </div>
+
+                        <a href="/singleSerie/<?= $data->id(); ?>"> Voir la série</a>
                     </p>
                 </div>
             <?php endforeach; ?>
