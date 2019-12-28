@@ -19,7 +19,6 @@ class SerieManager extends Manager
         $req->bindValue(':description', $serie->description());
         $req->bindValue(':tech', $serie->tech());
         // $req->bindValue(':slug', $serie->slug(), \PDO::PARAM_BOOL);
-        // $req->bindValue(':id_img', $serie->id_img());
 
         $req->execute();
     }
@@ -62,7 +61,7 @@ class SerieManager extends Manager
 
         $result = $this->db->prepare($req);
 
-        $result->bindValue(':slug', $slug);
+        $result->bindValue(':slug', $slug, \PDO::PARAM_INT);
 
         $result->execute();
 
@@ -97,5 +96,14 @@ class SerieManager extends Manager
         $countSerie = $this->db->query('SELECT COUNT(*) FROM Serie')->fetchColumn();
 
         return $countSerie;
+    }
+
+    public function deleteSerie($id)
+    {
+        $req = $this->db->prepare('DELETE FROM Serie WHERE id = :id');
+
+        $req->bindValue(':id', $id, \PDO::PARAM_INT);
+
+        $req->execute();
     }
 }

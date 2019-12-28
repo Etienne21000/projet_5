@@ -33,7 +33,7 @@ class MasterController
     public function series()
     {
         $Series = $this->serieController->getAll();
-        $Expos = $this->serieController->getAllExpos();
+        // $Expos = $this->serieController->getAllExpos();
         $Images = $this->imageController->getAllImages();
 
         // $serie = $this->serieController->getOne($id);
@@ -53,10 +53,12 @@ class MasterController
     public function singleSerie($param)
     {
         (int)$id = $param[0];
+        (int)$slug = $param[0];
 
-        $serie = $this->serieController->getOne($id);
+        $serie = $this->serieController->getOne($id, $slug);
         $Images = $this->imageController->getImagesBySeries($id);
         $image = $this->imageController->getOne($id);
+        // $Expos = $this->serieController->getAllExpos($slug);
         // $image = $this->singleImg($id);
 
         require 'src/view/front-end/singleSerieView.php';
@@ -183,31 +185,6 @@ class MasterController
     {
         $Images = $this->imageController->getAllImages();
         require 'src/view/back-end/adminAllImgView.php';
-
-        // if(isset($id) && $id > 0)
-        // {
-        // foreach($Images as $image)
-        // {
-        // $image->image();
-        // var_dump($image);
-        // $img = [
-        //     'id' => $image->id(),
-        //     'title' => $image->title(),
-        //     'date' => $image->image_date(),
-        //     'image' => $image->image(),
-        //     'description' => html_entity_decode($image->description()),
-        // ];
-        //
-        // header('Content-Type: application/json');
-        //
-        // echo json_encode($img);
-        // }
-        // echo $image->image();
-        // echo json_encode(array('success'=>'true'));
-        // }
-        // $countPost = $this->postController->nbPosts();
-        // $countImg = $this->imageController->countedImg();
-        // $countSerie = $this->serieController->countS();
 
     }
 
@@ -427,6 +404,23 @@ public function updateSerie($param)
     }
 
     header('Location: /series');
+}
+
+public function deleteSerie($param)
+{
+    if(isset($_SESSION['id']))
+    {
+        (int)$id = $param[0];
+        $this->serieController->deleteOneSerie($id);
+
+        header('Location: /adminHomePage');
+    }
+    else
+    {
+        header('Location: /home');
+    }
+
+
 }
 
 public function admin()

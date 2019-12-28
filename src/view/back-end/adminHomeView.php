@@ -27,27 +27,18 @@
         </div>
         <section class="row imagesRow">
             <?php foreach($Images as $data):?>
-                <div class="col-xs-4 col-sm-3 col-md-2"><img src="/public/upload/<?= $data->image(); ?>" alt="<?= $data->title(); ?>"></div>
+                <div class="col-xs-4 col-sm-3 col-md-2"><img src="/public/upload/<?= $data->image(); ?>" name="<?= $data->title(); ?>" alt="<?= $data->title(); ?>"></div>
             <?php endforeach; ?>
 
         </section>
 
-        <section class="img_open">
-        </section>
-
         <div class="btnsuite">
-            <a href="/allImg" name="view" class="img-form">
-                <button type="button" class="btn btn-outline-secondary">Voir toutes les images</button>
+            <a name="view" class="img-form">
+                <button type="button" class="btn btn-outline-secondary" id="btn_more">Voir toutes les images</button>
             </a>
         </div>
 
-        <!-- <div class="close">
-            <a class="close" name="close"><i class="far fa-times-circle"></i></a>
-        </div> -->
-
     </div>
-
-
 
     <div class="containerAdmin">
         <div class="titre">

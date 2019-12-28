@@ -71,4 +71,9 @@ class SerieController
 
         return $countSerie;
     }
+
+    public function deleteOneSerie($id)
+    {
+        $serie = $this->serie->deleteSerie($id);
+    }
 }

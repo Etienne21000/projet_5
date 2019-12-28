@@ -16,7 +16,7 @@
 
             <div class="serie">
 
-                <a href="/singleSerie/<?= $data->id(); ?>">
+                <a href="/singleSerie/<?= $data->id(); ?>/<?= $data->slug(); ?>">
                     <span class="calque">
 
                         <p>
