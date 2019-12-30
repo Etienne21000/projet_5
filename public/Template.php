@@ -30,7 +30,7 @@
     <header>
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <?php if(isset($_SESSION['id'])){?>
+            <?php if(isset($_SESSION['id']) && $_SESSION['role'] == 1){?>
                 <a class="navbar-brand" href="/adminHomePage">STEFANO G BIANCHI</a>
             <?php } else {?>
                 <a class="navbar-brand" href="/home">STEFANO G BIANCHI</a>
@@ -56,38 +56,21 @@
                         <a class="nav-link" href="/">CONTACT</a>
                     </li>
 
-                    <?php if(isset($_SESSION['id'])): ?>
+                    <?php if(isset($_SESSION['id']) && $_SESSION['role'] == 1){ ?>
                         <li class="nav-item">
                             <a class="nav-link" href="/adminHomePage">ADMIN</a>
                         </li>
-                    <?php endif; ?>
+                    <?php }
+                    elseif (isset($_SESSION['id']) && $_SESSION['role'] == 0)
+                    { ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/disconnect"><i class="fas fa-power-off"></i></a>
+                        </li>
+                    <?php } ?>
 
                 </ul>
             </div>
         </nav>
-
-        <!-- <div class="menu_ham">
-        <span></span>
-    </div>
-
-    <div class="menu_top">
-
-    <div id="name">
-    <p>
-    <a href="/UploadImg"> STEFANO G BIANCHI </a>
-</p>
-</div>
-
-<div class="menu nav">
-<a href="/home"> ACCUEIL</a>
-<a href="/">ACTUALITES</a>
-<a href="/series">TRAVAUX</a>
-<a href="/Bio">A PROPOS</a>
-<a href="/home">CONTACT</a>
-<a href="/adminHomePage">ADMIN</a>
-</div>
-
-</div> -->
 
 </header>
 
@@ -97,6 +80,7 @@
     <!-- <script src="/public/js/transitions.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="/public/css/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+    <script src="/public/js/slider.js"></script>
     <script src="/public/js/ajaxTest.js"></script>
     <!-- <script src="/public/js/ajax.js"></script> -->
     <p> Copyright © Etienne Juffard - 2019 - Campo d'Ombra - Stefano Bianchi - tous droits réservés </p>

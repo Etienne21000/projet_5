@@ -368,4 +368,11 @@ ul ul a {
     {
         width: 100%;
     }
+
+    /*Comment form*/
+    .login-form-1
+    {
+        background-color: #fff;
+    }
+        
 }

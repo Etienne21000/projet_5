@@ -107,16 +107,38 @@ Banner
 
 #banner_image
 {
-    height: 650px;
+    position: relative;
+    overflow: hidden;
+    height: 660px;
 }
 
-#banner_image img
+#banner_image ul
+{
+    padding-inline-start: 0;
+    height: 100%;
+    position: relative;
+    list-style: none;
+}
+
+#banner_image ul li
+{
+    height: 100%;
+    position: relative;
+    display: block;
+    float: left;
+}
+
+#banner_image ul li img
 {
     height: 100%;
     width: 100%;
     object-fit: cover;
     border: 10px solid #fff;
 }
+
+/*---- Slider ----*/
+
+
 
 /*-----------------------------------
 Single serie view
@@ -207,13 +229,13 @@ Single serie view
 
 .images
 {
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    margin: 126px 0px 20px 20px;
+    margin: 100px 20px 20px 20px;
     /* transition: all .4s ease-in-out; */
 }
 
@@ -224,12 +246,17 @@ Single serie view
 
 .transform
 {
-    width: 100%;
+    width: 92%;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     overflow: scroll;
     margin: 20px;
+}
+
+.single_img
+{
+    margin-bottom: 20px;
 }
 
 .transform img
@@ -240,8 +267,18 @@ Single serie view
 
 .single_img img
 {
-    width: 70%;
+    width: 100%;
+    object-fit: cover;
+    height: 180px;
+    /* border: 12px solid #fff; */
     transition: all .2s ease-in-out;
+}
+
+.transform .single_img img
+{
+    width: 100%;
+    object-fit: cover;
+    height: 80px;
 }
 
 .single_img img:hover
@@ -259,9 +296,30 @@ Single serie view
     transition: all .4s ease-in-out;
 }
 
+#image_details
+{
+    transition: all .4s ease-in-out;
+}
+
 #display_img
 {
     width: 100%;
+}
+
+.comments h4
+{
+    margin-bottom: 20px;
+}
+
+.comments .comment-row
+{
+    justify-content: flex-start;
+}
+
+#form-comment
+{
+    width: 100%;
+    height: 200px;
 }
 
 /*----------------------------------

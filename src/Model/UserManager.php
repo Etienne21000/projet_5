@@ -10,8 +10,8 @@ class UserManager extends Manager
 
     public function addUser(User $user)
     {
-        $req = $this->db->prepare('INSERT INTO user(identifiant, mail, pass, inscription_date)
-        VALUES(:identifiant, :mail, :pass, NOW())');
+        $req = $this->db->prepare('INSERT INTO user(identifiant, mail, pass, inscription_date, role)
+        VALUES(:identifiant, :mail, :pass, NOW(), 0)');
 
         $req->bindValue(':identifiant', $user->identifiant());
         $req->bindValue(':mail', $user->mail());

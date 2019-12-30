@@ -17,10 +17,6 @@ document.addEventListener('DOMContentLoaded', function(){
         };
 
         openPage(){
-
-            // var image = $('.imagesRow').attr('img');
-            // var page = $(this).attr('href');
-
             $.ajax({
                 url:'/allImg',
                 method: 'GET',
@@ -39,6 +35,23 @@ document.addEventListener('DOMContentLoaded', function(){
                 error:function(res, status, err){
                     alert('problème de chargement de la page');
                 }
+            });
+        };
+
+        openBillets(){
+            $.ajax({
+                url:'/',
+                method:'GET',
+                cache: false,
+
+                success: function(){
+                    this.display(php);
+                }.bind(this),
+
+                error:function(res, status, err){
+                    alert('Aucune informations');
+                }
+
             });
         };
 

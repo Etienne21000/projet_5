@@ -17,8 +17,8 @@ $router->get('/singleSerie/{id}/{slug}', 'Master#singleSerie');
 $router->get('/singleImg/{id}', 'Master#singleImg');
 $router->get('/Bio', "Master#bio");
 
-
 $router->get('/adminHomePage', 'Master#AdminHomePage');
+
 $router->get('/UploadImg', "Master#UploadImg");
 $router->post('/addImg', 'Master#addImg');
 
@@ -47,6 +47,10 @@ $router->get('/inscription', 'Master#inscription');
 $router->post('/userinscription', 'Master#UserInscription');
 $router->post('/connectuser', 'Master#connectUser');
 $router->get('/disconnect', 'Master#userDeconnexion');
+
+
+/*Comment Part*/
+$router->post('/addComment/{id}', 'Master#addComment');
 
 
 $router->get('/error404', 'Master#error');

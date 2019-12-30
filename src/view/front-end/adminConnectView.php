@@ -8,6 +8,7 @@
         <div class="row">
             <div class="col-md-6 login-form-1">
                 <h3>Connexion administration du site</h3>
+                <p><a href="/inscription">Pas encore inscrit ?</a></p>
                 <form action="/connectuser" method="POST">
 
                     <div class="form-group">

@@ -5,7 +5,12 @@
 <section class="body">
     <article id="banner">
         <div id="banner_image">
-            <img src="/public/images/Boxes9siteA.jpg" alt="Boxes 9"/>
+            <!-- <img src="/public/images/Boxes9siteA.jpg" alt="Boxes 9"/> -->
+            <?php foreach ($Images as $data): ?>
+                <ul>
+                    <li class="slide"><img src="/public/upload/<?= htmlspecialchars($data->image()); ?>" alt="<?= $data->title(); ?>"/></li>
+                </ul>
+            <?php endforeach; ?>
         </div>
     </article>
 </section>

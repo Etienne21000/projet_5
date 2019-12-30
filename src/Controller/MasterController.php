@@ -5,6 +5,7 @@ use App\Controller\PostController;
 use App\Controller\ImageController;
 use App\Controller\SerieController;
 use App\Controller\UserController;
+use App\Controller\CommentController;
 
 class MasterController
 {
@@ -12,6 +13,7 @@ class MasterController
     private $imageController;
     private $serieController;
     private $userController;
+    private $commentController;
 
     public function __construct()
     {
@@ -19,6 +21,7 @@ class MasterController
         $this->imageController = new ImageController();
         $this->serieController = new SerieController();
         $this->userController = new UserController();
+        $this->commentController = new CommentController();
     }
 
 
@@ -27,6 +30,7 @@ class MasterController
     ---------------------------------------------------- */
     public function home()
     {
+        $Images = $this->imageController->getAllImages();
         require 'src/view/front-end/indexView.php';
     }
 
@@ -58,6 +62,8 @@ class MasterController
         $serie = $this->serieController->getOne($id, $slug);
         $Images = $this->imageController->getImagesBySeries($id);
         $image = $this->imageController->getOne($id);
+        $Comments = $this->commentController->allCom($id);
+
         // $Expos = $this->serieController->getAllExpos($slug);
         // $image = $this->singleImg($id);
 
@@ -94,6 +100,37 @@ class MasterController
         require 'src/view/front-end/BiographieView.php';
     }
 
+    /*---- Comment elements ----*/
+
+    public function addComment($param)
+    {
+        (int)$id = $param[0];
+
+        // $serie = $this->serieController->getOne($id);
+
+
+        if(isset($id) && $id > 0)
+        {
+            if(isset($_SESSION['identifiant']) && isset($_SESSION['id']))
+            {
+                if(!empty($_POST['comment']))
+                {
+                    $pseudo = $_SESSION['identifiant'];
+                    $user_id = $_SESSION['id'];
+
+                    $this->commentController->addCom($user_id, htmlspecialchars($_POST['comment']), $id);
+                }
+
+            }
+            header('Location: /series');
+            // header('Location: /singleSerie/' . $id . '/' . $slug);
+        }
+
+        else
+        {
+            throw new \Exception('Aucun identifiant de billet ne correspond');
+        }
+    }
 
     /*----------------------------------------------------
     Back-office Master Controller
@@ -101,7 +138,7 @@ class MasterController
 
     public function AdminHomePage()
     {
-        if(isset($_SESSION['id']))
+        if(isset($_SESSION['id']) && $_SESSION['role'] == 1)
         {
             $countPost = $this->postController->nbPosts();
             $countImg = $this->imageController->countedImg();
@@ -564,9 +601,16 @@ public function connectUser()
                     // session_start();
                     $_SESSION['id'] = $user['id'];
                     $_SESSION['identifiant'] = $user['identifiant'];
+                    $_SESSION['role'] = $user['role'];
 
-                    header('Location: /adminHomePage/');
-                    exit();
+                    if($user['role'] == 1){
+                        header('Location: /adminHomePage/');
+                        exit();
+                    }
+                    elseif ($user['role'] == 0)
+                    {
+                        header('Location: /home');
+                    }
                     // require 'src/view/back-end/adminHomeView.php';
                 }
 

@@ -8,6 +8,7 @@ class User extends Entity
     private $mail;
     private $pass;
     private $inscription_date;
+    private $role;
 
     public function __construct(array $data)
     {
@@ -49,6 +50,11 @@ class User extends Entity
         }
     }
 
+    public function setRole($role)
+    {
+        $this->role = (bool)$role;
+    }
+
     /*---------------------------------------
     User Getters
     ----------------------------------------*/
@@ -76,5 +82,10 @@ class User extends Entity
     public function inscription_date()
     {
         return $this->inscription_date;
+    }
+
+    public function role()
+    {
+        return $this->role;
     }
 }
