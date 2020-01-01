@@ -7,7 +7,7 @@ use App\Model\Router;
 
 $router = new Router($_GET['url']);
 
-$router->get('/home', 'Master#home');
+$router->get('/home/{id}', 'Master#home');
 $router->get('/', 'Master#home');
 
 
@@ -51,6 +51,11 @@ $router->get('/disconnect', 'Master#userDeconnexion');
 
 /*Comment Part*/
 $router->post('/addComment/{id}', 'Master#addComment');
+$router->get('/reportCom/{id}', 'Master#reportComment');
+
+
+/*Slider part*/
+$router->post('/chooseSerie/{id}', 'Master#chooseSerieSlider');
 
 
 $router->get('/error404', 'Master#error');

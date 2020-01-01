@@ -28,9 +28,27 @@ class MasterController
     /*----------------------------------------------------
     Front Master Controller
     ---------------------------------------------------- */
-    public function home()
+    public function home($param)
     {
-        $Images = $this->imageController->getAllImages();
+        (int)$id = $param[0];
+        // (bool)$slide_on = $param[0];
+        // (int)$id_serie = $param[0];
+
+        // if($slide_on)
+        // {
+            // if(isset($id) && $id > 0)
+            // {
+            //recupérer id de la série
+                $Series = $this->serieController->getOneSlider();
+                $Images = $this->imageController->getImagesBySeries($id);
+                // $Images = $this->imageController->getAllImages();
+            // }
+
+            // var_dump($slide_on);
+
+        // }
+
+
         require 'src/view/front-end/indexView.php';
     }
 
@@ -105,9 +123,9 @@ class MasterController
     public function addComment($param)
     {
         (int)$id = $param[0];
+        (int)$slug = $param[0];
 
-        // $serie = $this->serieController->getOne($id);
-
+        $serie = $this->serieController->getOne($id, $slug);
 
         if(isset($id) && $id > 0)
         {
@@ -122,14 +140,33 @@ class MasterController
                 }
 
             }
-            header('Location: /series');
-            // header('Location: /singleSerie/' . $id . '/' . $slug);
+
+            header('Location: /singleSerie/' . $id . '/' . $slug);
         }
 
         else
         {
             throw new \Exception('Aucun identifiant de billet ne correspond');
         }
+    }
+
+    public function reportComment($param)
+    {
+        (int)$id = $param[0];
+        // (int)$slug = $param[0];
+        // // (int)$com_id = $param[0];
+        //
+        // $serie = $this->serieController->getOne($id, $slug);
+
+        if(isset($id) && $id > 0)
+        {
+
+            $ReportedCom = $this->commentController->reportCom($id);
+
+        }
+        header('Location: /series');
+        // header('Location: /singleSerie/' . $id . '/' . $slug);
+
     }
 
     /*----------------------------------------------------
@@ -442,6 +479,32 @@ public function updateSerie($param)
 
     header('Location: /series');
 }
+
+public function chooseSerieSlider($param)
+{
+    (int)$id = $param[0];
+
+    if(isset($id) && $id > 0)
+    {
+        $this->serieController->serieChoose($id);
+    }
+    else {
+        throw new \Exception('Aucun identifiant de série ne correspond');
+    }
+
+    header('Location: /adminHomePage');
+}
+
+// public function sliderSerie($param)
+// {
+//     (int)$id = $param[0];
+//     (bool)$slide_on = $param[0];
+//
+//     if($slide_on = 1 && isset($id) && $id > 0)
+//     {
+//         $serie = $this->serieController->getOneSlider($id, $slide_on);
+//     }
+// }
 
 public function deleteSerie($param)
 {

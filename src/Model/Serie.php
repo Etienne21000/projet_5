@@ -12,6 +12,7 @@ class Serie extends Entity
     private $id_img;
     private $serie_img;
     private $slug;
+    private $slide_on;
 
 
     public function __construct(array $data)
@@ -83,6 +84,11 @@ class Serie extends Entity
         $this->slug = (int)$slug;
     }
 
+    public function setSlideon($slide_on)
+    {
+        $this->slide_on = (bool)$slide_on;
+    }
+
     /*-----------------------------
     Getters
     ------------------------------*/
@@ -130,5 +136,10 @@ class Serie extends Entity
     public function slug()
     {
         return $this->slug;
+    }
+
+    public function slide_on()
+    {
+        return $this->slide_on;
     }
 }

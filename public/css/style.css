@@ -88,47 +88,41 @@ a:visited
 }
 
 /*-----------------------------------
-Banner
+                Slider
 -----------------------------------*/
 
 #banner
 {
-    height: 650px;
+    height: 660px;
     margin-top: 55px;
     margin-bottom: 20px;
     width: 100%;
-    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
 }
 
-#banner_title
+.banner_image
 {
+    height: 100%;
     width: 100%;
-}
-
-#banner_image
-{
     position: relative;
     overflow: hidden;
-    height: 660px;
+    margin:auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
 }
 
-#banner_image ul
+.slide
 {
-    padding-inline-start: 0;
-    height: 100%;
-    position: relative;
-    list-style: none;
+    flex-shrink: 0;
+    width: 100%;
+    height: inherit;
+    transition: all 1s ease-in-out;
 }
 
-#banner_image ul li
-{
-    height: 100%;
-    position: relative;
-    display: block;
-    float: left;
-}
-
-#banner_image ul li img
+.slide img
 {
     height: 100%;
     width: 100%;
@@ -136,7 +130,13 @@ Banner
     border: 10px solid #fff;
 }
 
-/*---- Slider ----*/
+.btn
+{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
 
 
 

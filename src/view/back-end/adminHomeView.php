@@ -4,9 +4,6 @@
 
 <section class="container">
 
-    <!-- Display all images -->
-
-
     <div class="container">
         <div class="starter-template">
             <?php if(isset($_SESSION['id'])){?>
@@ -18,6 +15,35 @@
             <p class="lead">Bienvenue sur la page d'aministration du site Campo d'Ombra.
                 <br>Vous pouvez modifiez l'ensemble des données présentes sur le site.
             </p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="starter-template">
+            <div class="titre">
+                <h4>Choisissez la série du slider</h4>
+            </div>
+            <?php foreach ($Series as $data): ?>
+                <form action="/chooseSerie/<?=$data->id(); ?>" method="POST">
+                <?php endforeach; ?>
+
+                <p>
+                    <label for="id_img">Série</label>
+                    <br>
+                    <select name="id_img" class="id_img">
+                        <option value="">Choissiez la série</option>
+
+                        <?php foreach ($Series as $data): ?>
+
+                            <option value="<?php echo $data->id(); ?>"> <?php echo $data->title(); ?></option>
+
+                        <?php endforeach; ?>
+                    </select>
+                </p>
+                <p>
+                    <button type="submit" value="submit" name="submit" id="submit_btn">slider</button>
+                </p>
+            </form>
         </div>
     </div>
 

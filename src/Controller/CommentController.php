@@ -26,7 +26,7 @@ class CommentController
 
     public function allCom($id)
     {
-        $Comments = $this->comment->getAllCom($id);
+        $Comments = $this->comment->getAllCom($id, $start = 0, $limite = 5);
 
         return $Comments;
     }

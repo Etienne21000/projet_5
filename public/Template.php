@@ -30,7 +30,7 @@
     <header>
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <?php if(isset($_SESSION['id']) && $_SESSION['role'] == 1){?>
+            <?php if(isset($_SESSION['id']) && $_SESSION['role'] = 1){?>
                 <a class="navbar-brand" href="/adminHomePage">STEFANO G BIANCHI</a>
             <?php } else {?>
                 <a class="navbar-brand" href="/home">STEFANO G BIANCHI</a>
@@ -56,12 +56,12 @@
                         <a class="nav-link" href="/">CONTACT</a>
                     </li>
 
-                    <?php if(isset($_SESSION['id']) && $_SESSION['role'] == 1){ ?>
+                    <?php if(isset($_SESSION['id']) && $_SESSION['role'] = 1){ ?>
                         <li class="nav-item">
                             <a class="nav-link" href="/adminHomePage">ADMIN</a>
                         </li>
                     <?php }
-                    elseif (isset($_SESSION['id']) && $_SESSION['role'] == 0)
+                    elseif (isset($_SESSION['id']) && $_SESSION['role'] = 0)
                     { ?>
                         <li class="nav-item">
                             <a class="nav-link" href="/disconnect"><i class="fas fa-power-off"></i></a>
@@ -82,6 +82,7 @@
     <script src="/public/css/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
     <script src="/public/js/slider.js"></script>
     <script src="/public/js/ajaxTest.js"></script>
+    <script src="/public/js/main.js"></script>
     <!-- <script src="/public/js/ajax.js"></script> -->
     <p> Copyright © Etienne Juffard - 2019 - Campo d'Ombra - Stefano Bianchi - tous droits réservés </p>
 </footer>

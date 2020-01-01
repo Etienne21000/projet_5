@@ -4,15 +4,23 @@
 
 <section class="body">
     <article id="banner">
-        <div id="banner_image">
+        <div class="banner_image">
+            <?php foreach($Series as $data):?>
+                <?= $data->title(); ?>
+            <?php endforeach; ?>
             <!-- <img src="/public/images/Boxes9siteA.jpg" alt="Boxes 9"/> -->
             <?php foreach ($Images as $data): ?>
-                <ul>
-                    <li class="slide"><img src="/public/upload/<?= htmlspecialchars($data->image()); ?>" alt="<?= $data->title(); ?>"/></li>
-                </ul>
+                <div class="slide">
+                    <img src="/public/upload/<?= htmlspecialchars($data->image()); ?>" alt="<?= $data->title(); ?>"/>
+                </div>
             <?php endforeach; ?>
         </div>
     </article>
+    <div class="btn">
+        <button class="precedent">précédent</button>
+        <button class="suivant">suivant</button>
+    </div>
+
 </section>
 
 <?php $content = ob_get_clean(); ?>

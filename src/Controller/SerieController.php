@@ -43,6 +43,23 @@ class SerieController
         $this->serie->updateSerie($Serie);
     }
 
+    public function serieChoose($id)
+    {
+        $Serie = new Serie([$data]);
+
+        $Serie->setId($id);
+        // $Serie->setSlideon($slide_on);
+
+        $this->serie->chooseSerie($Serie);
+    }
+
+    public function getOneSlider()
+    {
+        $serie = $this->serie->getOneSerieForSlider($slide_on = 1);
+
+        return $serie;
+    }
+
     public function getAll()
     {
         $Series = $this->serie->getAllSerie($slug = 1);

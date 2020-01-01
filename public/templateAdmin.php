@@ -51,7 +51,7 @@
     </header>
 
     <section class="adminContent">
-        
+
         <div class="wrapper">
             <!-- Sidebar -->
             <nav id="sidebar">

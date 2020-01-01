@@ -44,11 +44,10 @@
                                 </div>
                                 <p><?= htmlspecialchars($data->comment()); ?></p>
                             </div>
+                            <a href="/reportCom/<?= $data->id(); ?>">Signaler</a>
                         </div>
                     </div>
                 </div>
-
-
 
             <?php endforeach; ?>
         </div>
@@ -87,7 +86,7 @@
             </a>
         <?php }?>
 
-        <?php if(isset($_SESSION['id']) && $_SESSION['role'] == 1):?>
+        <?php if(isset($_SESSION['id']) && $_SESSION['role'] = 1):?>
 
             <a href="/serieUpdate/<?= $serie->id(); ?>">
                 <input type="button" class="btn btn-outline-primary" value="mettre à jour la série"/>
@@ -124,8 +123,7 @@
                 </div>
             </div>
         <?php endif; ?>
-        <!-- </div> -->
-        <!-- </div> -->
+        
     </article>
 
     <div id="display_img">

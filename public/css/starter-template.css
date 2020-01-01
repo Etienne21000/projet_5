@@ -268,12 +268,12 @@ ul ul a {
 
     /*-- Accueil --*/
 
-    #banner_image
+    /* .banner_image
     {
         height: 608px;
-    }
+    } */
 
-    #banner_image img
+    .banner_image img
     {
         width: 100%;
         height: 100%;
@@ -374,5 +374,6 @@ ul ul a {
     {
         background-color: #fff;
     }
-        
+
+
 }

@@ -91,6 +91,45 @@ class SerieManager extends Manager
         return $serie;
     }
 
+    //Select serie for slideShow
+    public function chooseSerie(Serie $serie)
+    {
+        $req = $this->db->prepare('UPDATE Serie SET slide_on = 1
+        WHERE id = :id');
+
+        $req->bindValue(':id', $serie->id(), \PDO::PARAM_INT);
+
+        $req->execute();
+    }
+
+    //Get One serie for slider.
+    public function getOneSerieForSlider($slide_on)
+    {
+        $Series = [];
+
+        $req = 'SELECT id, title, description, tech, slide_on,
+        DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date
+        FROM Serie WHERE slide_on = :slide_on';
+
+        $result = $this->db->prepare($req);
+
+        $result->bindValue(':slide_on', $slide_on, \PDO::PARAM_INT);
+
+        $result->execute();
+
+        // $data = $req->fetch(\PDO::FETCH_ASSOC);
+        // $serie = new Serie($data);
+        //
+        // return $serie;
+        while ($data = $result->fetch(\PDO::FETCH_ASSOC))
+        {
+            $serie = new Serie($data);
+            $Series[] = $serie;
+        }
+
+        return $Series;
+    }
+
     public function countSeries()
     {
         $countSerie = $this->db->query('SELECT COUNT(*) FROM Serie')->fetchColumn();
