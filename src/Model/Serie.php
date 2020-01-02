@@ -86,7 +86,7 @@ class Serie extends Entity
 
     public function setSlideon($slide_on)
     {
-        $this->slide_on = (bool)$slide_on;
+        $this->slide_on = (int)$slide_on;
     }
 
     /*-----------------------------

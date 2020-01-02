@@ -103,17 +103,17 @@ class SerieManager extends Manager
     }
 
     //Get One serie for slider.
-    public function getOneSerieForSlider($slide_on)
+    public function getOneSerieForSlider($id)
     {
         $Series = [];
 
         $req = 'SELECT id, title, description, tech, slide_on,
         DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date
-        FROM Serie WHERE slide_on = :slide_on';
+        FROM Serie WHERE id = :id AND slide_on = 1';
 
         $result = $this->db->prepare($req);
 
-        $result->bindValue(':slide_on', $slide_on, \PDO::PARAM_INT);
+        $result->bindValue(':id', $id, \PDO::PARAM_INT);
 
         $result->execute();
 
@@ -132,9 +132,16 @@ class SerieManager extends Manager
 
     public function countSeries()
     {
-        $countSerie = $this->db->query('SELECT COUNT(*) FROM Serie')->fetchColumn();
+        $countSerie = $this->db->query('SELECT COUNT(*) FROM Serie WHERE slug = 1')->fetchColumn();
 
         return $countSerie;
+    }
+
+    public function countExpos()
+    {
+        $countExpo = $this->db->query('SELECT COUNT(*) FROM Serie WHERE slug = 2')->fetchColumn();
+
+        return $countExpo;
     }
 
     public function deleteSerie($id)

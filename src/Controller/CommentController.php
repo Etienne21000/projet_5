@@ -31,6 +31,34 @@ class CommentController
         return $Comments;
     }
 
+    public function getAllComments()
+    {
+        $Comments = $this->comment->getAllComments($report = 0);
+
+        return $Comments;
+    }
+
+    public function getAllC()
+    {
+        $Comments = $this->comment->getAllComments($report = 0, $start = 0, $limite = 3);
+
+        return $Comments;
+    }
+
+    public function getAllReportedComments()
+    {
+        $Reported = $this->comment->getAllComments($report = 1);
+
+        return $Reported;
+    }
+
+    public function allComAdmin($id)
+    {
+        $Comments = $this->comment->getAllCom($id);
+
+        return $Comments;
+    }
+
     public function lastCom()
     {
         $Comments = $this->comment->getAllCom($start = 0, $limite = 4);
@@ -54,10 +82,29 @@ class CommentController
         $this->comment->validateComment($Comment);
     }
 
+    public function deleteCom($id)
+    {
+        $Comments = $this->comment->deleteComment($id);
+    }
+
     public function getOneCom($id)
     {
         $Comment = $this->comment->getOneComment($id);
 
         return $Comment;
+    }
+
+    public function countCom()
+    {
+        $countCom = $this->comment->countComment($report = 0);
+
+        return $countCom;
+    }
+
+    public function reportedCom()
+    {
+        $reportedCom = $this->comment->countComment($report = 1);
+
+        return $reportedCom;
     }
 }

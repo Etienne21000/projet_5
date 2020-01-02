@@ -27,14 +27,6 @@ class Comment extends Entity
         $this->id = (int)$id;
     }
 
-    // public function setPseudo($pseudo)
-    // {
-    //     if(is_string($pseudo))
-    //     {
-    //         $this->pseudo = $pseudo;
-    //     }
-    // }
-
     public function setUserid($user_id)
     {
         $this->user_id = (int)$user_id;
@@ -90,11 +82,6 @@ class Comment extends Entity
     {
         return $this->id;
     }
-
-    // public function pseudo()
-    // {
-    //     return $this->pseudo;
-    // }
 
     public function user_id()
     {

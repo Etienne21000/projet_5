@@ -91,6 +91,18 @@
                     </li>
 
                     <li class="active">
+                        <a href="#serieSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">EXPOS</a>
+                        <ul class="collapse list-unstyled" id="serieSubmenu">
+                            <li>
+                                <a href="/addPost"> Toutes les expositions (<?= $countExpo ?>)</a>
+                            </li>
+                            <li>
+                                <a href="/addPost"> Ajouter une exposition</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="active">
                         <a href="#imagesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">IMAGES</a>
                         <ul class="collapse list-unstyled" id="imagesSubmenu">
                             <li>
@@ -99,6 +111,19 @@
 
                             <li>
                                 <a href="/UploadImg"> Ajouter une image</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="active">
+                        <a href="#commentsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">COMMENTAIRES</a>
+                        <ul class="collapse list-unstyled" id="commentsSubmenu">
+                            <li>
+                                <a href="/allComments"> Commentaires (<?= $countCom ?>)</a>
+                            </li>
+
+                            <li>
+                                <a href="/reportedComments"> Commentaires signalés (<?= $reportedCom ?>)</a>
                             </li>
                         </ul>
                     </li>
@@ -121,12 +146,11 @@
     </section>
 
     <footer>
-        <p> Copyright © Etienne Juffard - 2019 - Campo d'Ombra - Stefano Bianchi - tous droits réservés </p>
+        <!-- <p> Copyright © Etienne Juffard - 2019 - Campo d'Ombra - Stefano Bianchi - tous droits réservés </p> -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
         <script src="/public/css/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
         <script src="/public/js/AllImg.js"></script>
         <script src="/public/js/ajaxTest.js"></script>
-        <!-- <script src="/public/js/loadingAjax.js"></script> -->
         <script src="/public/js/tinyMce/tinymce.min.js"></script>
         <script src="/public/js/wysiwyg.js"></script>
     </footer>

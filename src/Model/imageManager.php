@@ -107,14 +107,14 @@ class ImageManager extends Manager
 
     public function updateImg(Image $image)
     {
-        $req = $this->db->prepare('UPDATE images SET title = :title, image = :image,
-        description = :description, id_serie = :id_serie
+        $req = $this->db->prepare('UPDATE images
+        SET title = :title, description = :description
         WHERE id = :id');
 
         $req->bindValue(':title', $image->title());
-        $req->bindValue(':image', $image->image());
+        // $req->bindValue(':image', $image->image());
         $req->bindValue(':description', $image->description());
-        $req->bindValue(':id_serie', $image->id_serie(), \PDO::PARAM_INT);
+        // $req->bindValue(':id_serie', $image->id_serie(), \PDO::PARAM_INT);
         $req->bindValue(':id', $image->id(), \PDO::PARAM_INT);
 
         $req->execute();

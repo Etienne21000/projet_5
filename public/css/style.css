@@ -370,6 +370,15 @@ Series view
     color: #777777;
 }
 
+.titleSerie
+{
+    margin-top: 0;
+    font-family: Roboto;
+    text-align: center;
+    font-size: 2em;
+    color: #777777;
+}
+
 .all_gallery
 {
     width: 97%;
@@ -384,12 +393,29 @@ Series view
 .serie
 {
     width: 30%;
+    height: 320px;
     position: relative;
     overflow: hidden;
     background-color: #fff;
     margin : 20px 10px;
     padding: 10px;
     transition: all .4s ease-in-out;
+}
+
+.comment
+{
+    width: 30%;
+    height: auto;
+    overflow: hidden;
+    background-color: #fff;
+    margin: 20px 10px;
+    padding: 10px;
+}
+
+.content_comment
+{
+    width: 100%;
+    text-align: left;
 }
 
 .serie:hover
@@ -535,4 +561,12 @@ A propos view
     /* padding: 14px;*/
     /* background-color: #fff; */
     transition: all .4s ease-in-out;
+}
+
+@media all and (min-width: 300px) and (max-width: 767px)
+{
+    .serie
+    {
+        width: 94%;
+    }
 }

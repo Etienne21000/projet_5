@@ -110,7 +110,7 @@ class ImageController
 
     public function getAllimg()
     {
-        $Images = $this->image->getAll($start = 0, $limit = 6);
+        $Images = $this->image->getAll($start = 0, $limit = 3);
 
         return $Images;
     }
@@ -137,35 +137,16 @@ class ImageController
         }
     }
 
-    public function updateImg($title, $image, $description, $id_serie)
+    public function updateImg($id, $title, $description)
     {
         $Image = new Image([$data]);
 
+        $Image->setId($id);
         $Image->setTitle($title);
-        $Image->setImage($image);
+        // $Image->setImage($image);
         $Image->setDescription($description);
-        $Image->setIdserie($id_serie);
+        // $Image->setIdserie($id_serie);
 
         $this->image->updateImg($Image);
     }
-
-    // public function getOneAjax($id)
-    // {
-    //     $image = $this->getOne($id);
-    //
-    //     if(isset($id) && $id > 0)
-    //     {
-    //         $img = [
-    //             'id' => $image->id(),
-    //             'title' => $image->title(),
-    //             'date' => $image->image_date(),
-    //             'image' => $image->image(),
-    //             'description' => strip_tags(html_entity_decode($image->description())),
-    //         ];
-    //
-    //         header('Content-Type: application/json');
-    //
-    //         echo json_encode($img);
-    //     }
-    // }
 }

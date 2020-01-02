@@ -3,8 +3,9 @@
 <?php  ob_start(); ?>
 
 <section class="blocAdmin">
-    <article class="commentAdmin">
-        <?php foreach ($Posts as $data): ?>
+    <?php foreach ($Posts as $data): ?>
+
+        <article class="commentAdmin">
             <div class="titre">
                 <h3>
                     <?= htmlspecialchars($data->title()); ?>
@@ -14,12 +15,10 @@
             <p>
                 <?= html_entity_decode($data->content()); ?>
             </p>
+            <hr class="separation">
+        </article>
+    <?php endforeach; ?>
 
-            <p class="suite">
-                <a href="/postUpdate/<?= $data->id(); ?>">Mettre à jour</a>
-            </p>
-        <?php endforeach; ?>
-    </article>
 </section>
 
 <?php $content = ob_get_clean(); ?>

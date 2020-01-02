@@ -55,4 +55,9 @@ class PostController
 
         return $countPost;
     }
+
+    public function deleteP($id)
+    {
+        $post = $this->post->deletePost($id);
+    }
 }

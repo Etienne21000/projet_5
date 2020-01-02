@@ -84,4 +84,13 @@ class PostManager extends Manager
 
         return $countPost;
     }
+
+    public function deletePost($id)
+    {
+        $req = $this->db->prepare('DELETE FROM post WHERE id = :id');
+
+        $req->bindValue(':id', $id, \PDO::PARAM_INT);
+
+        $req->execute();
+    }
 }

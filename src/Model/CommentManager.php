@@ -8,6 +8,37 @@ class CommentManager extends Manager
         $this->db = $this->dbConnect();
     }
 
+    public function getAllComments($report =-1, $start =-1, $limite=-1)
+    {
+        $Comments = [];
+
+        $req = 'SELECT c.id, c.user_id, u.identifiant, c.comment,
+        DATE_FORMAT(c.comment_date, \'%d/%m/%Y à %Hh%i\')
+        AS comment_date FROM comments AS c
+        LEFT JOIN user AS u
+        ON c.user_id = u.id';
+
+        if($report != -1)
+        {
+            $req.= ' WHERE c.report = ' . (int) $report . ' ORDER BY c.comment_date';
+        }
+
+        if ($start != -1 || $limite != -1)
+        {
+            $req .= ' LIMIT '.(int) $limite . ' OFFSET ' . (int) $start;
+        }
+
+        $result = $this->db->query($req);
+
+        while ($data = $result->fetch(\PDO::FETCH_ASSOC))
+        {
+            $comment = new Comment($data);
+            $Comments[] = $comment;
+        }
+        return $Comments;
+        //ORDER BY c.comment_date DESC';
+    }
+
     //get comments by serie
     public function getAllCom($id, $start =-1, $limite=-1)
     {
@@ -107,5 +138,19 @@ class CommentManager extends Manager
         $Comment = new Comment($data);
 
         return $Comment;
+    }
+
+    public function countComment($report =-1)
+    {
+        $req = 'SELECT COUNT(*) FROM comments';
+
+            if($report != -1)
+            {
+                $req.= ' WHERE report = ' .(int) $report;
+            }
+
+            $countCom = $this->db->query($req)->fetchColumn();
+
+            return $countCom;
     }
 }

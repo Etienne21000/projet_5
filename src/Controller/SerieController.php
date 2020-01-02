@@ -53,11 +53,11 @@ class SerieController
         $this->serie->chooseSerie($Serie);
     }
 
-    public function getOneSlider()
+    public function getOneSlider($id)
     {
-        $serie = $this->serie->getOneSerieForSlider($slide_on = 1);
+        $Series = $this->serie->getOneSerieForSlider($id);
 
-        return $serie;
+        return $Series;
     }
 
     public function getAll()
@@ -87,6 +87,13 @@ class SerieController
         $countSerie = $this->serie->countSeries();
 
         return $countSerie;
+    }
+
+    public function countE()
+    {
+        $countExpo = $this->serie->countExpos();
+
+        return $countExpo;
     }
 
     public function deleteOneSerie($id)

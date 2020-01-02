@@ -44,11 +44,11 @@
 					<p>
 						<label for="form-content">Description technique</label>
 						<br>
-						<textarea type="textarea" name="tech" cols="70" rows="30"><?= $serie->tech(); ?></textarea>
+						<textarea type="textarea" name="tech" cols="70" rows="30" id="full-featured-non-premium2"><?= $serie->tech(); ?></textarea>
 					</p>
 
 					<p>
-						<button type="submit" value="submit" name="submit" class="button1">Mettre à jour<i class="fas fa-pen-nib"></i></button>
+						<button type="submit" value="submit" name="submit" class="btn btn-outline-primary">Mettre à jour<i class="fas fa-pen-nib"></i></button>
 					</p>
 
 				</form>

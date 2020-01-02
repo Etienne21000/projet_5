@@ -41,7 +41,7 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="/home">ACCUEIL <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/home">ACCUEIL</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/expos">ACTUALITES</a>
@@ -72,20 +72,20 @@
             </div>
         </nav>
 
-</header>
+    </header>
 
-<?= $content ?>
+    <?= $content ?>
 
-<footer>
-    <!-- <script src="/public/js/transitions.js"></script> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script src="/public/css/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
-    <script src="/public/js/slider.js"></script>
-    <script src="/public/js/ajaxTest.js"></script>
-    <script src="/public/js/main.js"></script>
-    <!-- <script src="/public/js/ajax.js"></script> -->
-    <p> Copyright © Etienne Juffard - 2019 - Campo d'Ombra - Stefano Bianchi - tous droits réservés </p>
-</footer>
+    <footer>
+        <!-- <script src="/public/js/transitions.js"></script> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script src="/public/css/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+        <script src="/public/js/slider.js"></script>
+        <script src="/public/js/ajaxTest.js"></script>
+        <script src="/public/js/main.js"></script>
+        <!-- <script src="/public/js/ajax.js"></script> -->
+        <p> Copyright © Etienne Juffard - 2019 - Campo d'Ombra - Stefano Bianchi - tous droits réservés </p>
+    </footer>
 
 </body>
 </html>

@@ -7,8 +7,8 @@ use App\Model\Router;
 
 $router = new Router($_GET['url']);
 
-$router->get('/home/{id}', 'Master#home');
-$router->get('/', 'Master#home');
+$router->get('/home', 'Master#home');
+// $router->get('/{id}', 'Master#home');
 
 
 $router->get('/series', 'Master#series');
@@ -23,6 +23,9 @@ $router->get('/UploadImg', "Master#UploadImg");
 $router->post('/addImg', 'Master#addImg');
 
 
+$router->get('/allSeries', 'Master#allSeries');
+$router->get('/getOneSerie/{id}/{slug}', 'Master#getOneSerie');
+$router->get('/allExpos', 'Master#allExpos');
 $router->get('/serieAdd', 'Master#serieAdd');
 $router->post('/addSerie', 'Master#addSerie');
 $router->get('/serieUpdate/{id}', 'Master#serieUpdate');
@@ -35,12 +38,14 @@ $router->post('/newPost', 'Master#newPost');
 $router->get('/postUpdate/{id}', 'Master#postUpdate');
 $router->post('/updatePost/{id}', 'Master#updatePost');
 $router->get('/singlepost/{id}', 'Master#getOnePost');
+$router->get('/deletePost', 'Master#deletePost');
 
 
 $router->get('/allImg', 'Master#getImages');
 $router->get('/getOneImg/{id}', 'Master#getOneImg');
 $router->get('/deleteImg/{id}', 'Master#deleteImage');
-
+$router->get('/imgUpdate/{id}', 'Master#imgUpdate');
+$router->post('/updateImage/{id}', 'Master#updateImage');
 
 $router->get('/admin', 'Master#admin');
 $router->get('/inscription', 'Master#inscription');
@@ -52,6 +57,10 @@ $router->get('/disconnect', 'Master#userDeconnexion');
 /*Comment Part*/
 $router->post('/addComment/{id}', 'Master#addComment');
 $router->get('/reportCom/{id}', 'Master#reportComment');
+$router->get('/allComments', 'Master#allComments');
+$router->get('/reportedComments', 'Master#allReportedComments');
+$router->get('/deleteComment/{id}', 'Master#deleteComment');
+$router->get('/validateComment/{id}', 'Master#validateComment');
 
 
 /*Slider part*/

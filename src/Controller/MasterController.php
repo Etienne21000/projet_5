@@ -28,23 +28,26 @@ class MasterController
     /*----------------------------------------------------
     Front Master Controller
     ---------------------------------------------------- */
-    public function home($param)
+    public function home()
     {
-        (int)$id = $param[0];
+        // (int)$slide_on = $param[0];
+        (int)$id = $id;
         // (bool)$slide_on = $param[0];
         // (int)$id_serie = $param[0];
 
-        // if($slide_on)
+        // if($slide_on = 1)
         // {
-            // if(isset($id) && $id > 0)
-            // {
-            //recupérer id de la série
-                $Series = $this->serieController->getOneSlider();
-                $Images = $this->imageController->getImagesBySeries($id);
-                // $Images = $this->imageController->getAllImages();
-            // }
+        $Series = $this->serieController->getOneSlider($id);
 
-            // var_dump($slide_on);
+
+        // if(isset($id) && $id > 0)
+        // {
+        //recupérer id de la série
+        $Images = $this->imageController->getImagesBySeries($id);
+        // $Images = $this->imageController->getAllImages();
+        // }
+
+        // var_dump($slide_on);
 
         // }
 
@@ -52,14 +55,19 @@ class MasterController
         require 'src/view/front-end/indexView.php';
     }
 
+    public function template($param)
+    {
+        (int)$id = $param[0];
+        (int)$slide_on = $param[0];
+
+        $Series = $this->serieController->getOneSlider($id, $slide_on);
+
+    }
+
     public function series()
     {
         $Series = $this->serieController->getAll();
-        // $Expos = $this->serieController->getAllExpos();
         $Images = $this->imageController->getAllImages();
-
-        // $serie = $this->serieController->getOne($id);
-        // $Images = $this->imageController->getImgBySeries($id);
 
         require 'src/view/front-end/seriesView.php';
     }
@@ -180,12 +188,17 @@ class MasterController
             $countPost = $this->postController->nbPosts();
             $countImg = $this->imageController->countedImg();
             $countSerie = $this->serieController->countS();
+            $countExpo = $this->serieController->countE();
+            $countCom = $this->commentController->countCom();
+            $reportedCom = $this->commentController->reportedCom();
 
             // $Images = $this->imageController->getAllImages();
             $Images = $this->imageController->getAllimg();
             $Posts = $this->postController->getAllPost();
             $Series = $this->serieController->getAll();
             $Expos = $this->serieController->getAllExpos();
+            $Comments = $this->commentController->getAllC();
+            $Reported = $this->commentController->getAllReportedComments();
 
             require 'src/view/back-end/adminHomeView.php';
         }
@@ -195,6 +208,140 @@ class MasterController
             header('Refresh: 2; /home');
         }
 
+    }
+
+    public function allSeries()
+    {
+        $countPost = $this->postController->nbPosts();
+        $countImg = $this->imageController->countedImg();
+        $countSerie = $this->serieController->countS();
+        $countExpo = $this->serieController->countE();
+        $countCom = $this->commentController->countCom();
+        $reportedCom = $this->commentController->reportedCom();
+
+        $Series = $this->serieController->getAll();
+        $Images = $this->imageController->getAllImages();
+
+        require 'src/view/back-end/adminAllSeries.php';
+    }
+
+    public function getOneSerie($param)
+    {
+        (int)$id = $param[0];
+        (int)$slug = $param[0];
+
+        $countPost = $this->postController->nbPosts();
+        $countImg = $this->imageController->countedImg();
+        $countSerie = $this->serieController->countS();
+        $countExpo = $this->serieController->countE();
+        $countCom = $this->commentController->countCom();
+        $reportedCom = $this->commentController->reportedCom();
+
+        $serie = $this->serieController->getOne($id, $slug);
+        $Images = $this->imageController->getImagesBySeries($id);
+        $image = $this->imageController->getOne($id);
+        $Comments = $this->commentController->allComAdmin($id);
+
+        require 'src/view/back-end/serieView.php';
+    }
+
+    public function allExpos()
+    {
+        $countPost = $this->postController->nbPosts();
+        $countImg = $this->imageController->countedImg();
+        $countSerie = $this->serieController->countS();
+        $countExpo = $this->serieController->countE();
+        $countCom = $this->commentController->countCom();
+        $reportedCom = $this->commentController->reportedCom();
+
+        $Expos = $this->serieController->getAllExpos();
+        $Images = $this->imageController->getAllImages();
+
+        require 'src/view/back-end/adminAllExpos.php';
+    }
+
+    public function getOneExpo($param)
+    {
+        (int)$id = $param[0];
+        (int)$slug = $param[0];
+
+        $countPost = $this->postController->nbPosts();
+        $countImg = $this->imageController->countedImg();
+        $countSerie = $this->serieController->countS();
+        $countExpo = $this->serieController->countE();
+        $countCom = $this->commentController->countCom();
+        $reportedCom = $this->commentController->reportedCom();
+
+        $serie = $this->serieController->getOne($id, $slug);
+        $Images = $this->imageController->getImagesBySeries($id);
+        $image = $this->imageController->getOne($id);
+        $Comments = $this->commentController->allComAdmin($id);
+
+        require 'src/view/back-end/serieView.php';
+    }
+
+    public function allComments()
+    {
+        $countPost = $this->postController->nbPosts();
+        $countImg = $this->imageController->countedImg();
+        $countSerie = $this->serieController->countS();
+        $countExpo = $this->serieController->countE();
+        $countCom = $this->commentController->countCom();
+        $reportedCom = $this->commentController->reportedCom();
+
+        $Comments = $this->commentController->getAllComments();
+
+        require 'src/view/back-end/adminAllCom.php';
+    }
+
+    public function allReportedComments()
+    {
+        $countPost = $this->postController->nbPosts();
+        $countImg = $this->imageController->countedImg();
+        $countSerie = $this->serieController->countS();
+        $countExpo = $this->serieController->countE();
+        $countCom = $this->commentController->countCom();
+        $reportedCom = $this->commentController->reportedCom();
+
+        $Reported = $this->commentController->getAllReportedComments();
+
+        require 'src/view/back-end/adminReportedCom.php';
+    }
+
+    public function validateComment($param)
+    {
+        (int)$id = $param[0];
+
+        if(isset($id) && $id > 0)
+        {
+            $this->commentController->validateCom($id);
+        }
+
+        else
+        {
+            throw new \Exception("Aucun identifiant");
+        }
+
+        header('Location: /reportedComments');
+
+    }
+
+    public function deleteComment($param)
+    {
+        (int)$id = $param[0];
+
+        if(isset($id) && $id > 0)
+        {
+            $Comments = $this->commentController->deleteCom($id);
+
+            header('Location: /reportedComments');
+        }
+
+        else
+        {
+            throw new \Exception("Aucun identifiant");
+
+        }
     }
 
     public function getOnePost($param)
@@ -207,6 +354,9 @@ class MasterController
             $countPost = $this->postController->nbPosts();
             $countImg = $this->imageController->countedImg();
             $countSerie = $this->serieController->countS();
+            $countExpo = $this->serieController->countE();
+            $countCom = $this->commentController->countCom();
+            $reportedCom = $this->commentController->reportedCom();
 
             $post = $this->postController->getPost($id);
 
@@ -227,9 +377,13 @@ class MasterController
             $error = null;
             $Series = $this->serieController->getAll();
             $Expos = $this->serieController->getAllExpos();
+
             $countPost = $this->postController->nbPosts();
             $countImg = $this->imageController->countedImg();
             $countSerie = $this->serieController->countS();
+            $countExpo = $this->serieController->countE();
+            $countCom = $this->commentController->countCom();
+            $reportedCom = $this->commentController->reportedCom();
 
             require 'src/view/back-end/uploadViewForm.php';
         }
@@ -271,6 +425,9 @@ class MasterController
             $countPost = $this->postController->nbPosts();
             $countImg = $this->imageController->countedImg();
             $countSerie = $this->serieController->countS();
+            $countExpo = $this->serieController->countE();
+            $countCom = $this->commentController->countCom();
+            $reportedCom = $this->commentController->reportedCom();
 
             $image = $this->imageController->getOne($id);
 
@@ -291,7 +448,7 @@ class MasterController
 
             $this->imageController->delete($id);
 
-            header('Location: /allImg');
+            header('Location: /adminHomePage');
         }
         else
         {
@@ -301,17 +458,22 @@ class MasterController
 
     public function imgUpdate($param)
     {
+        (int)$id = $param[0];
+
         if(isset($_SESSION['id']))
         {
-            (int)$id = $param[0];
+            $image = $this->imageController->getOne($id);
+
 
             $countPost = $this->postController->nbPosts();
             $countImg = $this->imageController->countedImg();
             $countSerie = $this->serieController->countS();
+            $countExpo = $this->serieController->countE();
+            $countCom = $this->commentController->countCom();
+            $reportedCom = $this->commentController->reportedCom();
 
-            $image = $this->imageController->getOne($id);
 
-            require 'src/view/back-end/';
+            require 'src/view/back-end/adminImgUpdate.php';
         }
         else
         {
@@ -325,11 +487,10 @@ class MasterController
 
         if(isset($id) && $id > 0)
         {
-            if(!empty($_POST['title']) && !empty($_POST['image']) && !empty($_POST['description']))
+            if(!empty($_POST['title']) && !empty($_POST['description']))
             {
-                $image = $this->imageController->updateImg($id, htmlspecialchars($_POST['title']),
-                htmlspecialchars($_POST['image']), htmlspecialchars($_POST['description']),
-                htmlspecialchars($_POST['id_serie']));
+                $this->imageController->updateImg($id, htmlspecialchars($_POST['title']),
+                htmlspecialchars($_POST['description']));
             }
             else
             {
@@ -342,6 +503,8 @@ class MasterController
             throw new \Exception("Aucune identifiant de billet ne correspond");
         }
 
+        header('Location: /adminHomePage');
+
     }
 
     public function addPost()
@@ -351,6 +514,9 @@ class MasterController
             $countPost = $this->postController->nbPosts();
             $countImg = $this->imageController->countedImg();
             $countSerie = $this->serieController->countS();
+            $countExpo = $this->serieController->countE();
+            $countCom = $this->commentController->countCom();
+            $reportedCom = $this->commentController->reportedCom();
 
             require 'src/view/back-end/adminAddPost.php';
         }
@@ -372,7 +538,7 @@ class MasterController
             throw new \Exception("Impossible d'ajouter le post");
         }
 
-        header('Location: index.php?action=Accueil');
+        header('Location: /adminHomePage');
     }
 
     public function postUpdate($param)
@@ -383,6 +549,9 @@ class MasterController
         $countPost = $this->postController->nbPosts();
         $countImg = $this->imageController->countedImg();
         $countSerie = $this->serieController->countS();
+        $countExpo = $this->serieController->countE();
+        $countCom = $this->commentController->countCom();
+        $reportedCom = $this->commentController->reportedCom();
 
         require 'src/view/back-end/updatePostView.php';
     }
@@ -412,14 +581,31 @@ class MasterController
         header('Location: /Bio');
     }
 
+    public function deletePost($Param)
+    {
+        (int)$id = $param[0];
+
+        if(isset($id) && $id > 0)
+        {
+            $this->postController->deleteP($id);
+        }
+
+        else
+        {
+            throw new \Exception("Aucun identifiant envoyé");
+        }
+
+        header('Location: /adminHomePage');
+    }
+
     public function serieAdd()
     {
         $Images = $this->imageController->getAllImages();
         $countPost = $this->postController->nbPosts();
         $countImg = $this->imageController->countedImg();
         $countSerie = $this->serieController->countS();
-
-        // $serie = $this->$serieController->
+        $countCom = $this->commentController->countCom();
+        $reportedCom = $this->commentController->reportedCom();
 
         require 'src/view/back-end/AddSerieView.php';
     }
@@ -449,6 +635,9 @@ public function serieUpdate($param)
     $countPost = $this->postController->nbPosts();
     $countImg = $this->imageController->countedImg();
     $countSerie = $this->serieController->countS();
+    $countExpo = $this->serieController->countE();
+    $countCom = $this->commentController->countCom();
+    $reportedCom = $this->commentController->reportedCom();
 
     require 'src/view/back-end/updateSerie.php';
 }
