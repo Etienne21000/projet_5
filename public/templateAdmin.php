@@ -81,7 +81,7 @@
                         <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">SERIES</a>
                         <ul class="collapse list-unstyled" id="pageSubmenu">
                             <li>
-                                <a href="/series"> Toutes les séries (<?= $countSerie ?>)</a>
+                                <a href="/allSeries"> Toutes les séries (<?= $countSerie ?>)</a>
                             </li>
 
                             <li>
@@ -94,7 +94,7 @@
                         <a href="#serieSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">EXPOS</a>
                         <ul class="collapse list-unstyled" id="serieSubmenu">
                             <li>
-                                <a href="/addPost"> Toutes les expositions (<?= $countExpo ?>)</a>
+                                <a href="/allExpos"> Toutes les expositions (<?= $countExpo ?>)</a>
                             </li>
                             <li>
                                 <a href="/addPost"> Ajouter une exposition</a>

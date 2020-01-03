@@ -563,6 +563,12 @@ A propos view
     transition: all .4s ease-in-out;
 }
 
+.fa-check-circle
+{
+    font-size: 2em;
+    color: green;
+}
+
 @media all and (min-width: 300px) and (max-width: 767px)
 {
     .serie

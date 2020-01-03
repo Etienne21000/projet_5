@@ -1,11 +1,6 @@
 <?php
 namespace App\Model;
 
-// use App\Model\Post;
-
-/**
-*
-*/
 class PostManager extends Manager
 {
     function __construct()

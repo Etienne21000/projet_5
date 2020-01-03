@@ -25,12 +25,7 @@
     </div>
 
     <div>
-        <!-- <a name="view" class="close">
-        <button type="button" class="close_form" id="close"><i class="far fa-times-circle"></i></button>
-    </a> -->
-    <!-- <button type="button" class="close" id="close"><i class="far fa-times-circle"></i></button> -->
-
-    <a href="/adminHomePage" class="close" name="close"><i class="far fa-times-circle"></i></a>
-</div>
-<!-- </div> -->
+        <a href="/adminHomePage" class="close" name="close"><i class="far fa-times-circle"></i></a>
+    </div>
+    <!-- </div> -->
 </div>

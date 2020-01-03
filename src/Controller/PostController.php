@@ -42,6 +42,13 @@ class PostController
         return $post;
     }
 
+    public function getPostAdmin()
+    {
+        $Posts = $this->post->getAll($start = 0, $limite = 3);
+
+        return $Posts;
+    }
+
     public function getAllPost()
     {
         $Posts = $this->post->getAll();

@@ -12,6 +12,7 @@ class Comment extends Entity
     private $serie_id;
     private $num_com;
     private $identifiant;
+    private $validate;
 
     public function __construct(array $data)
     {
@@ -74,6 +75,11 @@ class Comment extends Entity
         }
     }
 
+    public function setValidate($validate)
+    {
+        $this->validate = (bool)$validate;
+    }
+
     /*-----------------------------
     Getters
     ------------------------------*/
@@ -116,5 +122,10 @@ class Comment extends Entity
     public function identifiant()
     {
         return $this->identifiant;
+    }
+
+    public function validate()
+    {
+        return $this->validate;
     }
 }

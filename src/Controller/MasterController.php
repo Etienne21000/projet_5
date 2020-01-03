@@ -90,9 +90,6 @@ class MasterController
         $image = $this->imageController->getOne($id);
         $Comments = $this->commentController->allCom($id);
 
-        // $Expos = $this->serieController->getAllExpos($slug);
-        // $image = $this->singleImg($id);
-
         require 'src/view/front-end/singleSerieView.php';
     }
 
@@ -161,16 +158,10 @@ class MasterController
     public function reportComment($param)
     {
         (int)$id = $param[0];
-        // (int)$slug = $param[0];
-        // // (int)$com_id = $param[0];
-        //
-        // $serie = $this->serieController->getOne($id, $slug);
 
         if(isset($id) && $id > 0)
         {
-
             $ReportedCom = $this->commentController->reportCom($id);
-
         }
         header('Location: /series');
         // header('Location: /singleSerie/' . $id . '/' . $slug);
@@ -194,7 +185,7 @@ class MasterController
 
             // $Images = $this->imageController->getAllImages();
             $Images = $this->imageController->getAllimg();
-            $Posts = $this->postController->getAllPost();
+            $Posts = $this->postController->getPostAdmin();
             $Series = $this->serieController->getAll();
             $Expos = $this->serieController->getAllExpos();
             $Comments = $this->commentController->getAllC();
@@ -212,17 +203,25 @@ class MasterController
 
     public function allSeries()
     {
-        $countPost = $this->postController->nbPosts();
-        $countImg = $this->imageController->countedImg();
-        $countSerie = $this->serieController->countS();
-        $countExpo = $this->serieController->countE();
-        $countCom = $this->commentController->countCom();
-        $reportedCom = $this->commentController->reportedCom();
+        if(isset($_SESSION['id']) && $_SESSION['role'] == 1)
+        {
+            $countPost = $this->postController->nbPosts();
+            $countImg = $this->imageController->countedImg();
+            $countSerie = $this->serieController->countS();
+            $countExpo = $this->serieController->countE();
+            $countCom = $this->commentController->countCom();
+            $reportedCom = $this->commentController->reportedCom();
 
-        $Series = $this->serieController->getAll();
-        $Images = $this->imageController->getAllImages();
+            $Series = $this->serieController->getAll();
+            $Images = $this->imageController->getAllImages();
 
-        require 'src/view/back-end/adminAllSeries.php';
+            require 'src/view/back-end/adminAllSeries.php';
+        }
+        else
+        {
+            echo 'vous n\'avez pas accès à cette partie du site';
+            header('Refresh: 2; /home');
+        }
     }
 
     public function getOneSerie($param)
@@ -230,34 +229,53 @@ class MasterController
         (int)$id = $param[0];
         (int)$slug = $param[0];
 
-        $countPost = $this->postController->nbPosts();
-        $countImg = $this->imageController->countedImg();
-        $countSerie = $this->serieController->countS();
-        $countExpo = $this->serieController->countE();
-        $countCom = $this->commentController->countCom();
-        $reportedCom = $this->commentController->reportedCom();
+        if(isset($_SESSION['id']) && $_SESSION['role'] == 1)
+        {
 
-        $serie = $this->serieController->getOne($id, $slug);
-        $Images = $this->imageController->getImagesBySeries($id);
-        $image = $this->imageController->getOne($id);
-        $Comments = $this->commentController->allComAdmin($id);
+            $countPost = $this->postController->nbPosts();
+            $countImg = $this->imageController->countedImg();
+            $countSerie = $this->serieController->countS();
+            $countExpo = $this->serieController->countE();
+            $countCom = $this->commentController->countCom();
+            $reportedCom = $this->commentController->reportedCom();
 
-        require 'src/view/back-end/serieView.php';
+            $serie = $this->serieController->getOne($id, $slug);
+            $Images = $this->imageController->getImagesBySeries($id);
+            $image = $this->imageController->getOne($id);
+            $Comments = $this->commentController->allComAdmin($id);
+
+            require 'src/view/back-end/serieView.php';
+        }
+        else
+        {
+            echo 'vous n\'avez pas accès à cette partie du site';
+            header('Refresh: 2; /home');
+        }
     }
 
     public function allExpos()
     {
-        $countPost = $this->postController->nbPosts();
-        $countImg = $this->imageController->countedImg();
-        $countSerie = $this->serieController->countS();
-        $countExpo = $this->serieController->countE();
-        $countCom = $this->commentController->countCom();
-        $reportedCom = $this->commentController->reportedCom();
+        if(isset($_SESSION['id']) && $_SESSION['role'] == 1)
+        {
 
-        $Expos = $this->serieController->getAllExpos();
-        $Images = $this->imageController->getAllImages();
+            $countPost = $this->postController->nbPosts();
+            $countImg = $this->imageController->countedImg();
+            $countSerie = $this->serieController->countS();
+            $countExpo = $this->serieController->countE();
+            $countCom = $this->commentController->countCom();
+            $reportedCom = $this->commentController->reportedCom();
 
-        require 'src/view/back-end/adminAllExpos.php';
+            $Expos = $this->serieController->getAllExpos();
+            $Images = $this->imageController->getAllImages();
+
+            require 'src/view/back-end/adminAllExpos.php';
+
+        }
+        else
+        {
+            echo 'vous n\'avez pas accès à cette partie du site';
+            header('Refresh: 2; /home');
+        }
     }
 
     public function getOneExpo($param)
@@ -265,47 +283,72 @@ class MasterController
         (int)$id = $param[0];
         (int)$slug = $param[0];
 
-        $countPost = $this->postController->nbPosts();
-        $countImg = $this->imageController->countedImg();
-        $countSerie = $this->serieController->countS();
-        $countExpo = $this->serieController->countE();
-        $countCom = $this->commentController->countCom();
-        $reportedCom = $this->commentController->reportedCom();
+        if(isset($_SESSION['id']) && $_SESSION['role'] == 1)
+        {
 
-        $serie = $this->serieController->getOne($id, $slug);
-        $Images = $this->imageController->getImagesBySeries($id);
-        $image = $this->imageController->getOne($id);
-        $Comments = $this->commentController->allComAdmin($id);
+            $countPost = $this->postController->nbPosts();
+            $countImg = $this->imageController->countedImg();
+            $countSerie = $this->serieController->countS();
+            $countExpo = $this->serieController->countE();
+            $countCom = $this->commentController->countCom();
+            $reportedCom = $this->commentController->reportedCom();
 
-        require 'src/view/back-end/serieView.php';
+            $serie = $this->serieController->getOne($id, $slug);
+            $Images = $this->imageController->getImagesBySeries($id);
+            $image = $this->imageController->getOne($id);
+            $Comments = $this->commentController->allComAdmin($id);
+
+            require 'src/view/back-end/serieView.php';
+        }
+        else
+        {
+            echo 'vous n\'avez pas accès à cette partie du site';
+            header('Refresh: 2; /home');
+        }
     }
 
     public function allComments()
     {
-        $countPost = $this->postController->nbPosts();
-        $countImg = $this->imageController->countedImg();
-        $countSerie = $this->serieController->countS();
-        $countExpo = $this->serieController->countE();
-        $countCom = $this->commentController->countCom();
-        $reportedCom = $this->commentController->reportedCom();
+        if(isset($_SESSION['id']) && $_SESSION['role'] == 1)
+        {
+            $countPost = $this->postController->nbPosts();
+            $countImg = $this->imageController->countedImg();
+            $countSerie = $this->serieController->countS();
+            $countExpo = $this->serieController->countE();
+            $countCom = $this->commentController->countCom();
+            $reportedCom = $this->commentController->reportedCom();
 
-        $Comments = $this->commentController->getAllComments();
+            $Comments = $this->commentController->getAllComments();
 
-        require 'src/view/back-end/adminAllCom.php';
+            require 'src/view/back-end/adminAllCom.php';
+        }
+        else
+        {
+            echo 'vous n\'avez pas accès à cette partie du site';
+            header('Refresh: 2; /home');
+        }
     }
 
     public function allReportedComments()
     {
-        $countPost = $this->postController->nbPosts();
-        $countImg = $this->imageController->countedImg();
-        $countSerie = $this->serieController->countS();
-        $countExpo = $this->serieController->countE();
-        $countCom = $this->commentController->countCom();
-        $reportedCom = $this->commentController->reportedCom();
+        if(isset($_SESSION['id']) && $_SESSION['role'] == 1)
+        {
+            $countPost = $this->postController->nbPosts();
+            $countImg = $this->imageController->countedImg();
+            $countSerie = $this->serieController->countS();
+            $countExpo = $this->serieController->countE();
+            $countCom = $this->commentController->countCom();
+            $reportedCom = $this->commentController->reportedCom();
 
-        $Reported = $this->commentController->getAllReportedComments();
+            $Reported = $this->commentController->getAllReportedComments();
 
-        require 'src/view/back-end/adminReportedCom.php';
+            require 'src/view/back-end/adminReportedCom.php';
+        }
+        else
+        {
+            echo 'vous n\'avez pas accès à cette partie du site';
+            header('Refresh: 2; /home');
+        }
     }
 
     public function validateComment($param)
@@ -372,25 +415,33 @@ class MasterController
 
     public function UploadImg()
     {
-        if(isset($_SESSION['id']))
+        if(isset($_SESSION['id']) && $_SESSION['role'] == 1)
         {
-            $error = null;
-            $Series = $this->serieController->getAll();
-            $Expos = $this->serieController->getAllExpos();
+            if(isset($_SESSION['id']))
+            {
+                $error = null;
+                $Series = $this->serieController->getAll();
+                $Expos = $this->serieController->getAllExpos();
 
-            $countPost = $this->postController->nbPosts();
-            $countImg = $this->imageController->countedImg();
-            $countSerie = $this->serieController->countS();
-            $countExpo = $this->serieController->countE();
-            $countCom = $this->commentController->countCom();
-            $reportedCom = $this->commentController->reportedCom();
+                $countPost = $this->postController->nbPosts();
+                $countImg = $this->imageController->countedImg();
+                $countSerie = $this->serieController->countS();
+                $countExpo = $this->serieController->countE();
+                $countCom = $this->commentController->countCom();
+                $reportedCom = $this->commentController->reportedCom();
 
-            require 'src/view/back-end/uploadViewForm.php';
+                require 'src/view/back-end/uploadViewForm.php';
+            }
+
+            else
+            {
+                header('Location: /home');
+            }
         }
-
         else
         {
-            header('Location: /home');
+            echo 'vous n\'avez pas accès à cette partie du site';
+            header('Refresh: 2; /home');
         }
     }
 
@@ -418,25 +469,33 @@ class MasterController
 
     public function getOneImg($param)
     {
-        if(isset($_SESSION['id']))
+        if(isset($_SESSION['id']) && $_SESSION['role'] == 1)
         {
-            (int)$id = $param[0];
+            if(isset($_SESSION['id']))
+            {
+                (int)$id = $param[0];
 
-            $countPost = $this->postController->nbPosts();
-            $countImg = $this->imageController->countedImg();
-            $countSerie = $this->serieController->countS();
-            $countExpo = $this->serieController->countE();
-            $countCom = $this->commentController->countCom();
-            $reportedCom = $this->commentController->reportedCom();
+                $countPost = $this->postController->nbPosts();
+                $countImg = $this->imageController->countedImg();
+                $countSerie = $this->serieController->countS();
+                $countExpo = $this->serieController->countE();
+                $countCom = $this->commentController->countCom();
+                $reportedCom = $this->commentController->reportedCom();
 
-            $image = $this->imageController->getOne($id);
+                $image = $this->imageController->getOne($id);
 
-            require 'src/view/back-end/singleImageView.php';
+                require 'src/view/back-end/singleImageView.php';
+            }
+
+            else
+            {
+                header('Location: /home');
+            }
         }
-
         else
         {
-            header('Location: /home');
+            echo 'vous n\'avez pas accès à cette partie du site';
+            header('Refresh: 2; /home');
         }
     }
 
@@ -460,24 +519,32 @@ class MasterController
     {
         (int)$id = $param[0];
 
-        if(isset($_SESSION['id']))
+        if(isset($_SESSION['id']) && $_SESSION['role'] == 1)
         {
-            $image = $this->imageController->getOne($id);
+            if(isset($_SESSION['id']))
+            {
+                $image = $this->imageController->getOne($id);
 
 
-            $countPost = $this->postController->nbPosts();
-            $countImg = $this->imageController->countedImg();
-            $countSerie = $this->serieController->countS();
-            $countExpo = $this->serieController->countE();
-            $countCom = $this->commentController->countCom();
-            $reportedCom = $this->commentController->reportedCom();
+                $countPost = $this->postController->nbPosts();
+                $countImg = $this->imageController->countedImg();
+                $countSerie = $this->serieController->countS();
+                $countExpo = $this->serieController->countE();
+                $countCom = $this->commentController->countCom();
+                $reportedCom = $this->commentController->reportedCom();
 
 
-            require 'src/view/back-end/adminImgUpdate.php';
+                require 'src/view/back-end/adminImgUpdate.php';
+            }
+            else
+            {
+                header('Location: /home');
+            }
         }
         else
         {
-            header('Location: /home');
+            echo 'vous n\'avez pas accès à cette partie du site';
+            header('Refresh: 2; /home');
         }
     }
 
@@ -509,20 +576,28 @@ class MasterController
 
     public function addPost()
     {
-        if(isset($_SESSION['id']))
+        if(isset($_SESSION['id']) && $_SESSION['role'] == 1)
         {
-            $countPost = $this->postController->nbPosts();
-            $countImg = $this->imageController->countedImg();
-            $countSerie = $this->serieController->countS();
-            $countExpo = $this->serieController->countE();
-            $countCom = $this->commentController->countCom();
-            $reportedCom = $this->commentController->reportedCom();
+            if(isset($_SESSION['id']))
+            {
+                $countPost = $this->postController->nbPosts();
+                $countImg = $this->imageController->countedImg();
+                $countSerie = $this->serieController->countS();
+                $countExpo = $this->serieController->countE();
+                $countCom = $this->commentController->countCom();
+                $reportedCom = $this->commentController->reportedCom();
 
-            require 'src/view/back-end/adminAddPost.php';
+                require 'src/view/back-end/adminAddPost.php';
+            }
+            else
+            {
+                header('Location: /home');
+            }
         }
         else
         {
-            header('Location: /home');
+            echo 'vous n\'avez pas accès à cette partie du site';
+            header('Refresh: 2; /home');
         }
     }
 
@@ -545,15 +620,24 @@ class MasterController
     {
         (int)$id = $param[0];
 
-        $post = $this->postController->getPost($id);
-        $countPost = $this->postController->nbPosts();
-        $countImg = $this->imageController->countedImg();
-        $countSerie = $this->serieController->countS();
-        $countExpo = $this->serieController->countE();
-        $countCom = $this->commentController->countCom();
-        $reportedCom = $this->commentController->reportedCom();
+        if(isset($_SESSION['id']) && $_SESSION['role'] == 1)
+        {
 
-        require 'src/view/back-end/updatePostView.php';
+            $post = $this->postController->getPost($id);
+            $countPost = $this->postController->nbPosts();
+            $countImg = $this->imageController->countedImg();
+            $countSerie = $this->serieController->countS();
+            $countExpo = $this->serieController->countE();
+            $countCom = $this->commentController->countCom();
+            $reportedCom = $this->commentController->reportedCom();
+
+            require 'src/view/back-end/updatePostView.php';
+        }
+        else
+        {
+            echo 'vous n\'avez pas accès à cette partie du site';
+            header('Refresh: 2; /home');
+        }
     }
 
     public function updatePost($param)
@@ -600,14 +684,22 @@ class MasterController
 
     public function serieAdd()
     {
-        $Images = $this->imageController->getAllImages();
-        $countPost = $this->postController->nbPosts();
-        $countImg = $this->imageController->countedImg();
-        $countSerie = $this->serieController->countS();
-        $countCom = $this->commentController->countCom();
-        $reportedCom = $this->commentController->reportedCom();
+        if(isset($_SESSION['id']) && $_SESSION['role'] == 1)
+        {
+            $Images = $this->imageController->getAllImages();
+            $countPost = $this->postController->nbPosts();
+            $countImg = $this->imageController->countedImg();
+            $countSerie = $this->serieController->countS();
+            $countCom = $this->commentController->countCom();
+            $reportedCom = $this->commentController->reportedCom();
 
-        require 'src/view/back-end/AddSerieView.php';
+            require 'src/view/back-end/AddSerieView.php';
+        }
+        else
+        {
+            echo 'vous n\'avez pas accès à cette partie du site';
+            header('Refresh: 2; /home');
+        }
     }
 
     public function addSerie()
@@ -629,17 +721,25 @@ class MasterController
 public function serieUpdate($param)
 {
     (int)$id = $param[0];
-    $serie = $this->serieController->getOne($id);
-    $Images = $this->imageController->getImagesBySeries($id);
+    if(isset($_SESSION['id']) && $_SESSION['role'] == 1)
+    {
+        $serie = $this->serieController->getOne($id);
+        $Images = $this->imageController->getImagesBySeries($id);
 
-    $countPost = $this->postController->nbPosts();
-    $countImg = $this->imageController->countedImg();
-    $countSerie = $this->serieController->countS();
-    $countExpo = $this->serieController->countE();
-    $countCom = $this->commentController->countCom();
-    $reportedCom = $this->commentController->reportedCom();
+        $countPost = $this->postController->nbPosts();
+        $countImg = $this->imageController->countedImg();
+        $countSerie = $this->serieController->countS();
+        $countExpo = $this->serieController->countE();
+        $countCom = $this->commentController->countCom();
+        $reportedCom = $this->commentController->reportedCom();
 
-    require 'src/view/back-end/updateSerie.php';
+        require 'src/view/back-end/updateSerie.php';
+    }
+    else
+    {
+        echo 'vous n\'avez pas accès à cette partie du site';
+        header('Refresh: 2; /home');
+    }
 }
 
 public function updateSerie($param)
@@ -684,17 +784,6 @@ public function chooseSerieSlider($param)
     header('Location: /adminHomePage');
 }
 
-// public function sliderSerie($param)
-// {
-//     (int)$id = $param[0];
-//     (bool)$slide_on = $param[0];
-//
-//     if($slide_on = 1 && isset($id) && $id > 0)
-//     {
-//         $serie = $this->serieController->getOneSlider($id, $slide_on);
-//     }
-// }
-
 public function deleteSerie($param)
 {
     if(isset($_SESSION['id']))
@@ -708,8 +797,6 @@ public function deleteSerie($param)
     {
         header('Location: /home');
     }
-
-
 }
 
 public function admin()
@@ -724,7 +811,6 @@ public function inscription()
 
 public function UserInscription()
 {
-    // $error = null;
 
     if (!empty($_POST))
     {

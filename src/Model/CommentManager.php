@@ -12,7 +12,7 @@ class CommentManager extends Manager
     {
         $Comments = [];
 
-        $req = 'SELECT c.id, c.user_id, u.identifiant, c.comment,
+        $req = 'SELECT c.id, c.user_id, u.identifiant, c.comment, c.validate,
         DATE_FORMAT(c.comment_date, \'%d/%m/%Y à %Hh%i\')
         AS comment_date FROM comments AS c
         LEFT JOIN user AS u
@@ -44,7 +44,7 @@ class CommentManager extends Manager
     {
         $Comments = [];
 
-        $req = 'SELECT c.id, c.serie_id, u.identifiant, c.comment,
+        $req = 'SELECT c.id, c.serie_id, u.identifiant, c.comment, c.validate,
         DATE_FORMAT(c.comment_date, \'%d/%m/%Y à %Hh%i\')
         AS comment_date FROM comments AS c
         LEFT JOIN user AS u
@@ -83,7 +83,7 @@ class CommentManager extends Manager
 
     public function validateComment(Comment $comment)
     {
-        $req = $this->db->prepare('UPDATE comments SET report = 0
+        $req = $this->db->prepare('UPDATE comments SET report = 0, validate = 1
         WHERE id = :id');
 
         $req->bindValue(':id', $comment->id(), \PDO::PARAM_INT);

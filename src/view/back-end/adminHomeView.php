@@ -160,7 +160,7 @@
 
     <div class="containerAdmin">
         <div class="titre">
-            <h4>Toutes les series</h4>
+            <h4>Toutes les expositions</h4>
         </div>
 
         <section class="row serieRow">
@@ -188,8 +188,8 @@
             <?php endforeach; ?>
         </section>
         <div class="btnsuite">
-            <a href="/allSeries">
-                <input type="button" class="btn btn-outline-secondary" value="Voir toutes les séries"/>
+            <a href="/allExpos">
+                <input type="button" class="btn btn-outline-secondary" value="Voir toutes les expositions"/>
             </a>
         </div>
     </div>
@@ -251,8 +251,6 @@
             </a>
         </div>
     </div>
-
-
 </section>
 
 <?php $content = ob_get_clean(); ?>

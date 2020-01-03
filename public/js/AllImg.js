@@ -27,9 +27,6 @@ document.addEventListener('DOMContentLoaded', function(){
                 success:function(php){
 
                     this.display(php);
-
-                    // document.querySelector('.close').style.display = "block";
-                    // document.querySelector('.btnsuite').style.display = "none";
                 }.bind(this),
 
                 error:function(res, status, err){
@@ -56,6 +53,8 @@ document.addEventListener('DOMContentLoaded', function(){
         };
 
         closePage(){
+            var remove = document.querySelector('.removeContainer');
+            remove.classList.add('removeContainer');
             // $('.container').slideUp(400, function(){
             //     $('.container').empty();
             //     $('.container').append(data);

@@ -44,8 +44,20 @@
                                 </div>
                                 <p><?= htmlspecialchars($data->comment()); ?></p>
                             </div>
-                            <a href="/reportCom/<?= $data->id(); ?>">Signaler</a>
+                            <?php if($data->validate()){?>
+                                <i class="fas fa-check-circle"></i>
+                            <?php }
+                            else {?>
+
+                                <a href="/reportCom/<?= $data->id(); ?>">
+                                    <button type="button" class="btn btn-outline-danger">signaler</button>
+                                </a>
+
+                            <?php }?>
                         </div>
+                        
+                        <hr class="separation">
+
                     </div>
                 </div>
 
@@ -81,6 +93,7 @@
 
         <?php }
         else {?>
+            <p>Connectez-vous pour laisser un commentaire</p>
             <a href="/admin">
                 <input type="button" class="btn btn-outline-primary" value="connexion"/>
             </a>
