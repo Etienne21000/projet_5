@@ -161,7 +161,7 @@
 
     <div class="containerAdmin">
         <div class="titre">
-            <!-- <h4>Toutes les expositions</h4> -->
+            <h4>Toutes les expositions</h4>
         </div>
 
         <section class="row serieRow">

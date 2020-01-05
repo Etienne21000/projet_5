@@ -19,7 +19,7 @@
             <div class="content_serie">
                 <!-- <div class="desc"> -->
                 <p>
-                    <?= htmlspecialchars($serie->tech()); ?>
+                    <?= html_entity_decode($serie->tech()); ?>
                 </p>
 
                 <hr class="separation">

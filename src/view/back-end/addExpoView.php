@@ -3,18 +3,16 @@
 <?php  ob_start(); ?>
 
 <div class="blocInfos">
+	<section class="container">
 
 		<div class="containerAdmin">
-
-			<section class="container">
-				<div class="titre">
-					<h4>
-						Créer une nouvelle série
-					</h4>
-				</div>
-
+            <div class="titre">
+    			<h4>
+    				Créer une nouvelle exposition
+    			</h4>
+    		</div>
 			<aside id="addSerie">
-				<form action="/addSerie" method="POST">
+				<form action="/addExpo" method="POST">
 
 					<p>
 						<label for="form-content">Titre</label>
@@ -35,7 +33,7 @@
 					</p>
 
 					<p>
-						<button type="submit" value="submit" name="submit" class="button1">Ajouter la série<i class="fas fa-pen-nib"></i></button>
+						<button type="submit" value="submit" name="submit" class="button1">Ajouter l'exposition'<i class="fas fa-pen-nib"></i></button>
 					</p>
 
 				</form>

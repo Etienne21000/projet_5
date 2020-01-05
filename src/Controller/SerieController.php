@@ -17,17 +17,26 @@ class SerieController
         // $this->images = new ImageController();
     }
 
-    public function newSerie($title, $description, $tech/*, $slug*/)
+    public function newSerie($title, $description, $tech)
     {
         $Serie = new Serie([$data]);
 
         $Serie->setTitle($title);
         $Serie->setDescription($description);
         $Serie->setTech($tech);
-        // $Serie->setSlug($slug);
-        // $Serie->setIdimg($id_img);
 
         $this->serie->addSerie($Serie);
+    }
+
+    public function newExpo($title, $description, $tech)
+    {
+        $Expo = new Serie([$data]);
+
+        $Expo->setTitle($title);
+        $Expo->setDescription($description);
+        $Expo->setTech($tech);
+
+        $this->serie->addExpo($Expo);
     }
 
     public function update($id, $title, $description, $tech, $id_img)
@@ -57,6 +66,13 @@ class SerieController
     //     $this->serie->unchosseSerie();
     // }
 
+    public function getSerieAdmin()
+    {
+        $Series = $this->serie->getAllSerie($slug = 1, $start = 0, $limite = 3);
+
+        return $Series;
+    }
+
     public function getAll()
     {
         $Series = $this->serie->getAllSerie($slug = 1);
@@ -71,10 +87,16 @@ class SerieController
         return $Expos;
     }
 
+    public function getExpoAdmin()
+    {
+        $Expos = $this->serie->getAllSerie($slug = 2, $start = 0, $limite = 3);
+
+        return $Expos;
+    }
+
     public function getOne($id)
     {
         $serie = $this->serie->getOneSerie($id);
-        // $Images = $this->images->getImagesBySeries($id_serie);
 
         return $serie;
     }

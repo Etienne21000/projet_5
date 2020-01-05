@@ -12,13 +12,24 @@ class SerieManager extends Manager
 
     public function addSerie(Serie $serie)
     {
-        $req = $this->db->prepare('INSERT INTO Serie(title, description, tech/*, slug*/, creation_date)
-        VALUES(:title, :description, :tech,/* :slug,*/ NOW())');
+        $req = $this->db->prepare('INSERT INTO Serie(title, description, tech, slug, creation_date)
+        VALUES(:title, :description, :tech, 1, NOW())');
 
         $req->bindValue(':title', $serie->title());
         $req->bindValue(':description', $serie->description());
         $req->bindValue(':tech', $serie->tech());
-        // $req->bindValue(':slug', $serie->slug(), \PDO::PARAM_BOOL);
+
+        $req->execute();
+    }
+
+    public function addExpo(Serie $serie)
+    {
+        $req = $this->db->prepare('INSERT INTO Serie(title, description, tech, slug, creation_date)
+        VALUES(:title, :description, :tech, 2, NOW())');
+
+        $req->bindValue(':title', $serie->title());
+        $req->bindValue(':description', $serie->description());
+        $req->bindValue(':tech', $serie->tech());
 
         $req->execute();
     }

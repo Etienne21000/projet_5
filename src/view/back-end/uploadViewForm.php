@@ -4,13 +4,14 @@
 
 <div class="blocInfos">
     <section class="container">
-        <div class="titre">
-            <h4>
-                Ajouter une image
-            </h4>
-        </div>
 
         <div class="containerAdmin">
+
+            <div class="titre">
+                <h4>
+                    Ajouter une image
+                </h4>
+            </div>
 
             <form action="/addImg" method="POST" enctype="multipart/form-data">
 
@@ -48,13 +49,6 @@
                     <label for="form-content">Description</label>
                     <br>
                     <textarea type="textarea" name="description" id="full-featured-non-premium" charset="utf-8"></textarea>
-                </p>
-
-                <p>
-                    <label for="Serie">Serie</label>
-                    <input type="checkbox" name="Serie" class="checkbox"/>
-                    <label for="Expo">Exposition</label>
-                    <input type="checkbox" name="Expo" class="checkbox"/>
                 </p>
 
                 <p>
