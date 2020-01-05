@@ -39,6 +39,13 @@ class ImageController
         return $Images;
     }
 
+    public function imgSlider()
+    {
+        $Images = $this->image->getImgForSlider();
+
+        return $Images;
+    }
+
     public function getFirstImg($id_serie)
     {
         $Image = $this->image->getImgBySerie($id_serie, $start = 0, $limit = 1);

@@ -261,18 +261,6 @@ ul ul a {
         margin:auto;
     }
 
-    /* .col-sm-3 img
-    {
-    width: 50%;
-    } */
-
-    /*-- Accueil --*/
-
-    /* .banner_image
-    {
-        height: 608px;
-    } */
-
     .banner_image img
     {
         width: 100%;
@@ -285,7 +273,7 @@ ul ul a {
     {
         margin-bottom: 0px;
         margin-top: 55px;
-        height: auto;
+        height: 620px;
     }
 
     /*-- Accueil --*/

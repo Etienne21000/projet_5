@@ -1,7 +1,10 @@
-RewriteEngine on
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteBase /
 
-RewriteCond %{REQUEST-FILENAME} !-f
-RewriteCond %{REQUEST-FILENAME} !-d
-RewriteCond %{REQUEST_URI} !(\.css|\.min.css|\.js|\.png|\.jpg|\.gif|robots\.txt)$ [NC]
+    RewriteCond %{REQUEST-FILENAME} !-f
+    RewriteCond %{REQUEST-FILENAME} !-d
+    RewriteCond %{REQUEST_URI} !(\.css|\.min.css|\.js|\.png|\.jpg|\.gif|robots\.txt)$ [NC]
 
-RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
+    RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
+</IfModule>

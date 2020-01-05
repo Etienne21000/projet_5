@@ -35,11 +35,6 @@
                 </div>
             </div>
         <?php endforeach; ?>
-
-        <div class="btnsuite">
-            <button type="button" class="btn btn-outline-secondary">Voir toutes les séries</button>
-        </div>
-
     </article>
 </section>
 

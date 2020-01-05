@@ -54,6 +54,30 @@ class ImageManager extends Manager
         return $Images;
     }
 
+    public function getImgForSlider()
+    {
+        $Images = [];
+
+        $req = 'SELECT i.id, i.title, i.image, i.description, i.id_serie, i.id_expo,
+        DATE_FORMAT(i.image_date, \'%d/%m/%Y à %Hh%i\') AS image_date
+        FROM images AS i LEFT JOIN Serie AS s ON i.id_serie = s.id
+        WHERE s.slide_on = true ORDER BY image_date';
+
+        $result = $this->db->prepare($req);
+
+        $result->execute();
+
+        while ($data = $result->fetch(\PDO::FETCH_ASSOC))
+        {
+            $image = new Image($data);
+            $Images[] = $image;
+        }
+
+        return $Images;
+    }
+
+
+
     public function getAll($start = -1, $limit = -1)
     {
         $Images = [];

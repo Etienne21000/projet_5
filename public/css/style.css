@@ -569,10 +569,20 @@ A propos view
     color: green;
 }
 
+#error
+{
+    color: red;
+}
+
 @media all and (min-width: 300px) and (max-width: 767px)
 {
     .serie
     {
         width: 94%;
+    }
+
+    #banner
+    {
+        height: 620px;
     }
 }

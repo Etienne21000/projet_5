@@ -4,11 +4,14 @@ session_start();
 
 require_once (__DIR__ .'/vendor/autoload.php');
 use App\Model\Router;
+use App\Controller\MasterController;
 
 $router = new Router($_GET['url']);
+$controller = new MasterController();
 
 $router->get('/home', 'Master#home');
-// $router->get('/{id}', 'Master#home');
+$router->get('/', 'Master#home');
+$router->get('/contact', 'Master#contact');
 
 
 $router->get('/series', 'Master#series');
@@ -70,21 +73,3 @@ $router->post('/chooseSerie/{id}', 'Master#chooseSerieSlider');
 $router->get('/error404', 'Master#error');
 
 $router->run();
-
-
-// $router->get('/serieAdd', 'Master#serieAdd');
-// $router->post('/addSerie', 'Master#addSerie');
-// $router->get('/serieUpdate/{id}', 'Master#serieUpdate');
-// $router->post('/updateSerie/{id}', 'Master#updateSerie');
-//
-//
-//
-// $router->get('/addPost', 'Master#addPost');
-// $router->post('/newPost', 'Master#newPost');
-// $router->get('/postUpdate/{id}', 'Master#postUpdate');
-// $router->post('/updatePost/{id}', 'Master#updatePost');
-
-
-// $router->get('/allImg', 'Master#getImages');
-// $router->get('/getOneImg/{id}', 'Master#getOneImg');
-// $router->get('/deleteImg/{id}', 'Master#deleteImage');

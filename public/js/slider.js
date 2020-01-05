@@ -1,19 +1,15 @@
 class Slider {
-    constructor(banner, slider, nbSlide, slide, index, btnsuiv, btnprec){
+    constructor(banner, slider, nbSlide, slide, index){
         this.banner = document.querySelector(banner);
         this.slider = document.querySelector(slider);
         this.nbSlide = document.querySelectorAll(nbSlide).length-1;
         this.slide = document.querySelectorAll(slide);
         this.index = index;
-        this.btnsuiv = document.querySelector(btnsuiv);
-        this.btnprec = document.querySelector(btnprec);
         this.timer;
     };
 
     init(){
-        // this.slideShow();
-        this.btnsuiv.addEventListener("click", this.suivSlide.bind(this));
-        this.btnprec.addEventListener("click", this.precSlide.bind(this));
+        this.slideShow();
         document.addEventListener("keydown", this.slideClavier.bind(this));
     };
 
@@ -61,15 +57,11 @@ class Slider {
     };
 
     slideClavier(e) {
-            if(e.keyCode === 39){
-                this.suivSlide();
-            }
-            else if(e.keyCode === 37){
-                this.precSlide();
-            }
-        };
-    // stopSlide(){
-    //     clearTimeout(this.timer);
-    // };
-
+        if(e.keyCode === 39){
+            this.suivSlide();
+        }
+        else if(e.keyCode === 37){
+            this.precSlide();
+        }
+    };
 };

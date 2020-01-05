@@ -1,11 +1,6 @@
 document.addEventListener('DOMContentLoaded', function(){
 
     class SingleImg {
-        // construtor(imageDetails){
-        //
-        //     // this.js_form = document.querySelectorAll('.js-form');
-        //     this.imageDetails = document.querySelectorAll('#image_details');
-        // };
 
         init(){
             this.openImg();

@@ -32,6 +32,13 @@
                         <input type="submit" class="btnSubmit" value="Inscription" />
                     </div>
 
+                    <?php if($error)
+                    {?>
+                        <p class="p-3 mb-2 bg-danger text-white">
+                            <?php echo $error;?>
+                        </p>
+                    <?php	}?>
+
                 </form>
             </div>
         </div>

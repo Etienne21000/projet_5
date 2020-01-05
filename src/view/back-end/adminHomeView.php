@@ -24,7 +24,7 @@
                 <h4>Choisissez la série du slider</h4>
             </div>
             <?php foreach ($Series as $data): ?>
-                <form action="/chooseSerie/<?=$data->id(); ?>" method="POST">
+                <form action="/chooseSerie/<?= $data->id(); ?>" method="POST">
                 <?php endforeach; ?>
 
                 <p>
@@ -35,11 +35,12 @@
 
                         <?php foreach ($Series as $data): ?>
 
-                            <option value="<?php echo $data->id(); ?>"> <?php echo $data->title(); ?></option>
+                            <option value="<?= $data->id(); ?>"> <?= $data->title(); ?></option>
 
                         <?php endforeach; ?>
                     </select>
                 </p>
+
                 <p>
                     <button type="submit" value="submit" name="submit" id="submit_btn">slider</button>
                 </p>
@@ -160,7 +161,7 @@
 
     <div class="containerAdmin">
         <div class="titre">
-            <h4>Toutes les expositions</h4>
+            <!-- <h4>Toutes les expositions</h4> -->
         </div>
 
         <section class="row serieRow">

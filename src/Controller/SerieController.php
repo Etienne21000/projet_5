@@ -48,17 +48,14 @@ class SerieController
         $Serie = new Serie([$data]);
 
         $Serie->setId($id);
-        // $Serie->setSlideon($slide_on);
 
         $this->serie->chooseSerie($Serie);
     }
 
-    public function getOneSlider($id)
-    {
-        $Series = $this->serie->getOneSerieForSlider($id);
-
-        return $Series;
-    }
+    // public function unChoose()
+    // {
+    //     $this->serie->unchosseSerie();
+    // }
 
     public function getAll()
     {

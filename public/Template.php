@@ -7,12 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title> <?= $title?> </title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif] -->
+
     <meta name="description" content="Site du photographe Stefano G Bianchi">
     <meta name="author" content="Stefano G bianchi photographe, Paris">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,400&display=swap" rel="stylesheet">
@@ -53,7 +48,7 @@
                         <a class="nav-link" href="/Bio">A PROPOS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/">CONTACT</a>
+                        <a class="nav-link" href="/contact">CONTACT</a>
                     </li>
 
                     <?php if(isset($_SESSION['id']) && $_SESSION['role'] = 1){ ?>
@@ -77,13 +72,11 @@
     <?= $content ?>
 
     <footer>
-        <!-- <script src="/public/js/transitions.js"></script> -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script src="/public/css/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
         <script src="/public/js/slider.js"></script>
         <script src="/public/js/ajaxTest.js"></script>
         <script src="/public/js/main.js"></script>
-        <!-- <script src="/public/js/ajax.js"></script> -->
         <p> Copyright © Etienne Juffard - 2019 - Campo d'Ombra - Stefano Bianchi - tous droits réservés </p>
     </footer>
 

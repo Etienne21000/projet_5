@@ -30,38 +30,36 @@ class MasterController
     ---------------------------------------------------- */
     public function home()
     {
-        // (int)$slide_on = $param[0];
-        (int)$id = $id;
-        // (bool)$slide_on = $param[0];
-        // (int)$id_serie = $param[0];
-
-        // if($slide_on = 1)
-        // {
-        $Series = $this->serieController->getOneSlider($id);
+        // $Series = $this->serieController->getOneSlider($id);
 
 
         // if(isset($id) && $id > 0)
         // {
         //recupérer id de la série
-        $Images = $this->imageController->getImagesBySeries($id);
+        // $Images = $this->imageController->getImagesBySeries($id);
         // $Images = $this->imageController->getAllImages();
         // }
 
         // var_dump($slide_on);
 
         // }
+        $Images = $this->imageController->imgSlider();
 
 
         require 'src/view/front-end/indexView.php';
     }
 
-    public function template($param)
+    // public function template($param)
+    // {
+    //     (int)$id = $param[0];
+    //     (int)$slide_on = $param[0];
+    //
+    //     $Series = $this->serieController->getOneSlider($id, $slide_on);
+    // }
+
+    public function contact()
     {
-        (int)$id = $param[0];
-        (int)$slide_on = $param[0];
-
-        $Series = $this->serieController->getOneSlider($id, $slide_on);
-
+        require 'src/view/front-end/contactView.php';
     }
 
     public function series()
@@ -707,7 +705,6 @@ class MasterController
         if(!empty($_POST['title']) && !empty($_POST['description']) && !empty($_POST['tech'])/* && !empty($_POST['slug'])*/)
         {
         $this->serieController->newSerie(htmlspecialchars($_POST['title']), htmlspecialchars($_POST['description']), htmlspecialchars($_POST['tech'])/*, htmlspecialchars($_POST['slug'])*/);
-        // $image = $this->imageController->getOneImg($_GET['id']);
     }
 
     else
@@ -772,12 +769,13 @@ public function updateSerie($param)
 public function chooseSerieSlider($param)
 {
     (int)$id = $param[0];
-
+    
     if(isset($id) && $id > 0)
     {
         $this->serieController->serieChoose($id);
     }
-    else {
+    else
+    {
         throw new \Exception('Aucun identifiant de série ne correspond');
     }
 
@@ -801,16 +799,19 @@ public function deleteSerie($param)
 
 public function admin()
 {
+    $error = null;
     require 'src/view/front-end/adminConnectView.php';
 }
 
 public function inscription()
 {
+    $error = null;
     require 'src/view/front-end/inscriptionView.php';
 }
 
 public function UserInscription()
 {
+    $error = null;
 
     if (!empty($_POST))
     {
@@ -826,28 +827,28 @@ public function UserInscription()
         if(empty($_POST['identifiant']) || strlen($_POST['identifiant']) > 100 || !preg_match("#^[a-zà-ùA-Z0-9-\s_-]+$#", $_POST['identifiant']))
         {
             $validate = false;
-            // $error = 1;
+            $error = 1;
         }
 
         //Verity mail
         if(empty($_POST['mail']) || strlen($_POST['mail']) > 255 || !filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL))
         {
             $validate = false;
-            // $error = 2;
+            $error = 2;
         }
 
         //Verity pass
         if(empty($_POST['pass']) || strlen($_POST['pass']) > 100 || !preg_match("#^[a-zA-Z0-9_-]+.{8,}$#", $_POST['pass']))
         {
             $validate = false;
-            // $error = 3;
+            $error = 3;
         }
 
         //Confirm password
         if(empty($_POST['confirmePass']) || ($_POST['pass'] !== $_POST['confirmePass']))
         {
             $validate = false;
-            // $error = 4;
+            $error = 4;
         }
 
         if($validate)
@@ -862,50 +863,47 @@ public function UserInscription()
                 header('Location: /admin');
             }
 
-            // else
-            // {
-            //     $error = 5;
-            // }
+            else
+            {
+                $error = 5;
+            }
 
         }
     }
 
-    // switch ($error)
-    // {
-    //     case 5:
-    //     $error = '* Pseudo invalide';
-    //     break;
-    //
-    //     case 6:
-    //     $error = '* Mail invalide';
-    //     break;
-    //
-    //     case 7:
-    //     $error = '* Mot de passe invalide';
-    //     break;
-    //
-    //     case 8:
-    //     $error = '* Confirmez à nouveau votre mot de passe';
-    //     break;
-    //
-    //     case 9:
-    //     $error = '* Ce pseudo ou cette adresse mail est déjà utilisé(e)';
-    //     break;
-    // }
-    //
-    // header('Location: /inscription');
+    switch ($error)
+    {
+        case 5:
+        $error = '* Pseudo invalide';
+        break;
+
+        case 6:
+        $error = '* Mail invalide';
+        break;
+
+        case 7:
+        $error = '* Le mot de passe doit contenir au moins 8 caractères';
+        break;
+
+        case 8:
+        $error = '* Confirmez à nouveau votre mot de passe';
+        break;
+
+        case 9:
+        $error = '* Ce pseudo ou cette adresse mail est déjà utilisé(e)';
+        break;
+    }
+
+    header('Location: /inscription');
 }
 
 public function connectUser()
 {
-    // $identifiant = $param[0];
-    // (int)$id = $param[0];
+    $error = null;
 
     if (!empty($_POST))
     {
         $validate = true;
-        $error = null;
-
         //verify if empty fields
         if (empty($_POST['identifiant']) || empty($_POST['pass']))
         {
@@ -927,7 +925,6 @@ public function connectUser()
             if (!$user)
             {
                 $error = 3;
-                echo 'impossible de vous connecter';
             }
 
             else
@@ -936,7 +933,6 @@ public function connectUser()
 
                 if($passVerify)
                 {
-                    // session_start();
                     $_SESSION['id'] = $user['id'];
                     $_SESSION['identifiant'] = $user['identifiant'];
                     $_SESSION['role'] = $user['role'];
@@ -949,36 +945,38 @@ public function connectUser()
                     {
                         header('Location: /home');
                     }
-                    // require 'src/view/back-end/adminHomeView.php';
                 }
 
                 else
                 {
-                    echo 'Mauvais mot de passe';
                     $error = 4;
                 }
             }
         }
-
-        switch ($error)
-        {
-            case 1:
-            $error = '* Veuillez renseigner votre pseudo';
-            break;
-
-            case 2:
-            $error = '* Veuillez renseigner votre mot de passe';
-            break;
-
-            case 3:
-            $error = '* Pseudo invalide';
-            break;
-
-            case 4:
-            $error = '* Mot de passe invalide';
-            break;
-        }
     }
+
+    switch ($error)
+    {
+        case 1:
+        $error = '* Veuillez renseigner votre pseudo';
+        break;
+
+        case 2:
+        $error = '* Veuillez renseigner votre mot de passe';
+        break;
+
+        case 3:
+        $error = '* Pseudo invalide';
+        // var_dump($error);
+
+        break;
+
+        case 4:
+        $error = '* Mot de passe invalide';
+        break;
+    }
+
+    require 'src/view/front-end/adminConnectView.php';
 }
 
 public function userDeconnexion()

@@ -20,13 +20,10 @@
                     <div class="form-group">
                         <input type="submit" class="btnSubmit" value="Connexion" />
                     </div>
-                    <div class="form-group">
-                        <a href="#" class="ForgetPwd">Mot de passe oublié ?</a>
-                    </div>
 
                     <?php if($error)
                     {?>
-                        <p id="error">
+                        <p class="p-3 mb-2 bg-danger text-white">
                             <?php echo $error;?>
                         </p>
                     <?php	}?>

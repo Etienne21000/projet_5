@@ -11,8 +11,6 @@ document.addEventListener('DOMContentLoaded', function(){
 
         init(){
             this.imgForm.addEventListener('click', this.openPage.bind(this));
-            this.cross.addEventListener('click', this.closePage.bind(this));
-            // this.closePage();
             this.cross.style.display = "none";
         };
 
@@ -21,8 +19,6 @@ document.addEventListener('DOMContentLoaded', function(){
                 url:'/allImg',
                 method: 'GET',
                 cache:false,
-                // data:{image:image},
-                // dataType: 'json',
 
                 success:function(php){
 
@@ -50,18 +46,6 @@ document.addEventListener('DOMContentLoaded', function(){
                 }
 
             });
-        };
-
-        closePage(){
-            var remove = document.querySelector('.removeContainer');
-            remove.classList.add('removeContainer');
-            // $('.container').slideUp(400, function(){
-            //     $('.container').empty();
-            //     $('.container').append(data);
-            //     $('.container').slideDown(1000);
-            // });
-            this.cross.style.display = "none"
-            console.log('fermer');
         };
 
         display(data){

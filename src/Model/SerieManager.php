@@ -102,32 +102,11 @@ class SerieManager extends Manager
         $req->execute();
     }
 
-    //Get One serie for slider.
-    public function getOneSerieForSlider($id)
+    public function unchosseSerie()
     {
-        $Series = [];
+        $req = $this->db->prepare('UPDATE Serie SET slide_on = 0');
 
-        $req = 'SELECT id, title, description, tech, slide_on,
-        DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date
-        FROM Serie WHERE id = :id AND slide_on = 1';
-
-        $result = $this->db->prepare($req);
-
-        $result->bindValue(':id', $id, \PDO::PARAM_INT);
-
-        $result->execute();
-
-        // $data = $req->fetch(\PDO::FETCH_ASSOC);
-        // $serie = new Serie($data);
-        //
-        // return $serie;
-        while ($data = $result->fetch(\PDO::FETCH_ASSOC))
-        {
-            $serie = new Serie($data);
-            $Series[] = $serie;
-        }
-
-        return $Series;
+        $req->execute();
     }
 
     public function countSeries()
