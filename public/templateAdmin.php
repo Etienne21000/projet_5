@@ -69,7 +69,7 @@
                         <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">BILLETS</a>
                         <ul class="collapse list-unstyled" id="homeSubmenu">
                             <li>
-                                <a href="/addPost"> Tous les billets (<?= $countPost ?>)</a>
+                                <a href="/allPosts"> Tous les billets (<?= $countPost ?>)</a>
                             </li>
                             <li>
                                 <a href="/addPost"> Ajouter un billet</a>
@@ -105,10 +105,6 @@
                     <li class="active">
                         <a href="#imagesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">IMAGES</a>
                         <ul class="collapse list-unstyled" id="imagesSubmenu">
-                            <li>
-                                <a href="/allImg"> Toutes les images (<?= $countImg ?>)</a>
-                            </li>
-
                             <li>
                                 <a href="/UploadImg"> Ajouter une image</a>
                             </li>

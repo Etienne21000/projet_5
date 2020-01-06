@@ -27,5 +27,4 @@
     <div>
         <a href="/adminHomePage" class="close" name="close"><i class="far fa-times-circle"></i></a>
     </div>
-    <!-- </div> -->
 </div>

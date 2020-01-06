@@ -61,10 +61,10 @@ class SerieController
         $this->serie->chooseSerie($Serie);
     }
 
-    // public function unChoose()
-    // {
-    //     $this->serie->unchosseSerie();
-    // }
+    public function unChoose()
+    {
+        $this->serie->unchosseSerie();
+    }
 
     public function getSerieAdmin()
     {
@@ -75,9 +75,9 @@ class SerieController
 
     public function getAll()
     {
-        $Series = $this->serie->getAllSerie($slug = 1);
+        $series = $this->serie->getAllSerie($slug = 1);
 
-        return $Series;
+        return $series;
     }
 
     public function getAllExpos()

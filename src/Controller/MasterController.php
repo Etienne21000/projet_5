@@ -160,6 +160,7 @@ class MasterController
             $Images = $this->imageController->getAllimg();
             $Posts = $this->postController->getPostAdmin();
             $Series = $this->serieController->getSerieAdmin();
+            $series = $this->serieController->getAll();
             $Expos = $this->serieController->getExpoAdmin();
             $Comments = $this->commentController->getAllC();
             $Reported = $this->commentController->getAllReportedComments();
@@ -172,6 +173,24 @@ class MasterController
             header('Refresh: 2; /home');
         }
 
+    }
+
+    public function chooseSerieSlider($param)
+    {
+        (int)$id = $param[0];
+
+        $this->serieController->unChoose();
+
+        if(isset($id) && $id > 0)
+        {
+            $this->serieController->serieChoose($id);
+        }
+        else
+        {
+            throw new \Exception('Aucun identifiant de série ne correspond');
+        }
+
+        header('Location: /adminHomePage');
     }
 
     public function allSeries()
@@ -588,6 +607,13 @@ class MasterController
         header('Location: /adminHomePage');
     }
 
+    public function getAllPostsAdmin()
+    {
+        $Posts = $this->postController->getAllPost();
+
+        require 'src/view/back-end/allPost.php';
+    }
+
     public function postUpdate($param)
     {
         (int)$id = $param[0];
@@ -615,6 +641,8 @@ class MasterController
     public function updatePost($param)
     {
         (int)$id = $param[0];
+        $post = $this->postController->getPost($id);
+
         if(isset($id) && $id > 0)
         {
             if(!empty($_POST['content']) && !empty($_POST['title']))
@@ -634,7 +662,7 @@ class MasterController
             throw new \Exception("Aucun identifiant de billet");
         }
 
-        header('Location: /Bio');
+        header('Location: /singlepost/' . $id);
     }
 
     public function deletePost($Param)
@@ -651,7 +679,7 @@ class MasterController
             throw new \Exception("Aucun identifiant envoyé");
         }
 
-        header('Location: /adminHomePage');
+        header('Location: /allposts');
     }
 
     public function serieAdd()
@@ -727,10 +755,12 @@ class MasterController
     public function serieUpdate($param)
     {
         (int)$id = $param[0];
+        (int)$id_serie = $param[0];
         if(isset($_SESSION['id']) && $_SESSION['role'] == 1)
         {
             $serie = $this->serieController->getOne($id);
             $Images = $this->imageController->getImagesBySeries($id);
+            $Image = $this->imageController->getFirstImg($id_serie);
 
             $countPost = $this->postController->nbPosts();
             $countImg = $this->imageController->countedImg();
@@ -775,22 +805,6 @@ class MasterController
         }
 
         header('Location: /getOneSerie/' . $id . '/' . $slug);
-    }
-
-    public function chooseSerieSlider($param)
-    {
-        (int)$id = $param[0];
-
-        if(isset($id) && $id > 0)
-        {
-            $this->serieController->serieChoose($id);
-        }
-        else
-        {
-            throw new \Exception('Aucun identifiant de série ne correspond');
-        }
-
-        header('Location: /adminHomePage');
     }
 
     public function deleteSerie($param)

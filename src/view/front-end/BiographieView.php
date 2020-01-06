@@ -12,9 +12,9 @@
                 </h3>
             </div>
 
-            <p>
+            <div>
                 <?= html_entity_decode($data->content()); ?>
-            </p>
+            </div>
             <hr class="separation">
         </article>
     <?php endforeach; ?>

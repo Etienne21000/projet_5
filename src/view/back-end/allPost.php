@@ -4,28 +4,31 @@
 
 <section class="container">
 
-    <?php foreach ($Comments as $data): ?>
+    <?php foreach ($Posts as $data): ?>
 
         <div class="container">
             <div class="starter-template">
                 <div class="titleh3">
                     <h3>
-                        <?= htmlspecialchars($data->identifiant()); ?>
+                        <?= htmlspecialchars($data->title()); ?>
                     </3>
                 </div>
 
                 <div class="date">
-                    Création <?= htmlspecialchars($data->comment_date()); ?>
+                    Créé le <?= htmlspecialchars($data->creation_date()); ?>
                 </div>
 
                 <div class="content_serie">
                     <p>
-                        <?= htmlspecialchars($data->comment()); ?>
+                        <?= html_entity_decode($data->content()); ?>
                     </p>
-
                 </div>
 
-                <a href="/serieUpdate/<?= $data->id(); ?>">
+                <a href="/postUpdate/<?= $data->id(); ?>">
+                    <input type="button" class="btn btn-outline-primary" value="mettre à jour"/>
+                </a>
+
+                <a href="/deletePost/<?= $data->id(); ?>">
                     <input type="button" class="btn btn-outline-danger" value="supprimer"/>
                 </a>
 

@@ -4,32 +4,25 @@
 
 <div class="blocInfos">
 	<section class="container">
-		<div class="titre">
-			<h4>
-				Ajouter un billet
-			</h4>
-		</div>
-
 		<div class="containerAdmin">
+			<div class="titre">
+				<h4>
+					Ajouter un billet
+				</h4>
+			</div>
 			<aside id="addPost">
 				<form action="/newPost" method="POST">
 
 					<p>
-						<label for="form-content">Titre</label>
-						<br>
 						<input type="text" name="title" class="title" required placeholder="Titre"/>
 					</p>
 
 					<p>
-						<label for="form-content">Type</label>
-						<br>
-						<input type="texte" name="slug" class="title" required placeholder="slug"/>
+						<input type="texte" name="slug" class="title" required placeholder="type"/>
 					</p>
 
 					<p>
-						<label for="form-content">Contenu</label>
-						<br>
-						<textarea type="textarea" name="content" cols="70" rows="30" id="full-featured-non-premium"></textarea>
+						<textarea type="textarea" name="content" cols="70" rows="30" id="full-featured-non-premium">Commencez à écrire...</textarea>
 					</p>
 
 					<p>

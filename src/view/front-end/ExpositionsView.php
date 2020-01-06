@@ -17,13 +17,13 @@
             <div class="serie">
 
                 <a href="/singleSerie/<?= $data->id(); ?>/<?= $data->slug(); ?>">
-                    <span class="calque">
+                    <div class="calque">
 
                         <p>
                             <?= $data->title(); ?>
                         </p>
 
-                    </span>
+                    </div>
                 </a>
 
                 <div class="serie_content">

@@ -38,6 +38,17 @@ padding-top: 50px;
     align-items: center;
 }
 
+.sliderSelect
+{
+    margin-top: 30px;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 .col-xs-4 img
 {
     width: 100%;

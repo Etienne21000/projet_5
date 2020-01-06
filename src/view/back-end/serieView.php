@@ -17,7 +17,6 @@
             </div>
 
             <div class="content_serie">
-                <!-- <div class="desc"> -->
                 <p>
                     <?= html_entity_decode($serie->tech()); ?>
                 </p>
@@ -106,9 +105,18 @@
                                         <h5 class="h5 g-color-gray-dark-v1 mb-0"><?= htmlspecialchars($data->identifiant()); ?></h5>
                                         <span class="g-color-gray-dark-v4 g-font-size-12"><?= htmlspecialchars($data->comment_date()); ?></span>
                                     </div>
-                                    <p><?= htmlspecialchars($data->comment()); ?></p>
+                                    <p> <?= htmlspecialchars($data->comment()); ?> </p>
                                 </div>
-                                <a href="/reportCom/<?= $data->id(); ?>">Signaler</a>
+                                <?php if($data->validate()){?>
+                                    <i class="fas fa-check-circle"></i>
+                                <?php }
+                                else {?>
+
+                                    <a href="/reportCom/<?= $data->id(); ?>">
+                                        <button type="button" class="btn btn-outline-danger">signaler</button>
+                                    </a>
+
+                                <?php }?>
                             </div>
                         </div>
                     </div>

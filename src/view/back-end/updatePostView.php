@@ -8,7 +8,7 @@
 		<div class="containerAdmin">
 			<div class="titre">
 				<h4>
-					Ajouter un billet
+					Mettre à jour le billet
 				</h4>
 			</div>
 			<aside id="updatePost">

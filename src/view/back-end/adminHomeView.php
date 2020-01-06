@@ -23,28 +23,21 @@
             <div class="titre">
                 <h4>Choisissez la série du slider</h4>
             </div>
-            <?php foreach ($Series as $data): ?>
-                <form action="/chooseSerie/<?= $data->id(); ?>" method="POST">
+            <section class="sliderSelect">
+                <?php foreach($series as $data):?>
+                    <form action="/chooseSerie/<?= $data->id(); ?>" method="POST">
+                        <p>
+                            <div name="id_img" class="id_img">
+                                <div value="<?= $data->id(); ?>"> <?= $data->title(); ?></div>
+                            </div>
+                        </p>
+
+                        <p>
+                            <button type="submit" value="submit" name="submit" id="submit_btn" class="btn btn-outline-primary">choisir</button>
+                        </p>
+                    </form>
                 <?php endforeach; ?>
-
-                <p>
-                    <label for="id_img">Série</label>
-                    <br>
-                    <select name="id_img" class="id_img">
-                        <option value="">Choissiez la série</option>
-
-                        <?php foreach ($Series as $data): ?>
-
-                            <option value="<?= $data->id(); ?>"> <?= $data->title(); ?></option>
-
-                        <?php endforeach; ?>
-                    </select>
-                </p>
-
-                <p>
-                    <button type="submit" value="submit" name="submit" id="submit_btn">slider</button>
-                </p>
-            </form>
+            </section>
         </div>
     </div>
 
@@ -117,7 +110,7 @@
             <?php endforeach; ?>
         </section>
         <div class="btnsuite">
-            <a href="/allSeries">
+            <a href="/allPosts">
                 <input type="button" class="btn btn-outline-secondary" value="Voir tous les posts"/>
             </a>
         </div>

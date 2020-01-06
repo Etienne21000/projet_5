@@ -7,7 +7,7 @@
         <div class="titleh3">
             <h3>
                 <?= htmlspecialchars($serie->title()); ?>
-            </3>
+            </h3>
         </div>
 
         <div class="date">
@@ -15,16 +15,15 @@
         </div>
 
         <div class="content_serie">
-            <!-- <div class="desc"> -->
-            <p>
-                <?= htmlspecialchars($serie->tech()); ?>
-            </p>
+            <div>
+                <?= html_entity_decode($serie->tech()); ?>
+            </div>
 
             <hr class="separation">
 
-            <p>
+            <div>
                 <?= html_entity_decode($serie->description()); ?>
-            </p>
+            </div>
 
         </div>
 
@@ -48,15 +47,11 @@
                                 <i class="fas fa-check-circle"></i>
                             <?php }
                             else {?>
-
-                                <a href="/reportCom/<?= $data->id(); ?>">
-                                    <button type="button" class="btn btn-outline-danger">signaler</button>
-                                </a>
-
+                                <input type="button" class="btn btn-outline-danger" value="signaler" onclick="location.href='/reportCom/<?= $data->id(); ?>'"/>
                             <?php }?>
                         </div>
-                        
-                        <hr class="separation">
+
+                        <hr class="separation"/>
 
                     </div>
                 </div>
@@ -64,11 +59,10 @@
             <?php endforeach; ?>
         </div>
 
-        <?php if(isset($_SESSION['id']) && isset($_SESSION['identifiant'])){?>
+        <?php if(isset($_SESSION['id']) && isset($_SESSION['identifiant'])){ ?>
 
             <aside id="form" aria-hidden="true" class="titre-form">
                 <article id="form-wrapper">
-                    <!-- <i class="fas fa-times" id="cross"></i> -->
                     <div class="titre titre-form">
                         <h4>Laissez un commentaire</h4>
                     </div>
@@ -94,9 +88,7 @@
         <?php }
         else {?>
             <p>Connectez-vous pour laisser un commentaire</p>
-            <a href="/admin">
-                <input type="button" class="btn btn-outline-primary" value="connexion"/>
-            </a>
+            <input type="button" class="btn btn-outline-primary" value="connexion" onclick="location.href='/admin'"/>
         <?php }?>
 
     </article>
@@ -114,7 +106,7 @@
             <?php foreach ($Images as $data): ?>
                 <div class="image_title">
                     <div class="single_img">
-                        <a name="view" value="view" id="<?= $data->id(); ?>" class="js-form">
+                        <a name="view" id="<?= $data->id(); ?>" class="js-form">
                             <img src="/public/upload/<?= htmlspecialchars($data->image()); ?>" alt="Serie boxes" class="img">
                         </a>
                     </div>

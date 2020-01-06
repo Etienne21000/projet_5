@@ -25,8 +25,6 @@
 						<br>
 						<select name="id_img" class="id_img">
 							
-							<option value="">Choissiez l'image de couverture</option>
-
 							<?php foreach ($Images as $data): ?>
 								<option value="<?php echo $data->id(); ?>"> <?php echo $data->title(); ?></option>
 							<?php endforeach; ?>

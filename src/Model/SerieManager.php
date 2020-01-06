@@ -108,6 +108,10 @@ class SerieManager extends Manager
         $req = $this->db->prepare('UPDATE Serie SET slide_on = 1
         WHERE id = :id');
 
+        // $req = $this->db->prepare('UPDATE Serie SET slide_on = 0
+        // (UPDATE Serie SET slide_on = 1)
+        // WHERE id = :id');
+
         $req->bindValue(':id', $serie->id(), \PDO::PARAM_INT);
 
         $req->execute();

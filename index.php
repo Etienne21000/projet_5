@@ -43,7 +43,8 @@ $router->post('/newPost', 'Master#newPost');
 $router->get('/postUpdate/{id}', 'Master#postUpdate');
 $router->post('/updatePost/{id}', 'Master#updatePost');
 $router->get('/singlepost/{id}', 'Master#getOnePost');
-$router->get('/deletePost', 'Master#deletePost');
+$router->get('/deletePost/{id}', 'Master#deletePost');
+$router->get('/allPosts', 'Master#getAllPostsAdmin');
 
 
 $router->get('/allImg', 'Master#getImages');
