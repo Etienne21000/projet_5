@@ -25,7 +25,7 @@
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <?php if(isset($_SESSION['id']) && $_SESSION['role'] = 1){?>
-                <a class="navbar-brand" href="/adminHomePage">STEFANO G BIANCHI</a>
+                <a class="navbar-brand" href="/adminHomePage">Stefano G Bianchi</a>
             <?php } else {?>
                 <a class="navbar-brand" href="/home">STEFANO G BIANCHI</a>
             <?php }?>

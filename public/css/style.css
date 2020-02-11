@@ -205,7 +205,7 @@ Single serie view
 
 .gallery
 {
-    width: 100%;
+    width: 53%;
     margin: 60px 20px 20px 20px;
     color: #555555;
 }
@@ -269,6 +269,8 @@ Single serie view
 .single_img
 {
     margin-bottom: 20px;
+    width: 80%;
+    height: 30%;
 }
 
 .transform img

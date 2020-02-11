@@ -64,7 +64,7 @@ class MasterController
         $serie = $this->serieController->getOne($id, $slug);
         $Images = $this->imageController->getImagesBySeries($id);
         $image = $this->imageController->getOne($id);
-        $Comments = $this->commentController->allCom($id);
+/*        $Comments = $this->commentController->allCom($id);*/
 
         require 'src/view/front-end/singleSerieView.php';
     }
@@ -99,7 +99,7 @@ class MasterController
     }
 
     /*---- Comment elements ----*/
-
+/*
     public function addComment($param)
     {
         (int)$id = $param[0];
@@ -140,7 +140,7 @@ class MasterController
         }
 
         header('Location: /series');
-    }
+    }*/
 
     /*----------------------------------------------------
     Back-office Master Controller
@@ -148,7 +148,7 @@ class MasterController
 
     public function AdminHomePage()
     {
-        if(isset($_SESSION['id']) && $_SESSION['role'] == 1)
+        if(isset($_SESSION['id']) && $_SESSION['role'] = 1)
         {
             $countPost = $this->postController->nbPosts();
             $countImg = $this->imageController->countedImg();
@@ -195,7 +195,7 @@ class MasterController
 
     public function allSeries()
     {
-        if(isset($_SESSION['id']) && $_SESSION['role'] == 1)
+        if(isset($_SESSION['id']) && $_SESSION['role'] = 1)
         {
             $countPost = $this->postController->nbPosts();
             $countImg = $this->imageController->countedImg();
@@ -221,7 +221,7 @@ class MasterController
         (int)$id = $param[0];
         (int)$slug = $param[0];
 
-        if(isset($_SESSION['id']) && $_SESSION['role'] == 1)
+        if(isset($_SESSION['id']) && $_SESSION['role'] = 1)
         {
 
             $countPost = $this->postController->nbPosts();
@@ -247,7 +247,7 @@ class MasterController
 
     public function allExpos()
     {
-        if(isset($_SESSION['id']) && $_SESSION['role'] == 1)
+        if(isset($_SESSION['id']) && $_SESSION['role'] = 1)
         {
 
             $countPost = $this->postController->nbPosts();
@@ -275,7 +275,7 @@ class MasterController
         (int)$id = $param[0];
         (int)$slug = $param[0];
 
-        if(isset($_SESSION['id']) && $_SESSION['role'] == 1)
+        if(isset($_SESSION['id']) && $_SESSION['role'] = 1)
         {
             $countPost = $this->postController->nbPosts();
             $countImg = $this->imageController->countedImg();
@@ -300,7 +300,7 @@ class MasterController
 
     public function allComments()
     {
-        if(isset($_SESSION['id']) && $_SESSION['role'] == 1)
+        if(isset($_SESSION['id']) && $_SESSION['role'] = 1)
         {
             $countPost = $this->postController->nbPosts();
             $countImg = $this->imageController->countedImg();
@@ -322,7 +322,7 @@ class MasterController
 
     public function allReportedComments()
     {
-        if(isset($_SESSION['id']) && $_SESSION['role'] == 1)
+        if(isset($_SESSION['id']) && $_SESSION['role'] = 1)
         {
             $countPost = $this->postController->nbPosts();
             $countImg = $this->imageController->countedImg();
@@ -406,7 +406,7 @@ class MasterController
 
     public function UploadImg()
     {
-        if(isset($_SESSION['id']) && $_SESSION['role'] == 1)
+        if(isset($_SESSION['id']) && $_SESSION['role'] = 1)
         {
             if(isset($_SESSION['id']))
             {
@@ -460,7 +460,7 @@ class MasterController
 
     public function getOneImg($param)
     {
-        if(isset($_SESSION['id']) && $_SESSION['role'] == 1)
+        if(isset($_SESSION['id']) && $_SESSION['role'] = 1)
         {
             if(isset($_SESSION['id']))
             {
@@ -510,7 +510,7 @@ class MasterController
     {
         (int)$id = $param[0];
 
-        if(isset($_SESSION['id']) && $_SESSION['role'] == 1)
+        if(isset($_SESSION['id']) && $_SESSION['role'] = 1)
         {
             if(isset($_SESSION['id']))
             {
@@ -567,7 +567,7 @@ class MasterController
 
     public function addPost()
     {
-        if(isset($_SESSION['id']) && $_SESSION['role'] == 1)
+        if(isset($_SESSION['id']) && $_SESSION['role'] = 1)
         {
             if(isset($_SESSION['id']))
             {
@@ -618,7 +618,7 @@ class MasterController
     {
         (int)$id = $param[0];
 
-        if(isset($_SESSION['id']) && $_SESSION['role'] == 1)
+        if(isset($_SESSION['id']) && $_SESSION['role'] = 1)
         {
 
             $post = $this->postController->getPost($id);
@@ -684,7 +684,7 @@ class MasterController
 
     public function serieAdd()
     {
-        if(isset($_SESSION['id']) && $_SESSION['role'] == 1)
+        if(isset($_SESSION['id']) && $_SESSION['role'] = 1)
         {
             $Images = $this->imageController->getAllImages();
             $countPost = $this->postController->nbPosts();
@@ -719,7 +719,7 @@ class MasterController
 
     public function expoAdd()
     {
-        if(isset($_SESSION['id']) && $_SESSION['role'] == 1)
+        if(isset($_SESSION['id']) && $_SESSION['role'] = 1)
         {
             $Images = $this->imageController->getAllImages();
             $countPost = $this->postController->nbPosts();
@@ -756,7 +756,7 @@ class MasterController
     {
         (int)$id = $param[0];
         (int)$id_serie = $param[0];
-        if(isset($_SESSION['id']) && $_SESSION['role'] == 1)
+        if(isset($_SESSION['id']) && $_SESSION['role'] = 1)
         {
             $serie = $this->serieController->getOne($id);
             $Images = $this->imageController->getImagesBySeries($id);
@@ -962,11 +962,11 @@ class MasterController
                         $_SESSION['identifiant'] = $user['identifiant'];
                         $_SESSION['role'] = $user['role'];
 
-                        if($user['role'] == 1){
+                        if($user['role'] = 1){
                             header('Location: /adminHomePage/');
                             exit();
                         }
-                        elseif ($user['role'] == 0)
+                        elseif ($user['role'] = 0)
                         {
                             header('Location: /home');
                         }
@@ -992,7 +992,6 @@ class MasterController
 
             case 3:
             $error = '* Pseudo invalide';
-            // var_dump($error);
 
             break;
 

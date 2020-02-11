@@ -2,7 +2,6 @@
 namespace App\Controller;
 
 use App\Model\SerieManager;
-
 use App\Model\Serie;
 
 class SerieController

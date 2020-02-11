@@ -1,8 +1,6 @@
 <?php
 namespace App\Model;
 
-// use App\Model\Serie;
-
 class SerieManager extends Manager
 {
     public function __construct()
@@ -85,7 +83,7 @@ class SerieManager extends Manager
         return $Series;
     }
 
-    //Get One serie with its images.
+    //Get One serie.
     public function getOneSerie($id)
     {
         $req = $this->db->prepare('SELECT id, title, description, tech,
@@ -107,10 +105,6 @@ class SerieManager extends Manager
     {
         $req = $this->db->prepare('UPDATE Serie SET slide_on = 1
         WHERE id = :id');
-
-        // $req = $this->db->prepare('UPDATE Serie SET slide_on = 0
-        // (UPDATE Serie SET slide_on = 1)
-        // WHERE id = :id');
 
         $req->bindValue(':id', $serie->id(), \PDO::PARAM_INT);
 
