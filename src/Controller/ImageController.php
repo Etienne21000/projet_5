@@ -15,7 +15,7 @@ class ImageController
 
     //Display all images
 
-    public function addImg($title, $image, $description, $id_serie)
+    public function addImg($title, $image, $description, $id_serie/*, $img_acc*/)
     {
         $Image = new Image([$data]);
 
@@ -23,6 +23,7 @@ class ImageController
         $Image->setImage($image);
         $Image->setDescription($description);
         $Image->setIdSerie($id_serie);
+/*        $Image->setImgAcc($img_acc);*/
 
         if(!$_FILES['image']['error'])
         {
@@ -128,6 +129,13 @@ class ImageController
 
         return $image;
     }
+
+    /*public function getImgAcc($id)
+    {
+        $image = $this->image->getImgAccueil($id);
+
+        return $image;
+    }*/
 
     public function countedImg()
     {

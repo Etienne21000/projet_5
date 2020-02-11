@@ -7,9 +7,16 @@ padding-top: 50px;
     /* text-align: center; */
 }
 
+.navbar-light .navbar-brand
+{
+    padding-left: 20px;
+    color: rgba(0,0,0,0.5);
+
+}
+
 .navbar-nav a
 {
-    color: #fff;
+    color: rgba(0,0,0,0.5);
     transition: all .4s ease-in-out;
 }
 

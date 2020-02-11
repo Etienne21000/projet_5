@@ -11,7 +11,7 @@
         </div>
 
         <div class="date">
-            Création <?= htmlspecialchars($serie->creation_date()); ?>
+            (<?= htmlspecialchars($serie->creation_date()); ?>)
         </div>
 
         <div class="content_serie">

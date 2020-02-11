@@ -43,6 +43,11 @@
                         <?php endforeach; ?>
 
                     </select>
+
+                    <!--<select name="id_serie" class="id_serie">
+                        <option value="">Choissiez image d'accueil</option>
+                        <option value="<?php /**/?>"></option>
+                    </select>-->
                 </p>
 
                 <p>

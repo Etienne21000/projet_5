@@ -30,7 +30,9 @@ class MasterController
     ---------------------------------------------------- */
     public function home()
     {
-        $Images = $this->imageController->imgSlider();
+/*        (int)$id = $param[0];*/
+     $Images = $this->imageController->imgSlider();
+/*        $image = $this->imageController->getImgAcc($id);*/
 
         require 'src/view/front-end/indexView.php';
     }

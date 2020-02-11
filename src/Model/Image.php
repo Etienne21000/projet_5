@@ -8,8 +8,13 @@ class Image extends Entity
     private $image;
     private $description;
     private $id_serie;
-    private $id_expo;
+    private $img_acc;
     private $image_date;
+
+    const IMGACC = [
+        0 => 'ne pas définir pour la page d\'accueil',
+        1 => 'Définir pour la page d\'accueil'
+    ];
 
     public function __construct(array $data)
     {
@@ -54,10 +59,15 @@ class Image extends Entity
         $this->id_serie = (int)$id_serie;
     }
 
-    public function setIdexpo($id_expo)
+    public function setImgAcc($img_acc)
+    {
+        $this->img_acc = (int)$img_acc;
+    }
+
+    /*public function setIdexpo($id_expo)
     {
         $this->id_expo = (int)$id_expo;
-    }
+    }*/
 
     public function setImagedate($image_date)
     {
@@ -96,10 +106,20 @@ class Image extends Entity
         return $this->id_serie;
     }
 
-    public function id_expo()
+    public function img_acc()
+    {
+        return $this->img_acc;
+    }
+
+    public function getImgAcc(): string
+    {
+        return self::IMGACC[$this->img_acc];
+    }
+
+    /*public function id_expo()
     {
         return $this->id_expo;
-    }
+    }*/
 
     public function image_date()
     {

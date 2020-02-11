@@ -1,3 +1,18 @@
+@keyframes opacity
+{
+    0%
+    {
+        opacity: 0;
+        transform: translateX(-48%);
+    }
+
+    100%
+    {
+        opacity: 100%;
+        transform: translateX(0%);
+    }
+}
+
 body
 {
     width: 100%;
@@ -37,7 +52,9 @@ header
 
 p
 {
-    font-family: Roboto;
+    /*
+    font-family: Robotothin;
+    */
 }
 
 a
@@ -139,7 +156,28 @@ a:visited
     height: 100%;
     width: 100%;
     object-fit: cover;
-    border: 10px solid #fff;
+}
+
+.titre
+{
+    position: absolute;
+    top: 40%;
+    left: 48%;
+    /*
+    border: 2px solid #fff;
+    */
+    padding: 5px 15px;
+    animation: opacity 3s ease-in-out;
+    /*
+    animation-delay: 3s;
+    */
+}
+
+.titre h1
+{
+    color: #fff;
+    font-family: 'Lato', Light;
+    font-size: 5em;
 }
 
 .btn
@@ -161,18 +199,20 @@ Single serie view
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .content_serie
 {
-    margin-top: 40px;
+    margin-top: 0px;
 }
 
 .titleh3 h3
 {
     margin-top: 1em;
     text-align: left;
-    font-family: Roboto;
+    font-family: 'Lato', bold;
     /* text-align: center; */
     font-size: 2em;
     color: #777777;
@@ -180,14 +220,11 @@ Single serie view
 
 .date
 {
-    font-family: Roboto;
-    font-size: 1em;
-    width: 40%;
-    text-align: center;
-    color: #fff;
-    padding: 5px 10px;
-    background-color: rgba(117,107,106,0.6);
-    box-sizing: initial;
+    font-family: 'Lato', light;
+    font-size: 1.1em;
+    width: 80%;
+    margin-top: -10px;
+    color: #777777;
 }
 
 .content_serie p
@@ -200,7 +237,7 @@ Single serie view
     border-width: 0.4px;
     border-style: solid;
     color: rgba(117,107,106,0.4);
-    margin: 40px 0px;
+    margin: 18px 0px;
 }
 
 .gallery
@@ -247,7 +284,7 @@ Single serie view
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    margin: 100px 20px 20px 20px;
+    margin: 100px 20px 20px 40px;
     /* transition: all .4s ease-in-out; */
 }
 
@@ -271,6 +308,21 @@ Single serie view
     margin-bottom: 20px;
     width: 80%;
     height: 30%;
+}
+
+.single_img2
+{
+    object-fit: cover;
+}
+
+.single_img2 img
+{
+    width: 13%;
+}
+
+.table td
+{
+    width: 30%;
 }
 
 .transform img
@@ -395,11 +447,11 @@ Series view
 
 .all_gallery
 {
-    width: 97%;
-    margin: 20px;
+    width: 100%;
+    /* margin: 20px; */
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
 }
@@ -410,8 +462,24 @@ Series view
     height: 320px;
     position: relative;
     overflow: hidden;
+    /*
     background-color: #fff;
+    */
     margin : 20px 10px;
+    padding: 10px;
+    transition: all .4s ease-in-out;
+}
+
+.serie2
+{
+    width: 26%;
+    height: 320px;
+    position: relative;
+    overflow: hidden;
+    /*
+    background-color: #fff;
+    */
+    margin: 20px -7px;
     padding: 10px;
     transition: all .4s ease-in-out;
 }
@@ -432,9 +500,8 @@ Series view
     text-align: left;
 }
 
-.serie:hover
+.serie:hover, .serie2:hover
 {
-    /* background-color: rgba(0,0,0,0.32); */
     box-shadow: 0 1px 15px -6px rgba(0,0,0,0.32), 0 1px 15px 0 rgba(0,0,0,0.12), 0 6px 8px -2px rgba(0,0,0,0.1);
 }
 
@@ -455,7 +522,7 @@ Series view
     top: 320px;
 }
 
-.serie:hover .calque
+.serie:hover .calque, .serie2:hover .calque
 {
     visibility: visible;
     transform: translateY(-310px);

@@ -5,16 +5,16 @@
 <section class="body">
 
     <div class="title">
-        <h3>
+        <!--<h3>
             Expositions
-        </h3>
+        </h3>-->
     </div>
 
     <article class="all_gallery">
 
         <?php foreach ($Expos as $data): ?>
 
-            <div class="serie">
+            <div class="serie2">
 
                 <a href="/singleSerie/<?= $data->id(); ?>/<?= $data->slug(); ?>">
                     <div class="calque">

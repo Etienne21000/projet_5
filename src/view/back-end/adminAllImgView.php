@@ -1,30 +1,63 @@
-<div class="container">
     <div class="container">
         <div class="starter-template">
             <div class="titre">
                 <h4>Toutes les images</h4>
             </div>
             <section class="images">
-                <?php foreach($Images as $data):?>
+                <div class="example-wrapper">
+                    <h1> Bienvenu sur le gestionnaire de tâches</h1>
+
+                    <table class="table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Titre</th>
+                            <th scope="col"> Date d'ajout</th>
+                            <th scope="col">Image</th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <?php foreach($Images as $data): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($data->title()); ?></td>
+
+                            <td><?= htmlspecialchars($data->image_date()); ?></td>
+
+                            <td class="single_img2">
+                                <div>
+                                    <img src="/public/upload/<?= $data->image(); ?>" alt="<?= $data->title(); ?>">
+                                </div>
+                            </td>
+
+                            <td>
+                                <input type="button" class="btn btn-outline-primary" value="afficher" onclick="location.href='/getOneImg/<?= $data->id(); ?>'"/>
+                            </td>
+                        </tr>
+
+
+
+
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+
+
+                </div>
+                <?php /*foreach($Images as $data):*/?><!--
                     <div class="image_title">
 
                         <div class="single_img">
-                            <a href="/getOneImg/<?= $data->id(); ?>">
+                            <a href="/getOneImg/<?php/*= $data->id(); */?>">
                                 <div>
-                                    <img src="/public/upload/<?= $data->image(); ?>" alt="<?= $data->title(); ?>">
+                                    <img src="/public/upload/<?php/*= $data->image(); */?>" alt="<?php/*= $data->title(); */?>">
                                 </div>
                             </a>
                         </div>
                     </div>
-                    <!-- Modal -->
-
-                <?php endforeach; ?>
+                   <?php /*endforeach; */?>-->
             </section>
 
         </div>
     </div>
 
-    <div>
-        <a href="/adminHomePage" class="close" name="close"><i class="far fa-times-circle"></i></a>
-    </div>
-</div>

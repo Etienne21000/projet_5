@@ -11,9 +11,10 @@
     <meta name="author" content="Stefano G bianchi photographe, Paris">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Special+Elite&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/public/css/style.css"/>
+<!--    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
+-->    <link href="https://fonts.googleapis.com/css?family=Lato,regular,thin,light,italic&display=swap" rel="stylesheet">
+<!--    <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great&display=swap" rel="stylesheet">
+-->    <link rel="stylesheet" type="text/css" href="/public/css/style.css"/>
     <link rel="stylesheet" type="text/css" href="/public/css/bootstrap-4.4.1-dist/css/bootstrap.css"/>
     <link rel="stylesheet" href="/public/faw/css/all.min.css"/>
     <link href="/public/css/starter-template.css" rel="stylesheet">

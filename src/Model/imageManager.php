@@ -11,7 +11,7 @@ class ImageManager extends Manager
     //public function get image $id
     public function getOneImg($id)
     {
-        $req = $this->db->prepare('SELECT id, image, title, description, id_serie,/* serie_title, id_expo,*/
+        $req = $this->db->prepare('SELECT id, image, title, description, id_serie,
         DATE_FORMAT(image_date, \'%d/%m/%Y\') AS image_date
         FROM images WHERE id = :id');
 
@@ -29,10 +29,10 @@ class ImageManager extends Manager
     {
         $Images = [];
 
-        $req = 'SELECT i.id, i.title, i.image, i.description, i.id_serie, i.id_expo,
+        $req = 'SELECT i.id, i.title, i.image, i.description, i.id_serie,
         DATE_FORMAT(i.image_date, \'%d/%m/%Y à %Hh%i\') AS image_date
         FROM images AS i LEFT JOIN Serie AS s ON i.id_serie = s.id
-        WHERE i.id_serie = :id_serie ORDER BY image_date';
+        WHERE i.id_serie = :id_serie AND img_acc = 0 ORDER BY image_date';
 
         if ($start != -1 || $limit != -1)
         {
@@ -58,7 +58,7 @@ class ImageManager extends Manager
     {
         $Images = [];
 
-        $req = 'SELECT i.id, i.title, i.image, i.description, i.id_serie, i.id_expo,
+        $req = 'SELECT i.id, i.title, i.image, i.description, i.id_serie,
         DATE_FORMAT(i.image_date, \'%d/%m/%Y à %Hh%i\') AS image_date
         FROM images AS i LEFT JOIN Serie AS s ON i.id_serie = s.id
         WHERE s.slide_on = true ORDER BY image_date';
@@ -76,6 +76,23 @@ class ImageManager extends Manager
         return $Images;
     }
 
+   /* public function getImgAccueil($id)
+    {
+        $req = $this->db->prepare('SELECT id, title, image, description, id_serie, img_acc,
+        DATE_FORMAT(i.image_date, \'%d/%m/%Y à %Hh%i\') AS image_date
+        FROM images
+        WHERE id = :id AND img_acc = 1');
+
+        $req->bindValue(':id', $id, \PDO::PARAM_INT);
+
+        $req->execute();
+
+        $data = $req->fetch(\PDO::FETCH_ASSOC);
+        $image = new Image($data);
+
+        return $image;
+    }*/
+
 
 
     public function getAll($start = -1, $limit = -1)
@@ -83,7 +100,7 @@ class ImageManager extends Manager
         $Images = [];
 
         $req = 'SELECT id, title, image, description, /*id_serie, id_expo,*/
-        DATE_FORMAT(image_date, \'%d/%m/%Y\') FROM images ORDER BY image_date';
+        DATE_FORMAT(image_date, \'%d/%m/%Y\') AS image_date FROM images ORDER BY image_date';
 
         if ($start != -1 || $limit != -1)
         {
@@ -103,13 +120,14 @@ class ImageManager extends Manager
 
     public function addImage(Image $image)
     {
-        $req = $this->db->prepare('INSERT INTO images(title, image, description, id_serie, image_date)
-        VALUES(:title, :image, :description, :id_serie, NOW())');
+        $req = $this->db->prepare('INSERT INTO images(title, image, description, id_serie, /*img_acc,*/ image_date)
+        VALUES(:title, :image, :description, :id_serie, /*:img_acc,*/ NOW())');
 
         $req->bindValue(':title', $image->title());
         $req->bindValue(':image', $image->image());
         $req->bindValue(':description', $image->description());
         $req->bindValue(':id_serie', $image->id_serie(), \PDO::PARAM_INT);
+/*        $req->bindValue(':img_acc', $image->img_acc(), \PDO::PARAM_INT);*/
 
         $req->execute();
     }
