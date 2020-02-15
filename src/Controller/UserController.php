@@ -24,6 +24,15 @@ class UserController
         $this->user->addUser($User);
     }
 
+    public function newMP($pass)
+    {
+        $User = new User([$data]);
+
+        $User->setPassword($pass);
+
+        $this->user->changeMP($User);
+    }
+
     public function checkIdentifiant($identifiant)
     {
         $user = $this->user->verifIdentifiant($identifiant);

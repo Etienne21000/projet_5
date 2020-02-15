@@ -66,8 +66,8 @@
                     </li>
 
                     <li class="active">
-                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">BILLETS</a>
-                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <a href="#homeSubmenu">BILLETS</a>
+                        <ul id="homeSubmenu">
                             <li>
                                 <a href="/allPosts"> Tous les billets (<?= $countPost ?>)</a>
                             </li>
@@ -78,8 +78,8 @@
                     </li>
 
                     <li class="active">
-                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">SERIES</a>
-                        <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <a href="#pageSubmenu">SERIES</a>
+                        <ul id="pageSubmenu">
                             <li>
                                 <a href="/allSeries"> Toutes les séries (<?= $countSerie ?>)</a>
                             </li>
@@ -91,8 +91,8 @@
                     </li>
 
                     <li class="active">
-                        <a href="#serieSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">EXPOS</a>
-                        <ul class="collapse list-unstyled" id="serieSubmenu">
+                        <a href="#serieSubmenu">EXPOS</a>
+                        <ul id="serieSubmenu">
                             <li>
                                 <a href="/allExpos"> Toutes les expositions (<?= $countExpo ?>)</a>
                             </li>
@@ -103,23 +103,10 @@
                     </li>
 
                     <li class="active">
-                        <a href="#imagesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">IMAGES</a>
-                        <ul class="collapse list-unstyled" id="imagesSubmenu">
+                        <a href="#imagesSubmenu">IMAGES</a>
+                        <ul id="imagesSubmenu">
                             <li>
                                 <a href="/UploadImg"> Ajouter une image</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="active">
-                        <a href="#commentsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">COMMENTAIRES</a>
-                        <ul class="collapse list-unstyled" id="commentsSubmenu">
-                            <li>
-                                <a href="/allComments"> Commentaires (<?= $countCom ?>)</a>
-                            </li>
-
-                            <li>
-                                <a href="/reportedComments"> Commentaires signalés (<?= $reportedCom ?>)</a>
                             </li>
                         </ul>
                     </li>

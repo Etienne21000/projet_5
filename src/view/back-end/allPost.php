@@ -20,7 +20,7 @@
 
                 <div class="content_serie">
                     <p>
-                        <?= html_entity_decode($data->content()); ?>
+                        <?= substr(html_entity_decode($data->content()), 0, 530) . '...'; ?>
                     </p>
                 </div>
 

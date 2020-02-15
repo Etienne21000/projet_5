@@ -4,11 +4,11 @@
 
 <section class="body">
 
-    <div class="title">
-        <!--<h3>
+    <!-- <div class="title">
+        <h3>
             SERIES
-        </h3>-->
-    </div>
+        </h3>
+    </div> -->
 
     <article class="all_gallery">
 

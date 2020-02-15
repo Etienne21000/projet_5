@@ -9,6 +9,7 @@ class Image extends Entity
     private $description;
     private $id_serie;
     private $img_acc;
+    private $cover;
     private $image_date;
 
     const IMGACC = [
@@ -64,6 +65,11 @@ class Image extends Entity
         $this->img_acc = (int)$img_acc;
     }
 
+    public function setCover($cover)
+    {
+        $this->cover = (bool)$cover;
+    }
+
     /*public function setIdexpo($id_expo)
     {
         $this->id_expo = (int)$id_expo;
@@ -109,6 +115,11 @@ class Image extends Entity
     public function img_acc()
     {
         return $this->img_acc;
+    }
+
+    public function cover()
+    {
+        return $this->cover;
     }
 
     public function getImgAcc(): string

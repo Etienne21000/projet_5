@@ -6,7 +6,7 @@
     <?php foreach ($Posts as $data): ?>
 
         <article class="commentAdmin">
-            <div class="titre">
+            <div class="titleh3">
                 <h3>
                     <?= htmlspecialchars($data->title()); ?>
                 </h3>

@@ -27,6 +27,13 @@
                         <input type="text" name="title" class="title" required placeholder="Titre" value="<?= $image->title();?>"/>
                     </p>
 
+                   <!-- <p>
+                        <select name="img_acc" class="id_serie">
+                            <option value="">Choisir comme image d'accueil</option>
+                            <option value="<?php/*= $image->title(); */?>"></option>
+                        </select>
+                    </p>-->
+
                     <p>
                         <label for="form-content">Contenu</label>
                         <br>

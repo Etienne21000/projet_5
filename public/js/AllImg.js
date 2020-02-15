@@ -51,7 +51,6 @@ document.addEventListener('DOMContentLoaded', function(){
         display(data){
             var remove = document.querySelector('.containerAdmin');
             remove.classList.add('removeContainer');
-            // var content = document.querySelector('.imagesRow');
             $('.removeContainer').slideUp(400, function(){
                 $('.removeContainer').empty();
                 $('.removeContainer').append(data);

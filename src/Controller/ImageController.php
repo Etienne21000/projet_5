@@ -15,7 +15,7 @@ class ImageController
 
     //Display all images
 
-    public function addImg($title, $image, $description, $id_serie/*, $img_acc*/)
+    public function addImg($title, $image, $description, $id_serie, $img_acc)
     {
         $Image = new Image([$data]);
 
@@ -23,7 +23,7 @@ class ImageController
         $Image->setImage($image);
         $Image->setDescription($description);
         $Image->setIdSerie($id_serie);
-/*        $Image->setImgAcc($img_acc);*/
+        $Image->setImgAcc($img_acc);
 
         if(!$_FILES['image']['error'])
         {
@@ -42,9 +42,9 @@ class ImageController
 
     public function imgSlider()
     {
-        $Images = $this->image->getImgForSlider();
+        $image = $this->image->getImgAccueil();
 
-        return $Images;
+        return $image;
     }
 
     public function getFirstImg($id_serie)
@@ -123,6 +123,13 @@ class ImageController
         return $Images;
     }
 
+    public function getImgHome()
+    {
+        $ImgAcc = $this->image->getImgAcc();
+
+        return $ImgAcc;
+    }
+
     public function getOne($id)
     {
         $image = $this->image->getOneImg($id);
@@ -152,7 +159,7 @@ class ImageController
         }
     }
 
-    public function updateImg($id, $title, $description)
+    public function updateImg($id, $title, $description, $img_acc)
     {
         $Image = new Image([$data]);
 
@@ -160,8 +167,23 @@ class ImageController
         $Image->setTitle($title);
         // $Image->setImage($image);
         $Image->setDescription($description);
+        $Image->setImgAcc($img_acc);
         // $Image->setIdserie($id_serie);
 
         $this->image->updateImg($Image);
+    }
+
+    public function chooseImage($id)
+    {
+        $Image = new Image([$data]);
+
+        $Image->setId($id);
+
+        $this->image->chooseImage($Image);
+    }
+
+    public function unchooseImage()
+    {
+        $this->image->unchooseImg();
     }
 }

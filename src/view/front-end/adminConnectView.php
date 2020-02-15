@@ -17,6 +17,11 @@
                     <div class="form-group">
                         <input type="password" name="pass" class="form-control" placeholder="Mot de passe *" value="" />
                     </div>
+                    <!-- <div class="form-group"> -->
+                        <p><a href="/resetPass">mot de passe oublié ?</a></p>
+                        <!-- <p><a href="/test">mot de passe oublié ?</a></p> -->
+
+                    <!-- </div> -->
                     <div class="form-group">
                         <input type="submit" class="btnSubmit" value="Connexion" />
                     </div>

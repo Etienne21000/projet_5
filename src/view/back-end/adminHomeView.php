@@ -1,18 +1,18 @@
-<?php $title= 'Stefano G. Bianchi Campo d\'Ombra'; ?>
+<?php $title = 'Stefano G. Bianchi Campo d\'Ombra'; ?>
 
-<?php  ob_start(); ?>
+<?php ob_start(); ?>
 
 <section class="container">
 
     <div class="container">
         <div class="starter-template">
-            <?php if(isset($_SESSION['id'])){?>
+            <?php if (isset($_SESSION['id'])) { ?>
                 <h1>Bonjour <?= $_SESSION['identifiant']; ?></h1>
 
-            <?php } else {?>
+            <?php } else { ?>
                 <h1>Bonjour </h1>
             <?php }; ?>
-            <p class="lead">Bienvenue sur la page d'aministration du site Campo d'Ombra.
+            <p class="lead">Page d'aministration du site Campo d'Ombra.
                 <br>Vous pouvez modifiez l'ensemble des données présentes sur le site.
             </p>
         </div>
@@ -20,101 +20,144 @@
 
     <div class="container">
         <div class="starter-template">
+
             <div class="titre">
-                <h4>Choisissez la série du slider</h4>
+                <h4>Choisissez l'image de la page d'accueil du site</h4>
             </div>
-            <section class="sliderSelect">
-                <?php foreach($series as $data):?>
-                    <form action="/chooseSerie/<?= $data->id(); ?>" method="POST">
-                        <p>
-                            <div name="id_img" class="id_img">
-                                <div value="<?= $data->id(); ?>"> <?= $data->title(); ?></div>
-                            </div>
-                        </p>
 
-                        <p>
-                            <button type="submit" value="submit" name="submit" id="submit_btn" class="btn btn-outline-primary">choisir</button>
-                        </p>
-                    </form>
-                <?php endforeach; ?>
-            </section>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Titre</th>
+                        <th scope="col"> Date d'ajout</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Voir</th>
+                        <th scope="col">Choisir</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <?php foreach ($ImgAcc as $data): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($data->title()); ?></td>
+
+                            <td><?= htmlspecialchars($data->image_date()); ?></td>
+
+                            <td class="single_img2">
+                                <div>
+                                    <img src="/public/upload/<?= $data->image(); ?>" alt="<?= $data->title(); ?>">
+                                </div>
+                            </td>
+
+                            <td>
+                                <input type="button" class="btn btn-outline-primary" value="afficher" onclick="location.href='/getOneImg/<?= $data->id(); ?>'"/>
+                            </td>
+
+                            <td>
+                                <form action="/chooseImage/<?= $data->id(); ?>" method="POST">
+                                    <button type="submit" value="submit" name="submit" id="submit_btn" class="btn btn-outline-primary">choisir</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
         </div>
     </div>
 
-    <div class="containerAdmin">
-        <div class="titre">
-            <h4>Toutes les images</h4>
+    <div class="container">
+        <div class="starter-template">
+            <div class="titre">
+                <h4>Toutes les images</h4>
+            </div>
+
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Titre</th>
+                        <th scope="col"> Date d'ajout</th>
+                        <th scope="col">Image</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <?php foreach($Images as $data): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($data->title()); ?></td>
+
+                            <td><?= htmlspecialchars($data->image_date()); ?></td>
+
+                            <td class="single_img2">
+                                <div>
+                                    <img src="/public/upload/<?= $data->image(); ?>" alt="<?= $data->title(); ?>">
+                                </div>
+                            </td>
+
+                            <td>
+                                <input type="button" class="btn btn-outline-primary" value="afficher" onclick="location.href='/getOneImg/<?= $data->id(); ?>'"/>
+                            </td>
+                        </tr>
+
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+            <div class="btnsuite">
+                <a href="/UploadImg">
+                    <input type="button" class="btn btn-outline-primary" value="Ajouter une image"/>
+                </a>
+                <a name="view" class="img-form">
+                    <button type="button" class="btn btn-outline-secondary" id="btn_more">Voir toutes les images</button>
+                </a>
+            </div>
         </div>
-        <section class="row imagesRow">
-            <?php foreach($Images as $data):?>
-                <div class="serie">
-                    <a href="/getOneImg/<?= $data->id(); ?>">
-                        <span class="calque">
+    </div>
 
-                            <p>
-                                <?= $data->title(); ?>
-                            </p>
+    <div class="container">
+        <div class="starter-template">
 
-                        </span>
-                    </a>
-                    <div class="serie_content">
+            <div class="titre">
+                <h4>Tous les billets</h4>
+            </div>
 
-                        <div class="img_serie">
-                            <img src="/public/upload/<?= $data->image(); ?>" name="<?= $data->title(); ?>" alt="<?= $data->title(); ?>">
-                        </div>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Titre</th>
+                        <th scope="col"> Date de création</th>
+                        <th scope="col"> Contenu</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
 
-                    </div>
+                <tbody>
+                    <?php foreach ($Posts as $data): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($data->title()); ?></td>
 
-                </div>
-            <?php endforeach; ?>
+                            <td><?= htmlspecialchars($data->creation_date()); ?></td>
 
-        </section>
+                            <td>
+                                <?= substr(html_entity_decode($data->content()), 0, 60) . '...'; ?>
+                            </td>
 
-        <div class="btnsuite">
-            <a name="view" class="img-form">
-                <button type="button" class="btn btn-outline-secondary" id="btn_more">Voir toutes les images</button>
-            </a>
+                            <td>
+                                <input type="button" class="btn btn-outline-primary" value="afficher" onclick="location.href='/singlepost/<?= $data->id(); ?>'"/>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+            <div class="btnsuite">
+                <a href="/allPosts">
+                    <input type="button" class="btn btn-outline-secondary" value="Voir tous les posts"/>
+                </a>
+            </div>
         </div>
 
     </div>
 
-    <div class="containerAdmin">
-        <div class="titre">
-            <h4>Tous les billets</h4>
-        </div>
-
-        <section class="row serieRow">
-            <?php foreach($Posts as $data):?>
-                <div class="serie">
-
-                    <a href="/singlepost/<?= $data->id(); ?>">
-                        <span class="calque">
-
-                            <p>
-                                <?= $data->title(); ?>
-                            </p>
-
-                        </span>
-                    </a>
-
-                    <div class="serie_content">
-
-                        <div class="img_serie">
-                            <p>
-                                <?= substr(html_entity_decode($data->content()), 0, 530) . '...'; ?>
-                            </p>
-                        </div>
-
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </section>
-        <div class="btnsuite">
-            <a href="/allPosts">
-                <input type="button" class="btn btn-outline-secondary" value="Voir tous les posts"/>
-            </a>
-        </div>
-    </div>
+    <!--  -->
 
     <div class="containerAdmin">
         <div class="titre">
@@ -122,7 +165,7 @@
         </div>
 
         <section class="row serieRow">
-            <?php foreach($Series as $data):?>
+            <?php foreach ($Series as $data): ?>
                 <div class="serie">
 
                     <a href="/getOneSerie/<?= $data->id(); ?>/<?= $data->slug(); ?>">
@@ -138,7 +181,8 @@
                     <div class="serie_content">
 
                         <div class="img_serie">
-                            <img src="public/upload/<?= htmlspecialchars($data->serie_img()); ?>" alt="<?= $data->title(); ?>"/>
+                            <img src="public/upload/<?= htmlspecialchars($data->serie_img()); ?>"
+                            alt="<?= $data->title(); ?>"/>
                         </div>
 
                     </div>
@@ -158,7 +202,7 @@
         </div>
 
         <section class="row serieRow">
-            <?php foreach($Expos as $data):?>
+            <?php foreach ($Expos as $data): ?>
                 <div class="serie">
 
                     <a href="/getOneSerie/<?= $data->id(); ?>/<?= $data->slug(); ?>">
@@ -174,7 +218,8 @@
                     <div class="serie_content">
 
                         <div class="img_serie">
-                            <img src="public/upload/<?= htmlspecialchars($data->serie_img()); ?>" alt="<?= $data->title(); ?>"/>
+                            <img src="public/upload/<?= htmlspecialchars($data->serie_img()); ?>"
+                            alt="<?= $data->title(); ?>"/>
                         </div>
 
                     </div>
@@ -188,63 +233,6 @@
         </div>
     </div>
 
-    <div class="containerAdmin">
-        <div class="titre">
-            <h4>Tous les commentaires</h4>
-        </div>
-
-        <section class="row serieRow">
-            <?php foreach($Comments as $data):?>
-                <div class="comment">
-                    <div class="content_comment">
-                        <p>
-                            <?= $data->identifiant(); ?>
-                            <br>
-                            <?= $data->comment_date(); ?>
-                        </p>
-
-                        <p>
-                            <?= htmlspecialchars($data->comment()); ?>
-                        </p>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </section>
-        <div class="btnsuite">
-            <a href="/allComments">
-                <input type="button" class="btn btn-outline-secondary" value="Voir tous les commentaires"/>
-            </a>
-        </div>
-    </div>
-
-    <div class="containerAdmin">
-        <div class="titre">
-            <h4>Tous les commentaires signalés</h4>
-        </div>
-
-        <section class="row serieRow">
-            <?php foreach($Reported as $data):?>
-                <div class="comment">
-                    <div class="content_comment">
-                        <p>
-                            <?= $data->identifiant(); ?>
-                            <br>
-                            <?= $data->comment_date(); ?>
-                        </p>
-
-                        <p>
-                            <?= htmlspecialchars($data->comment()); ?>
-                        </p>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </section>
-        <div class="btnsuite">
-            <a href="/reportedComments">
-                <input type="button" class="btn btn-outline-secondary" value="Voir tous les commentaires signalés"/>
-            </a>
-        </div>
-    </div>
 </section>
 
 <?php $content = ob_get_clean(); ?>

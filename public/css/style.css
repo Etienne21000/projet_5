@@ -117,12 +117,12 @@ a:visited
 }
 
 /*-----------------------------------
-                Slider
+Slider
 -----------------------------------*/
 
 #banner
 {
-    height: 660px;
+    height: 100vh;
     margin-top: 55px;
     margin-bottom: 20px;
     width: 100%;
@@ -158,7 +158,7 @@ a:visited
     object-fit: cover;
 }
 
-.titre
+.titreh1
 {
     position: absolute;
     top: 40%;
@@ -173,11 +173,12 @@ a:visited
     */
 }
 
-.titre h1
+.titreh1 h1
 {
     color: #fff;
     font-family: 'Lato', Light;
     font-size: 5em;
+    font-weight: 200;
 }
 
 .btn
@@ -188,7 +189,25 @@ a:visited
     align-items: center;
 }
 
+#sidebar ul li
+{
+    list-style-type: none;
+}
 
+#sidebar ul
+{
+    padding-inline-start: 10px;
+}
+
+/* #sidebar ul ul a
+{
+padding-left: 0;
+} */
+
+/* #sidebar ul li a
+{
+padding: 4px 0 4px 10px;
+} */
 
 /*-----------------------------------
 Single serie view
@@ -203,9 +222,17 @@ Single serie view
     padding-right: 20px;
 }
 
+.full_image
+{
+    justify-content: center;
+    width: 170vh;
+    height: 100vh;
+}
+
 .content_serie
 {
     margin-top: 0px;
+    color: #555555;
 }
 
 .titleh3 h3
@@ -242,14 +269,14 @@ Single serie view
 
 .gallery
 {
-    width: 53%;
+    width: 30%;
     margin: 60px 20px 20px 20px;
     color: #555555;
 }
 
 .image_title
 {
-    width: 30%;
+    width: 34vh;
 }
 
 .img
@@ -265,7 +292,7 @@ Single serie view
 
 #image_details img
 {
-    width: 65%;
+    width: 60%;
     /* height: 80%; */
 }
 
@@ -288,6 +315,17 @@ Single serie view
     /* transition: all .4s ease-in-out; */
 }
 
+.imagesBO
+{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 40px 20px 20px 4px;
+}
+
 .images a
 {
     cursor: pointer;
@@ -301,6 +339,21 @@ Single serie view
     flex-wrap: nowrap;
     overflow: scroll;
     margin: 20px;
+}
+
+.transform .image_title
+{
+    width: 50px;
+    height: 25px;
+    margin-right: 10px;
+}
+
+.transform #display_img
+{
+    /*
+    width: 100vh;
+    */
+    height: 100vh;
 }
 
 .single_img
@@ -354,11 +407,9 @@ Single serie view
 
 #open
 {
-    margin: 55px 20px 20px 20px;
+    margin: 90px 20px 20px 20px;
     display: none;
     width: 94%;
-    /* padding: 14px;*/
-    /* background-color: #fff; */
     transition: all .4s ease-in-out;
 }
 
@@ -369,7 +420,12 @@ Single serie view
 
 #display_img
 {
-    width: 100%;
+    width: 65%;
+}
+
+#display_imgBO
+{
+    width: 120%;
 }
 
 .comments h4
@@ -448,7 +504,7 @@ Series view
 .all_gallery
 {
     width: 100%;
-    /* margin: 20px; */
+    margin-top: 80px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -613,11 +669,8 @@ A propos view
 
 .blocAdmin
 {
-    margin: 100px 20px 20px 20px;
-    /* display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center; */
+    margin: 60px 20px 20px 20px;
+    color: #555555;
 }
 
 #contentAdminView
@@ -662,8 +715,14 @@ A propos view
         width: 94%;
     }
 
-    #banner
+    .titreh1
     {
-        height: 620px;
+        left: 6%;
+    }
+
+    .titreh1 h1
+    {
+        font-size: 3em;
+        font-weight: 100;
     }
 }

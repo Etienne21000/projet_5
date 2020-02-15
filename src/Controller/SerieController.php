@@ -13,29 +13,31 @@ class SerieController
         $this->serie = new SerieManager();
     }
 
-    public function newSerie($title, $description, $tech)
+    public function newSerie($title, $description, $tech, $created_at)
     {
         $Serie = new Serie([$data]);
 
         $Serie->setTitle($title);
         $Serie->setDescription($description);
         $Serie->setTech($tech);
+        $Serie->setCreatedat($created_at);
 
         $this->serie->addSerie($Serie);
     }
 
-    public function newExpo($title, $description, $tech)
+    public function newExpo($title, $description, $tech, $created_at)
     {
         $Expo = new Serie([$data]);
 
         $Expo->setTitle($title);
         $Expo->setDescription($description);
         $Expo->setTech($tech);
+        $Expo->setCreateddat($created_at);
 
         $this->serie->addExpo($Expo);
     }
 
-    public function update($id, $title, $description, $tech, $id_img)
+    public function update($id, $title, $description, $tech, $id_img, $created_at)
     {
         $Serie = new Serie([$data]);
 
@@ -44,6 +46,7 @@ class SerieController
         $Serie->setDescription($description);
         $Serie->setTech($tech);
         $Serie->setIdimg($id_img);
+        $Serie->setCreatedat($created_at);
 
         $this->serie->updateSerie($Serie);
     }
@@ -92,9 +95,9 @@ class SerieController
 
     public function getOne($id)
     {
-        $serie = $this->serie->getOneSerie($id);
+        $Serie = $this->serie->getOneSerie($id);
 
-        return $serie;
+        return $Serie;
     }
 
     public function countS()

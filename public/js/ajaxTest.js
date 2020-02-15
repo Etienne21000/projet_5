@@ -41,8 +41,11 @@ document.addEventListener('DOMContentLoaded', function(){
                             img_container.append(p);
 
                             document.querySelector('#open').style.display = "block";
+                            document.querySelector('.gallery').style.display = "none";
                             var img_general = document.querySelector('.images');
                             img_general.classList.add('transform');
+                            var full_image = document.querySelector('.content');
+                            full_image.classList.add('full_image');
                         },
 
                         error:function(res, status, err){
@@ -57,8 +60,10 @@ document.addEventListener('DOMContentLoaded', function(){
 
         closeImg(){
             document.querySelector('#open').style.display = "none";
+            document.querySelector('.gallery').style.display = "block";
             document.querySelector('.transform').classList.add('images');
             document.querySelector('.transform').classList.remove('transform');
+            document.querySelector('.content').classList.remove('full_image');
         };
     };
 

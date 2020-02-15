@@ -31,7 +31,7 @@ class MasterController
     public function home()
     {
 /*        (int)$id = $param[0];*/
-     $Images = $this->imageController->imgSlider();
+        $image = $this->imageController->imgSlider();
 /*        $image = $this->imageController->getImgAcc($id);*/
 
         require 'src/view/front-end/indexView.php';
@@ -63,10 +63,9 @@ class MasterController
         (int)$id = $param[0];
         (int)$slug = $param[0];
 
-        $serie = $this->serieController->getOne($id, $slug);
+        $Serie = $this->serieController->getOne($id, $slug);
         $Images = $this->imageController->getImagesBySeries($id);
         $image = $this->imageController->getOne($id);
-/*        $Comments = $this->commentController->allCom($id);*/
 
         require 'src/view/front-end/singleSerieView.php';
     }
@@ -160,6 +159,9 @@ class MasterController
             $reportedCom = $this->commentController->reportedCom();
 
             $Images = $this->imageController->getAllimg();
+            // $Imgs = $this->imageController->getAllImages();
+            $ImgAcc = $this->imageController->getImgHome();
+
             $Posts = $this->postController->getPostAdmin();
             $Series = $this->serieController->getSerieAdmin();
             $series = $this->serieController->getAll();
@@ -193,6 +195,24 @@ class MasterController
         }
 
         header('Location: /adminHomePage');
+    }
+
+    public function chooseImgHome($param)
+    {
+        (int)$id = $param[0];
+
+        $this->imageController->unchooseImage();
+
+        if(isset($id) && $id > 0)
+        {
+            $this->imageController->chooseImage($id);
+        }
+        else
+        {
+            throw new \Exception('Aucun identifiant d\'image ne correspond');
+        }
+
+        header('Location: /home');
     }
 
     public function allSeries()
@@ -415,7 +435,7 @@ class MasterController
                 $error = null;
                 $Series = $this->serieController->getAll();
                 $Expos = $this->serieController->getAllExpos();
-
+                // $image = $this->imageController->getAllImages();
                 $countPost = $this->postController->nbPosts();
                 $countImg = $this->imageController->countedImg();
                 $countSerie = $this->serieController->countS();
@@ -440,9 +460,9 @@ class MasterController
 
     public function addImg()
     {
-        if(!empty($_POST['title']) && !empty($_POST['description']) && !empty($_FILES['image']['name']) && !empty($_POST['id_serie']))
+        if(!empty($_POST['title']) && !empty($_POST['description']) && !empty($_FILES['image']['name']) && !empty($_POST['id_serie']) && !empty($_POST['img_acc']))
         {
-            $this->imageController->addImg(htmlspecialchars($_POST['title']), htmlspecialchars($_FILES['image']['name']), htmlspecialchars($_POST['description']), htmlspecialchars($_POST['id_serie']));
+            $this->imageController->addImg(htmlspecialchars($_POST['title']), htmlspecialchars($_FILES['image']['name']), htmlspecialchars($_POST['description']), htmlspecialchars($_POST['id_serie']), htmlspecialchars($_POST['img_acc']));
         }
 
         else
@@ -611,6 +631,13 @@ class MasterController
 
     public function getAllPostsAdmin()
     {
+        $countPost = $this->postController->nbPosts();
+        $countImg = $this->imageController->countedImg();
+        $countSerie = $this->serieController->countS();
+        $countExpo = $this->serieController->countE();
+        $countCom = $this->commentController->countCom();
+        $reportedCom = $this->commentController->reportedCom();
+
         $Posts = $this->postController->getAllPost();
 
         require 'src/view/back-end/allPost.php';
@@ -667,7 +694,7 @@ class MasterController
         header('Location: /singlepost/' . $id);
     }
 
-    public function deletePost($Param)
+    public function deletePost($param)
     {
         (int)$id = $param[0];
 
@@ -692,6 +719,7 @@ class MasterController
             $countPost = $this->postController->nbPosts();
             $countImg = $this->imageController->countedImg();
             $countSerie = $this->serieController->countS();
+            $countExpo = $this->serieController->countE();
             $countCom = $this->commentController->countCom();
             $reportedCom = $this->commentController->reportedCom();
 
@@ -706,9 +734,9 @@ class MasterController
 
     public function addSerie()
     {
-        if(!empty($_POST['title']) && !empty($_POST['description']) && !empty($_POST['tech']))
+        if(!empty($_POST['title']) && !empty($_POST['description']) && !empty($_POST['tech']) && !empty($_POST['created_at']))
         {
-            $this->serieController->newSerie(htmlspecialchars($_POST['title']), htmlspecialchars($_POST['description']), htmlspecialchars($_POST['tech']));
+            $this->serieController->newSerie(htmlspecialchars($_POST['title']), htmlspecialchars($_POST['description']), htmlspecialchars($_POST['tech']), htmlspecialchars($_POST['created_at']));
         }
 
         else
@@ -727,6 +755,7 @@ class MasterController
             $countPost = $this->postController->nbPosts();
             $countImg = $this->imageController->countedImg();
             $countSerie = $this->serieController->countS();
+            $countExpo = $this->serieController->countE();
             $countCom = $this->commentController->countCom();
             $reportedCom = $this->commentController->reportedCom();
 
@@ -741,9 +770,9 @@ class MasterController
 
     public function addExpo()
     {
-        if(!empty($_POST['title']) && !empty($_POST['description']) && !empty($_POST['tech']))
+        if(!empty($_POST['title']) && !empty($_POST['description']) && !empty($_POST['tech']) && !empty($_POST['created_at']))
         {
-            $this->serieController->newExpo(htmlspecialchars($_POST['title']), htmlspecialchars($_POST['description']), htmlspecialchars($_POST['tech']));
+            $this->serieController->newExpo(htmlspecialchars($_POST['title']), htmlspecialchars($_POST['description']), htmlspecialchars($_POST['tech']), htmlspecialchars($_POST['created_at']));
         }
 
         else
@@ -789,9 +818,9 @@ class MasterController
 
         if(isset($id) && $id > 0)
         {
-            if(!empty($_POST['title']) && !empty($_POST['description']) && !empty($_POST['tech'])/* && !empty($_POST['serie_img'])*/)
+            if(!empty($_POST['title']) && !empty($_POST['description']) && !empty($_POST['tech']) && !empty($_POST['created_at']))
             {
-                $this->serieController->update($id, htmlspecialchars($_POST['title']), htmlspecialchars($_POST['description']), htmlspecialchars($_POST['tech']), htmlspecialchars($_POST['id_img']));
+                $this->serieController->update($id, htmlspecialchars($_POST['title']), htmlspecialchars($_POST['description']), htmlspecialchars($_POST['tech']), htmlspecialchars($_POST['id_img']), htmlspecialchars($_POST['created_at']));
             }
 
             else
@@ -921,7 +950,12 @@ class MasterController
             break;
         }
 
-        header('Location: /inscription');
+        header('Location: /admin');
+    }
+
+    public function changePassword()
+    {
+
     }
 
     public function connectUser()
@@ -1003,6 +1037,17 @@ class MasterController
         }
 
         require 'src/view/front-end/adminConnectView.php';
+    }
+
+    public function resetPass()
+    {
+        $error = null;
+        require 'src/view/front-end/forgetPassView.php';
+    }
+
+    public function test()
+    {
+        require 'src/view/front-end/test.php';
     }
 
     public function userDeconnexion()

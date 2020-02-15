@@ -10,24 +10,26 @@ class SerieManager extends Manager
 
     public function addSerie(Serie $serie)
     {
-        $req = $this->db->prepare('INSERT INTO Serie(title, description, tech, slug, creation_date)
-        VALUES(:title, :description, :tech, 1, NOW())');
+        $req = $this->db->prepare('INSERT INTO Serie(title, description, tech, slug, creation_date, created_at)
+        VALUES(:title, :description, :tech, 1, NOW(), :created_at)');
 
         $req->bindValue(':title', $serie->title());
         $req->bindValue(':description', $serie->description());
         $req->bindValue(':tech', $serie->tech());
+        $req->bindValue(':created_at', $serie->created_at());
 
         $req->execute();
     }
 
     public function addExpo(Serie $serie)
     {
-        $req = $this->db->prepare('INSERT INTO Serie(title, description, tech, slug, creation_date)
-        VALUES(:title, :description, :tech, 2, NOW())');
+        $req = $this->db->prepare('INSERT INTO Serie(title, description, tech, slug, creation_date, created_at)
+        VALUES(:title, :description, :tech, 2, NOW(), :created_at)');
 
         $req->bindValue(':title', $serie->title());
         $req->bindValue(':description', $serie->description());
         $req->bindValue(':tech', $serie->tech());
+        $req->bindValue(':created_at', $serie->created_at());
 
         $req->execute();
     }
@@ -35,13 +37,14 @@ class SerieManager extends Manager
     public function updateSerie(Serie $serie)
     {
         $req = $this->db->prepare('UPDATE Serie SET title = :title, description = :description,
-        tech = :tech, id_img = :id_img
+        tech = :tech, id_img = :id_img, created_at = :created_at
         WHERE id = :id');
 
         $req->bindValue(':title', $serie->title());
         $req->bindValue(':description', $serie->description());
         $req->bindValue(':tech', $serie->tech());
         $req->bindValue(':id_img', $serie->id_img(), \PDO::PARAM_INT);
+        $req->bindValue(':created_at', $serie->created_at());
         $req->bindValue(':id', $serie->id(), \PDO::PARAM_INT);
 
         $req->execute();
@@ -87,7 +90,7 @@ class SerieManager extends Manager
     public function getOneSerie($id)
     {
         $req = $this->db->prepare('SELECT id, title, description, tech,
-        DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date
+        DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date, created_at
         FROM Serie WHERE id = :id');
 
         $req->bindValue(':id', $id, \PDO::PARAM_INT);

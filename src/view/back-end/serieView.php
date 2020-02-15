@@ -13,7 +13,7 @@
             </div>
 
             <div class="date">
-                Création <?= htmlspecialchars($serie->creation_date()); ?>
+                (<?= htmlspecialchars($serie->created_at()); ?>)
             </div>
 
             <div class="content_serie">
@@ -66,7 +66,7 @@
 
             <hr class="separation">
 
-            <div id="display_img">
+            <div id="display_imgBO">
 
                 <div class="titleh3">
                     <h3>
@@ -74,7 +74,7 @@
                     </h3>
                 </div>
 
-                <article class="images">
+                <article class="imagesBO">
 
                     <?php foreach ($Images as $data): ?>
                         <div class="image_title">
@@ -92,37 +92,37 @@
 
             <hr class="separation">
 
-            <div class="comments">
+            <!-- <div class="comments">
 
                 <h4>Les commentaires <i class="fas fa-comments"></i></h4>
-                <?php foreach ($Comments as $data): ?>
+                <?php/* foreach ($Comments as $data): */?>
 
                     <div class="row comment-row">
                         <div class="col-md-8">
                             <div class="media g-mb-30 media-comment">
                                 <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30">
                                     <div class="g-mb-15">
-                                        <h5 class="h5 g-color-gray-dark-v1 mb-0"><?= htmlspecialchars($data->identifiant()); ?></h5>
-                                        <span class="g-color-gray-dark-v4 g-font-size-12"><?= htmlspecialchars($data->comment_date()); ?></span>
+                                        <h5 class="h5 g-color-gray-dark-v1 mb-0"><?php/* htmlspecialchars($data->identifiant()); */?></h5>
+                                        <span class="g-color-gray-dark-v4 g-font-size-12"><?php/* htmlspecialchars($data->comment_date()); */?></span>
                                     </div>
-                                    <p> <?= htmlspecialchars($data->comment()); ?> </p>
+                                    <p> <?php /*= htmlspecialchars($data->comment()); */?> </p>
                                 </div>
-                                <?php if($data->validate()){?>
+                                <?php /*if($data->validate()){*/?>
                                     <i class="fas fa-check-circle"></i>
-                                <?php }
-                                else {?>
+                                <?php/* }
+                                else {*/?>
 
-                                    <a href="/reportCom/<?= $data->id(); ?>">
+                                    <a href="/reportCom/<?php/* $data->id(); */?>">
                                         <button type="button" class="btn btn-outline-danger">signaler</button>
                                     </a>
 
-                                <?php }?>
+                                <?php/* }*/?>
                             </div>
                         </div>
                     </div>
 
-                <?php endforeach; ?>
-            </div>
+                <?php/* endforeach; */?>
+            </div> -->
         </div>
     </div>
 

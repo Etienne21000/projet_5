@@ -57,4 +57,15 @@ class UserManager extends Manager
 
         return $user;
     }
+
+    public function changeMP(User $user)
+    {
+        $req = $this->db->prepare('UPDATE user SET pass = :pass
+        WHERE mail = :mail');
+
+        $req->bindValue(':pass', $user->passWord());
+        $req->bindValue(':mail', $user->mail());
+
+        $req->execute();
+    }
 }

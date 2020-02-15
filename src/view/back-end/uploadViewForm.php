@@ -44,10 +44,15 @@
 
                     </select>
 
-                    <!--<select name="id_serie" class="id_serie">
-                        <option value="">Choissiez image d'accueil</option>
-                        <option value="<?php /**/?>"></option>
-                    </select>-->
+                </p>
+
+                <p>
+                    <label for="img_acc">Définir comme image page d'accueil</label>
+                    <br>
+                    <select name="img_acc" class="img_acc">
+                        <option value="1">Non</option>
+                        <option value="2">Oui</option>
+                    </select>
                 </p>
 
                 <p>

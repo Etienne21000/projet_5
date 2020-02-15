@@ -77,8 +77,8 @@
         <script src="/public/js/slider.js"></script>
         <script src="/public/js/ajaxTest.js"></script>
         <script src="/public/js/main.js"></script>
-        <p> Copyright © Etienne Juffard - 2019 - Campo d'Ombra - Stefano Bianchi - tous droits réservés </p>
-    </footer>
+<!--        <p> Copyright © Etienne Juffard - 2019 - Campo d'Ombra - Stefano Bianchi - tous droits réservés </p>
+-->    </footer>
 
 </body>
 </html>

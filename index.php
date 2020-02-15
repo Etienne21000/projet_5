@@ -71,6 +71,7 @@ $router->get('/validateComment/{id}', 'Master#validateComment');
 
 /*Slider part*/
 $router->post('/chooseSerie/{id}', 'Master#chooseSerieSlider');
+$router->post('/chooseImage/{id}', 'Master#chooseImgHome');
 
 
 $router->get('/error404', 'Master#error');

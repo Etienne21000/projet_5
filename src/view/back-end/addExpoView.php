@@ -20,6 +20,12 @@
 						<input type="text" name="title" class="title" required placeholder="Titre"/>
 					</p>
 
+                    <p>
+                        <label for="form-content">Titre</label>
+                        <br>
+                        <input type="text" name="created_at" required placeholder="date de création"/>
+                    </p>
+
 					<p>
 						<label for="form-content">Description</label>
 						<br>

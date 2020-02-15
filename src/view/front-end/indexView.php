@@ -6,10 +6,10 @@
     <article id="banner">
         <div class="banner_image">
             <div class="slide">
-                <div class="titre">
+                <div class="titreh1">
                     <h1> Campodombra </h1>
                 </div>
-                <img src="/public/upload/Page_accueil_A.jpg" alt=""/>
+                <img src="/public/upload/<?= $image->image(); ?>" alt="<?= $image->title(); ?>"/>
             </div>
             <?php /*foreach ($Images as $data): */ ?><!--
                 <div class="slide">

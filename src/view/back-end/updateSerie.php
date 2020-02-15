@@ -20,13 +20,19 @@
 						<input type="text" name="title" class="titre" required value="<?= $serie->title();?>"/>
 					</p>
 
+                    <p>
+                        <label for="form-content">Date de création</label>
+                        <br>
+                        <input type="text" name="created_at" required value="<?= $serie->created_at(); ?>"/>
+                    </p>
+
 					<p>
 						<label for="id_img">Image de couverture</label>
 						<br>
 						<select name="id_img" class="id_img">
-							
+							<!-- <option value="<?php /*= $data->id(); */?>"></option> -->
 							<?php foreach ($Images as $data): ?>
-								<option value="<?php echo $data->id(); ?>"> <?php echo $data->title(); ?></option>
+								<option value="<?= $data->id(); ?>"> <?= $data->title(); ?></option>
 							<?php endforeach; ?>
 
 						</select>
